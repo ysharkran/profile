@@ -89,29 +89,29 @@ const upstreamProjects = {
     image: "/projects/appflowy.png",
     badge: "Cross-Platform",
   },
-  reactHookForm: {
-    title: "React Hook Form",
-    repoLabel: "react-hook-form/react-hook-form",
+  openWebUi: {
+    title: "Open WebUI",
+    repoLabel: "open-webui/open-webui",
     description:
-      "A serious frontend package with product-grade adoption, documentation, API design, and real company usage around forms, validation, and UX-heavy app flows.",
-    image: "/projects/react-hook-form.png",
-    badge: "Package",
+      "AI workspace product for model chat, tool use, knowledge retrieval, and operator-facing workflows with a polished interface that reads like a real company app.",
+    image: "/projects/open-webui.png",
+    badge: "AI Workspace",
   },
-  tanstackQuery: {
-    title: "TanStack Query",
-    repoLabel: "TanStack/query",
+  lobeChat: {
+    title: "Lobe Chat",
+    repoLabel: "lobehub/lobe-chat",
     description:
-      "High-leverage frontend data-fetching package used in production apps everywhere, with a strong developer experience, ecosystem, and long-term product thinking.",
-    image: "/projects/tanstack-query.png",
-    badge: "Package",
+      "AI assistant application with multi-model chat, agents, plugins, and consumer-grade product polish across the kind of interface surface strong AI teams actually ship.",
+    image: "/projects/lobe-chat.webp",
+    badge: "AI Assistant",
   },
-  shadcnUi: {
-    title: "shadcn/ui",
-    repoLabel: "shadcn-ui/ui",
+  ente: {
+    title: "Ente",
+    repoLabel: "ente-io/ente",
     description:
-      "Design-system starter and component distribution project that feels very close to the kind of internal/frontend package work strong product teams actually maintain.",
-    image: "/projects/shadcn-ui.png",
-    badge: "UI System",
+      "Encrypted photo and file product with strong mobile-first execution, subscription-grade UX, and real cross-platform depth instead of a developer-tool feel.",
+    image: "/projects/ente.png",
+    badge: "Mobile",
   },
 } as const satisfies Record<string, UpstreamProject>;
 
@@ -148,10 +148,10 @@ export const focusAreas = [
 ];
 
 export const featuredProjects = [
+  buildProject(upstreamProjects.openWebUi),
   buildProject(upstreamProjects.dub),
-  buildProject(upstreamProjects.formbricks),
   buildProject(upstreamProjects.chatwoot),
-  buildProject(upstreamProjects.twenty),
+  buildProject(upstreamProjects.ente),
 ];
 
 export const projectSections = [
@@ -174,17 +174,17 @@ export const projectSections = [
       buildProject(upstreamProjects.chatwoot),
       buildProject(upstreamProjects.twenty),
       buildProject(upstreamProjects.memos),
-      buildProject(upstreamProjects.appflowy),
     ],
   },
   {
-    title: "Packages and Frontend Building Blocks",
+    title: "AI and Mobile Products",
     description:
-      "A smaller set of public packages that still feel real-world and company-relevant: the kind of frontend foundations, UI systems, and reusable modules senior product teams actually maintain.",
+      "Real product repos that lean into applied AI and cross-device execution: assistant experiences, AI workspaces, mobile-first consumer apps, and cross-platform products with clear company-grade UX.",
     items: [
-      buildProject(upstreamProjects.reactHookForm),
-      buildProject(upstreamProjects.tanstackQuery),
-      buildProject(upstreamProjects.shadcnUi),
+      buildProject(upstreamProjects.openWebUi),
+      buildProject(upstreamProjects.lobeChat),
+      buildProject(upstreamProjects.ente),
+      buildProject(upstreamProjects.appflowy),
     ],
   },
 ];

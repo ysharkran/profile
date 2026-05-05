@@ -9,9 +9,9 @@ export function ProjectsPage() {
         <div className="section-kicker">Portfolio</div>
         <h1 className="text-5xl font-bold">Project Portfolio</h1>
         <p className="section-copy max-w-4xl">
-          The cards below point to public repos behind product-style web apps, cross-platform
-          experiences, and serious packages. If you fork one, you can later replace the repo path in
-          one place and point the card at your own GitHub version instead.
+          The cards below point to public repos behind product-style web apps, AI products, and
+          cross-platform experiences. If you fork one, you can later replace the repo path in one
+          place and point the card at your own GitHub version instead.
         </p>
       </section>
 
