@@ -11,16 +11,11 @@
     color-scheme: light;
     --font-body: "Manrope", "Segoe UI", sans-serif;
     --font-display: "Space Grotesk", "Avenir Next", sans-serif;
-    --portfolio-pointer-x: 68vw;
-    --portfolio-pointer-y: 28vh;
-    --portfolio-parallax-shift-x: 0px;
-    --portfolio-parallax-shift-y: 0px;
     --portfolio-bg-grid-rgb: 27, 36, 52;
     --portfolio-bg-canvas-rgb: 29, 78, 216;
     --portfolio-bg-node-rgb: 15, 118, 110;
     --portfolio-bg-link-rgb: 29, 78, 216;
     --portfolio-bg-accent-rgb: 217, 119, 6;
-    --portfolio-bg-cursor-rgb: 59, 130, 246;
 }
 
 html[data-theme="portfolio-light"] {
@@ -29,7 +24,6 @@ html[data-theme="portfolio-light"] {
     --portfolio-bg-node-rgb: 15, 118, 110;
     --portfolio-bg-link-rgb: 59, 130, 246;
     --portfolio-bg-accent-rgb: 217, 119, 6;
-    --portfolio-bg-cursor-rgb: 29, 78, 216;
 }
 
 html[data-theme="portfolio-dark"] {
@@ -39,7 +33,6 @@ html[data-theme="portfolio-dark"] {
     --portfolio-bg-node-rgb: 52, 211, 153;
     --portfolio-bg-link-rgb: 96, 165, 250;
     --portfolio-bg-accent-rgb: 245, 158, 11;
-    --portfolio-bg-cursor-rgb: 125, 211, 252;
 }
 
 html,
@@ -142,7 +135,7 @@ button {
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.72;
+    opacity: 0.78;
 }
 
 .portfolio-background__grid {
@@ -151,29 +144,27 @@ button {
         linear-gradient(to right, rgba(var(--portfolio-bg-grid-rgb), 0.06) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(var(--portfolio-bg-grid-rgb), 0.06) 1px, transparent 1px);
     background-size: 38px 38px;
-    opacity: 0.2;
-    transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.18), calc(var(--portfolio-parallax-shift-y) * 0.18), 0);
+    opacity: 0.17;
     mask-image: radial-gradient(circle at center, black 46%, transparent 94%);
 }
 
 .portfolio-background__halo {
     inset: -12%;
     background:
-        radial-gradient(circle at var(--portfolio-pointer-x) var(--portfolio-pointer-y), rgba(var(--portfolio-bg-canvas-rgb), 0.22) 0, transparent 20rem),
-        radial-gradient(circle at 18% 22%, rgba(var(--portfolio-bg-link-rgb), 0.1) 0, transparent 22rem),
-        radial-gradient(circle at 78% 26%, rgba(var(--portfolio-bg-node-rgb), 0.12) 0, transparent 18rem),
-        radial-gradient(circle at 70% 78%, rgba(var(--portfolio-bg-accent-rgb), 0.08) 0, transparent 18rem);
-    filter: blur(28px) saturate(108%);
-    transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.45), calc(var(--portfolio-parallax-shift-y) * 0.45), 0);
+        radial-gradient(circle at 20% 18%, rgba(var(--portfolio-bg-link-rgb), 0.12) 0, transparent 24rem),
+        radial-gradient(circle at 78% 22%, rgba(var(--portfolio-bg-node-rgb), 0.14) 0, transparent 22rem),
+        radial-gradient(circle at 66% 74%, rgba(var(--portfolio-bg-accent-rgb), 0.08) 0, transparent 20rem),
+        radial-gradient(circle at 34% 78%, rgba(var(--portfolio-bg-canvas-rgb), 0.12) 0, transparent 24rem);
+    filter: blur(34px) saturate(110%);
 }
 
 .portfolio-background__spotlight {
     inset: 0;
     background:
-        radial-gradient(circle 10rem at var(--portfolio-pointer-x) var(--portfolio-pointer-y), rgba(var(--portfolio-bg-cursor-rgb), 0.12) 0, rgba(var(--portfolio-bg-cursor-rgb), 0.035) 42%, transparent 72%),
-        linear-gradient(135deg, rgba(var(--portfolio-bg-link-rgb), 0.08) 0, transparent 32%, transparent 68%, rgba(var(--portfolio-bg-node-rgb), 0.08) 100%);
+        linear-gradient(130deg, rgba(var(--portfolio-bg-link-rgb), 0.08) 0, transparent 34%, transparent 66%, rgba(var(--portfolio-bg-node-rgb), 0.08) 100%),
+        linear-gradient(90deg, transparent 0, rgba(var(--portfolio-bg-grid-rgb), 0.03) 50%, transparent 100%);
     mix-blend-mode: screen;
-    opacity: 0.62;
+    opacity: 0.46;
 }
 
 .portfolio-background__noise {
@@ -181,17 +172,16 @@ button {
     background:
         repeating-linear-gradient(115deg, rgba(var(--portfolio-bg-grid-rgb), 0.032) 0 1px, transparent 1px 88px),
         repeating-linear-gradient(-115deg, rgba(var(--portfolio-bg-grid-rgb), 0.032) 0 1px, transparent 1px 104px);
-    opacity: 0.24;
-    transform: translate3d(calc(var(--portfolio-parallax-shift-x) * -0.14), calc(var(--portfolio-parallax-shift-y) * -0.14), 0);
+    opacity: 0.2;
     mask-image: radial-gradient(circle at center, black 44%, transparent 92%);
 }
 
 html[data-background-mode="dynamic"] .portfolio-background__halo {
-    animation: technical-halo-float 22s ease-in-out infinite alternate;
+    animation: technical-halo-drift 24s ease-in-out infinite alternate;
 }
 
 html[data-background-mode="dynamic"] .portfolio-background__spotlight {
-    animation: technical-spotlight-breathe 14s ease-in-out infinite alternate;
+    animation: technical-beam-drift 18s ease-in-out infinite alternate;
 }
 
 html[data-background-mode="static"] .portfolio-background__canvas {
@@ -210,31 +200,31 @@ html[data-background-mode="static"] .portfolio-background__spotlight {
 }
 
 html[data-theme="portfolio-dark"] .portfolio-background__grid {
-    opacity: 0.24;
+    opacity: 0.22;
 }
 
 html[data-theme="portfolio-dark"] .portfolio-background__halo {
-    filter: blur(34px) saturate(116%);
+    filter: blur(38px) saturate(118%);
 }
 
 html[data-theme="portfolio-dark"] .portfolio-background__spotlight {
-    opacity: 0.72;
+    opacity: 0.58;
 }
 
 html[data-theme="portfolio-dark"] .portfolio-background__noise {
-    opacity: 0.3;
+    opacity: 0.26;
 }
 
 html[data-theme="portfolio-light"] .portfolio-background__halo {
-    filter: blur(30px) saturate(104%);
+    filter: blur(32px) saturate(104%);
 }
 
 html[data-theme="portfolio-light"] .portfolio-background__spotlight {
-    opacity: 0.5;
+    opacity: 0.34;
 }
 
 html[data-theme="portfolio-light"] .portfolio-background__noise {
-    opacity: 0.2;
+    opacity: 0.16;
 }
 
 .portfolio-main {
@@ -456,25 +446,25 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
     --tw-prose-bold: oklch(var(--bc));
 }
 
-@keyframes technical-halo-float {
+@keyframes technical-halo-drift {
     from {
-        transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.35), calc(var(--portfolio-parallax-shift-y) * 0.35), 0) scale(1);
+        transform: translate3d(-2%, -1%, 0) scale(1);
     }
 
     to {
-        transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.55), calc(var(--portfolio-parallax-shift-y) * 0.55), 0) scale(1.06);
+        transform: translate3d(3%, 2%, 0) scale(1.07);
     }
 }
 
-@keyframes technical-spotlight-breathe {
+@keyframes technical-beam-drift {
     from {
-        transform: scale(1);
-        opacity: 0.72;
+        transform: translate3d(-1%, 0, 0) scale(1);
+        opacity: 0.42;
     }
 
     to {
-        transform: scale(1.03);
-        opacity: 0.96;
+        transform: translate3d(2%, 1%, 0) scale(1.03);
+        opacity: 0.6;
     }
 }
 
@@ -524,12 +514,12 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
     }
 
     .portfolio-background__halo {
-        filter: blur(24px) saturate(100%);
-        opacity: 0.72;
+        filter: blur(26px) saturate(100%);
+        opacity: 0.64;
     }
 
     .portfolio-background__spotlight {
-        opacity: 0.36;
+        opacity: 0.24;
     }
 
     .surface-panel {
