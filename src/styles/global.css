@@ -149,16 +149,6 @@ button {
     mask-image: radial-gradient(circle at center, black 52%, transparent 96%);
 }
 
-.portfolio-background__grid {
-    inset: 0;
-    background-image:
-        linear-gradient(to right, rgba(var(--portfolio-bg-grid-rgb), 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(var(--portfolio-bg-grid-rgb), 0.06) 1px, transparent 1px);
-    background-size: 38px 38px;
-    opacity: 0.17;
-    mask-image: radial-gradient(circle at center, black 46%, transparent 94%);
-}
-
 .portfolio-background__halo {
     inset: -12%;
     background:
@@ -191,6 +181,10 @@ html[data-background-mode="dynamic"] .portfolio-background__halo {
     animation: technical-halo-drift 24s ease-in-out infinite alternate;
 }
 
+html[data-background-mode="dynamic"] .portfolio-background__dots {
+    animation: technical-dot-drift 28s linear infinite;
+}
+
 html[data-background-mode="dynamic"] .portfolio-background__spotlight {
     animation: technical-beam-drift 18s ease-in-out infinite alternate;
 }
@@ -199,7 +193,6 @@ html[data-background-mode="static"] .portfolio-background__canvas {
     opacity: 0;
 }
 
-html[data-background-mode="static"] .portfolio-background__grid,
 html[data-background-mode="static"] .portfolio-background__halo,
 html[data-background-mode="static"] .portfolio-background__noise {
     transform: none;
@@ -208,10 +201,6 @@ html[data-background-mode="static"] .portfolio-background__noise {
 html[data-background-mode="static"] .portfolio-background__halo,
 html[data-background-mode="static"] .portfolio-background__spotlight {
     animation: none;
-}
-
-html[data-theme="portfolio-dark"] .portfolio-background__grid {
-    opacity: 0.22;
 }
 
 html[data-theme="portfolio-dark"] .portfolio-background__dots {
@@ -475,6 +464,16 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
     }
 }
 
+@keyframes technical-dot-drift {
+    from {
+        background-position: 0 0, 14px 14px;
+    }
+
+    to {
+        background-position: 36px 22px, 52px 40px;
+    }
+}
+
 @keyframes technical-beam-drift {
     from {
         transform: translate3d(-1%, 0, 0) scale(1);
@@ -492,11 +491,14 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
         animation: none;
     }
 
+    .portfolio-background__dots {
+        animation: none;
+    }
+
     .portfolio-background__spotlight {
         animation: none;
     }
 
-    .portfolio-background__grid,
     .portfolio-background__dots,
     .portfolio-background__halo,
     .portfolio-background__noise {
@@ -519,12 +521,6 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
     main::before,
     .portfolio-background__noise {
         display: none;
-    }
-
-    .portfolio-background__grid {
-        background-size: 48px 48px;
-        mask-image: none;
-        opacity: 0.12;
     }
 
     .portfolio-background__dots {

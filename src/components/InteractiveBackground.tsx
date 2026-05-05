@@ -266,7 +266,6 @@ export function InteractiveBackground() {
     <div className="portfolio-background" aria-hidden="true" data-portfolio-background>
       <canvas className="portfolio-background__canvas"></canvas>
       <div className="portfolio-background__dots"></div>
-      <div className="portfolio-background__grid"></div>
       <div className="portfolio-background__halo"></div>
       <div className="portfolio-background__spotlight"></div>
       <div className="portfolio-background__noise"></div>
