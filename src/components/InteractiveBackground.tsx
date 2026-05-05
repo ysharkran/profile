@@ -39,6 +39,7 @@ export function InteractiveBackground() {
       nodes: [] as NetworkNode[],
       links: [] as NetworkLink[],
       lastTime: 0,
+      animationTime: 0,
       sceneHeight: 0,
       palette: null as null | {
         link: string;
@@ -239,13 +240,17 @@ export function InteractiveBackground() {
       }
     };
 
+    const advanceAnimation = (time: number) => {
+      const delta = state.lastTime === 0 ? 16 : clamp(time - state.lastTime, 12, 34);
+      state.lastTime = time;
+      state.animationTime += delta;
+      return state.animationTime;
+    };
+
     const renderFrame = (time: number) => {
       if (!state.dynamicEnabled) return;
 
-      const delta = Math.min(time - state.lastTime || 16, 40);
-      state.lastTime = time;
-
-      drawFrame(time + delta);
+      drawFrame(advanceAnimation(time));
       state.animationFrame = window.requestAnimationFrame(renderFrame);
     };
 
