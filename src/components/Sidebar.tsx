@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { profile } from "../data/portfolio";
+import { profile, profileQuickFacts } from "../data/portfolio";
 import { SmartLink } from "./SmartLink";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -34,6 +34,7 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
 
   const hasPersonalGithub =
     profile.githubUrl.length > 0 && !profile.githubUrl.includes("your-github-handle");
+  const primaryRole = profile.role.split(" / ")[0];
 
   return (
     <>
@@ -57,10 +58,33 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
             </SmartLink>
             <div className="mt-4">
               <div className="font-display text-[1.75rem] leading-none">{profile.name}</div>
-              <div className="sidebar-meta mt-2 text-sm uppercase tracking-[0.18em]">Senior Engineer</div>
+              <div className="sidebar-meta mt-2 text-sm uppercase tracking-[0.18em]">{primaryRole}</div>
               <p className="sidebar-copy mt-4 text-sm leading-7">
-                AI-native products, backend systems, and product-minded engineering for real operating teams.
+                {profile.headline}
               </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="sidebar-tag">AI systems</span>
+                <span className="sidebar-tag">Platform delivery</span>
+                <span className="sidebar-tag">Remote</span>
+              </div>
+              <div className="mt-4 grid gap-2">
+                {profileQuickFacts.map((item) => (
+                  <div key={item.label} className="sidebar-quick-fact rounded-2xl px-3 py-3">
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-base-content/45">
+                      {item.label}
+                    </div>
+                    <div className="mt-1 text-xs leading-6 text-base-content/80">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a className="btn btn-sm btn-primary border-0 px-4" href={profile.resumeUrl} target="_blank" rel="noreferrer">
+                  Resume PDF
+                </a>
+                <a className="btn btn-sm btn-ghost border border-base-300/80 px-4" href={`mailto:${profile.email}`} target="_blank" rel="noreferrer">
+                  Email
+                </a>
+              </div>
             </div>
           </div>
 

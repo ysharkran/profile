@@ -282,14 +282,23 @@ export const expertise = [
 export const education = [
   {
     title: "Bachelor's Degree in Computer Science",
-    subtitle: "2012 to 2016 at Taras Shevchenko National University of Kyiv, Kyiv, Ukraine",
+    institution: "Taras Shevchenko National University of Kyiv",
+    period: "2012 to 2016",
+    location: "Kyiv, Ukraine",
+    notes:
+      "Formal foundation in software engineering, computer science fundamentals, and analytical problem solving.",
   },
 ];
 
 export const experience = [
   {
     title: "Senior Software Engineer",
-    subtitle: "September 2024 to February 2026 at Capital One, Remote for US-based teams",
+    company: "Capital One",
+    period: "September 2024 to February 2026",
+    location: "Remote for US-based teams",
+    summary:
+      "Worked on regulated financial systems with a mix of backend platform delivery and AI-assisted workflow automation.",
+    badges: ["Fintech", "AI Automation", "Cloud Platform"],
     highlights: [
       "Designed and implemented scalable microservices using Node.js, Python, and PostgreSQL.",
       "Built AI-powered data processing pipelines with PyTorch and OpenAI APIs, improving automation efficiency by 40 percent.",
@@ -300,7 +309,12 @@ export const experience = [
   },
   {
     title: "Full-Stack Software Engineer",
-    subtitle: "June 2022 to September 2024 at DEXTF, Remote blockchain and Web3 startup",
+    company: "DEXTF",
+    period: "June 2022 to September 2024",
+    location: "Remote blockchain and Web3 startup",
+    summary:
+      "Built wallet-connected product experiences and backend services for Solana-oriented Web3 products with real user-facing workflows.",
+    badges: ["Web3", "React + Next.js", "Solana"],
     highlights: [
       "Developed decentralized applications and backend integrations around Solana-based systems.",
       "Implemented smart contract integrations and wallet-connected experiences for Web3 products.",
@@ -310,7 +324,12 @@ export const experience = [
   },
   {
     title: "Software Engineer",
-    subtitle: "July 2017 to June 2022 at DataArt, Kyiv, Ukraine",
+    company: "DataArt",
+    period: "July 2017 to June 2022",
+    location: "Kyiv, Ukraine",
+    summary:
+      "Delivered full-stack product work across multiple client engagements, building the execution depth behind later platform and product roles.",
+    badges: ["Consulting", "Full-Stack", "Performance"],
     highlights: [
       "Built full-stack applications with React, Node.js, MongoDB, and REST APIs across multiple client engagements.",
       "Delivered integrations and backend services while working in cross-functional Agile teams.",
@@ -319,45 +338,92 @@ export const experience = [
   },
 ];
 
-export const skills = [
-  "JavaScript",
-  "TypeScript",
-  "Python",
-  "Rust",
-  "React",
-  "Next.js",
-  "Vue",
-  "Nuxt.js",
-  "Node.js",
-  "Nest.js",
-  "Express.js",
-  "FastAPI",
-  "Django",
-  "GraphQL",
-  "REST APIs",
-  "PostgreSQL",
-  "MongoDB",
-  "Redis",
-  "MySQL",
-  "PyTorch",
-  "TensorFlow",
-  "Scikit-learn",
-  "OpenAI APIs",
-  "Tailwind CSS",
-  "Material UI",
-  "AWS",
-  "Docker",
-  "Kubernetes",
-  "Terraform",
-  "CI/CD",
-  "Solana",
-  "Web3.js",
-  "System Design",
-  "Performance Optimization",
+export const resumeSnapshot = [
+  {
+    value: "8+",
+    label: "Years shipping product, platform, and API-heavy software",
+  },
+  {
+    value: "40%",
+    label: "Automation efficiency lift delivered through AI-enabled workflows",
+  },
+  {
+    value: "3",
+    label: "Primary operating domains: AI platforms, fintech systems, and Web3",
+  },
+  {
+    value: "Remote",
+    label: "Comfortable working async across time zones and distributed teams",
+  },
 ];
 
-export const highlights = [
+export const profileQuickFacts = [
+  {
+    label: "Base",
+    value: profile.location,
+  },
+  {
+    label: "Focus",
+    value: "AI, fintech, Web3",
+  },
+  {
+    label: "Mode",
+    value: "Remote worldwide",
+  },
+];
+
+export const resumeFocusAreas = [
+  {
+    title: "Product Engineering With Backend Depth",
+    description:
+      "Strong across frontend product delivery and backend systems, from user-facing React surfaces to APIs, data models, and deployment concerns.",
+    badge: "Full-Stack",
+  },
+  {
+    title: "AI Features That Can Survive Production",
+    description:
+      "Most interested in AI work that is reviewable, measurable, and operationally useful rather than demo-driven or visually impressive only.",
+    badge: "AI",
+  },
+  {
+    title: "Domain-Heavy Systems and Operational Software",
+    description:
+      "Comfortable in products where business logic matters: payments, insurance-style workflows, blockchain systems, and tooling for real operating teams.",
+    badge: "Systems",
+  },
+];
+
+export const careerHighlights = [
   "Open to remote roles worldwide and comfortable working async across time zones.",
   "English proficiency: Advanced (C1).",
   "Strong focus on scalable architecture, API design, and product-minded engineering execution.",
+];
+
+export const workPrinciples = [
+  "Build systems that stay understandable after handoff, not just during implementation.",
+  "Treat product context and operational reality as part of engineering scope, not as external constraints.",
+  "Prefer reviewable automation, measurable outcomes, and simple architecture over novelty for its own sake.",
+];
+
+export const skillGroups = [
+  {
+    title: "Frontend and Product Interfaces",
+    items: ["React", "Next.js", "Vue", "Nuxt.js", "TypeScript", "Tailwind CSS", "Material UI"],
+  },
+  {
+    title: "Backend and API Systems",
+    items: ["Node.js", "Nest.js", "Express.js", "Python", "FastAPI", "Django", "GraphQL", "REST APIs"],
+  },
+  {
+    title: "Data and Infrastructure",
+    items: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "AWS", "Docker", "Kubernetes", "Terraform", "CI/CD"],
+  },
+  {
+    title: "AI and Applied ML",
+    items: ["PyTorch", "TensorFlow", "Scikit-learn", "OpenAI APIs", "System Design", "Performance Optimization"],
+  },
+  {
+    title: "Blockchain and Web3",
+    items: ["Rust", "Solana", "Web3.js"],
+  },
 ];
