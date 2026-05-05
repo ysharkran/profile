@@ -135,73 +135,43 @@ button {
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.92;
+    opacity: 0.98;
 }
 
-.portfolio-background__halo {
+.portfolio-background__wash {
     inset: -12%;
     background:
-        radial-gradient(circle at 20% 18%, rgba(var(--portfolio-bg-link-rgb), 0.07) 0, transparent 24rem),
-        radial-gradient(circle at 78% 22%, rgba(var(--portfolio-bg-node-rgb), 0.08) 0, transparent 22rem),
-        radial-gradient(circle at 66% 74%, rgba(var(--portfolio-bg-accent-rgb), 0.05) 0, transparent 20rem),
-        radial-gradient(circle at 34% 78%, rgba(var(--portfolio-bg-canvas-rgb), 0.07) 0, transparent 24rem);
-    filter: blur(34px) saturate(110%);
+        radial-gradient(circle at 18% 22%, rgba(var(--portfolio-bg-link-rgb), 0.04) 0, transparent 26rem),
+        radial-gradient(circle at 74% 26%, rgba(var(--portfolio-bg-node-rgb), 0.05) 0, transparent 24rem),
+        radial-gradient(circle at 62% 74%, rgba(var(--portfolio-bg-accent-rgb), 0.03) 0, transparent 22rem);
+    filter: blur(42px) saturate(104%);
 }
 
-.portfolio-background__spotlight {
+.portfolio-background__vignette {
     inset: 0;
     background:
-        linear-gradient(130deg, rgba(var(--portfolio-bg-link-rgb), 0.04) 0, transparent 34%, transparent 66%, rgba(var(--portfolio-bg-node-rgb), 0.04) 100%),
-        linear-gradient(90deg, transparent 0, rgba(var(--portfolio-bg-grid-rgb), 0.03) 50%, transparent 100%);
-    mix-blend-mode: screen;
-    opacity: 0.2;
-}
-
-.portfolio-background__noise {
-    inset: 0;
-    background:
-        repeating-linear-gradient(115deg, rgba(var(--portfolio-bg-grid-rgb), 0.032) 0 1px, transparent 1px 88px),
-        repeating-linear-gradient(-115deg, rgba(var(--portfolio-bg-grid-rgb), 0.032) 0 1px, transparent 1px 104px);
-    opacity: 0.2;
-    mask-image: radial-gradient(circle at center, black 44%, transparent 92%);
+        radial-gradient(circle at center, transparent 40%, rgba(var(--portfolio-bg-grid-rgb), 0.12) 100%);
+    opacity: 0.32;
 }
 
 html[data-background-mode="static"] .portfolio-background__canvas {
-    opacity: 0;
+    opacity: 0.92;
 }
 
-html[data-background-mode="static"] .portfolio-background__halo,
-html[data-background-mode="static"] .portfolio-background__noise {
-    transform: none;
-}
-
-html[data-background-mode="static"] .portfolio-background__halo,
-html[data-background-mode="static"] .portfolio-background__spotlight {
-    animation: none;
-}
-
-html[data-theme="portfolio-dark"] .portfolio-background__halo {
+html[data-theme="portfolio-dark"] .portfolio-background__wash {
     filter: blur(38px) saturate(118%);
 }
 
-html[data-theme="portfolio-dark"] .portfolio-background__spotlight {
-    opacity: 0.16;
+html[data-theme="portfolio-dark"] .portfolio-background__vignette {
+    opacity: 0.22;
 }
 
-html[data-theme="portfolio-dark"] .portfolio-background__noise {
-    opacity: 0.26;
-}
-
-html[data-theme="portfolio-light"] .portfolio-background__halo {
+html[data-theme="portfolio-light"] .portfolio-background__wash {
     filter: blur(32px) saturate(104%);
 }
 
-html[data-theme="portfolio-light"] .portfolio-background__spotlight {
-    opacity: 0.12;
-}
-
-html[data-theme="portfolio-light"] .portfolio-background__noise {
-    opacity: 0.16;
+html[data-theme="portfolio-light"] .portfolio-background__vignette {
+    opacity: 0.3;
 }
 
 .portfolio-main {
@@ -424,19 +394,6 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .portfolio-background__halo {
-        animation: none;
-    }
-
-    .portfolio-background__spotlight {
-        animation: none;
-    }
-
-    .portfolio-background__halo,
-    .portfolio-background__noise {
-        transform: none;
-    }
-
     .sidebar-link:hover,
     .sidebar-icon-link:hover {
         transform: none;
@@ -450,24 +407,12 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
 }
 
 @media (max-width: 1023px), (hover: none), (pointer: coarse) {
-    main::before,
-    .portfolio-background__noise {
+    main::before {
         display: none;
     }
 
-    .portfolio-background__halo,
-    .portfolio-background__spotlight {
-        animation: none;
-        transform: none;
-    }
-
-    .portfolio-background__halo {
+    .portfolio-background__wash {
         filter: blur(26px) saturate(100%);
-        opacity: 0.64;
-    }
-
-    .portfolio-background__spotlight {
-        opacity: 0.24;
     }
 
     .surface-panel {

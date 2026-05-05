@@ -1,15 +1,22 @@
 import { useEffect } from "react";
 
-type Particle = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
+type NetworkNode = {
+  baseX: number;
+  baseY: number;
+  driftX: number;
+  driftY: number;
   radius: number;
   opacity: number;
-  glow: number;
-  pulse: number;
-  pulseSpeed: number;
+  phase: number;
+  speed: number;
+  accent: boolean;
+};
+
+type NetworkLink = {
+  a: number;
+  b: number;
+  alpha: number;
+  accent: boolean;
 };
 
 export function InteractiveBackground() {
@@ -24,7 +31,8 @@ export function InteractiveBackground() {
       canvas: null as HTMLCanvasElement | null,
       ctx: null as CanvasRenderingContext2D | null,
       animationFrame: 0,
-      particles: [] as Particle[],
+      nodes: [] as NetworkNode[],
+      links: [] as NetworkLink[],
       lastTime: 0,
       palette: null as null | {
         link: string;
@@ -33,7 +41,6 @@ export function InteractiveBackground() {
       },
       mode: document.documentElement.dataset.colorMode || "light",
       reduceMotionQuery: window.matchMedia("(prefers-reduced-motion: reduce)"),
-      desktopMotionQuery: window.matchMedia("(min-width: 900px)"),
       reducedMotion: false,
       dynamicEnabled: false,
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.25),
@@ -56,7 +63,7 @@ export function InteractiveBackground() {
       const lowPowerDevice =
         typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
 
-      return state.desktopMotionQuery.matches && !saveData && !lowPowerDevice && !state.reducedMotion;
+      return !saveData && !lowPowerDevice && !state.reducedMotion;
     };
 
     const syncBackgroundMode = () => {
@@ -64,27 +71,90 @@ export function InteractiveBackground() {
       document.documentElement.dataset.backgroundMode = state.dynamicEnabled ? "dynamic" : "static";
     };
 
-    const particleCountForViewport = () => {
-      const area = window.innerWidth * window.innerHeight;
-      if (area < 540000) return 30;
-      if (area < 980000) return 48;
-      return 68;
-    };
+    const seedNetwork = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const spacingX = clamp(width / 16, 72, 104);
+      const spacingY = spacingX * 0.72;
+      const cols = Math.ceil(width / spacingX) + 3;
+      const rows = Math.ceil(height / spacingY) + 3;
 
-    const createParticle = (): Particle => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      radius: 1.2 + Math.random() * 2.1,
-      opacity: 0.38 + Math.random() * 0.48,
-      glow: 0.08 + Math.random() * 0.14,
-      pulse: Math.random() * Math.PI * 2,
-      pulseSpeed: 0.0016 + Math.random() * 0.0028,
-    });
+      const grid: Array<Array<number | null>> = [];
+      const nodes: NetworkNode[] = [];
 
-    const seedParticles = () => {
-      state.particles = Array.from({ length: particleCountForViewport() }, createParticle);
+      for (let row = 0; row < rows; row += 1) {
+        grid[row] = [];
+
+        for (let col = 0; col < cols; col += 1) {
+          const skipChance = row > 0 && row < rows - 1 && col > 0 && col < cols - 1 ? 0.12 : 0;
+          if (Math.random() < skipChance) {
+            grid[row][col] = null;
+            continue;
+          }
+
+          const staggerOffset = row % 2 === 0 ? 0 : spacingX * 0.5;
+          const jitterX = (Math.random() - 0.5) * spacingX * 0.22;
+          const jitterY = (Math.random() - 0.5) * spacingY * 0.22;
+
+          const node: NetworkNode = {
+            baseX: col * spacingX + staggerOffset + jitterX - spacingX * 0.5,
+            baseY: row * spacingY + jitterY - spacingY * 0.5,
+            driftX: 2 + Math.random() * 5,
+            driftY: 2 + Math.random() * 5,
+            radius: 1.35 + Math.random() * 1.8,
+            opacity: 0.34 + Math.random() * 0.5,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.00045 + Math.random() * 0.0006,
+            accent: Math.random() < 0.09,
+          };
+
+          grid[row][col] = nodes.length;
+          nodes.push(node);
+        }
+      }
+
+      const links: NetworkLink[] = [];
+
+      const maybeConnect = (
+        fromIndex: number | null | undefined,
+        toIndex: number | null | undefined,
+        alpha: number,
+        accent = false
+      ) => {
+        if (fromIndex == null || toIndex == null) return;
+
+        links.push({
+          a: fromIndex,
+          b: toIndex,
+          alpha,
+          accent,
+        });
+      };
+
+      for (let row = 0; row < rows; row += 1) {
+        for (let col = 0; col < cols; col += 1) {
+          const current = grid[row][col];
+          if (current == null) continue;
+
+          const right = grid[row]?.[col + 1];
+          const down = grid[row + 1]?.[col];
+          const downLeft = grid[row + 1]?.[col - (row % 2 === 0 ? 1 : 0)];
+          const downRight = grid[row + 1]?.[col + (row % 2 === 0 ? 0 : 1)];
+          const rightTwo = grid[row]?.[col + 2];
+
+          maybeConnect(current, right, 0.42);
+          maybeConnect(current, down, 0.2);
+          maybeConnect(current, downLeft, 0.28);
+          maybeConnect(current, downRight, 0.28);
+
+          if (Math.random() < 0.18) {
+            maybeConnect(current, rightTwo, 0.12, true);
+          }
+        }
+      }
+
+      state.nodes = nodes;
+      state.links = links;
     };
 
     const resizeCanvas = () => {
@@ -97,72 +167,68 @@ export function InteractiveBackground() {
       state.canvas.style.height = `${window.innerHeight}px`;
       state.ctx.setTransform(state.devicePixelRatio, 0, 0, state.devicePixelRatio, 0, 0);
 
-      if (!state.particles.length || state.particles.length !== particleCountForViewport()) {
-        seedParticles();
-      }
+      seedNetwork();
     };
 
     const clearCanvas = () => {
       state.ctx?.clearRect(0, 0, window.innerWidth, window.innerHeight);
     };
 
+    const drawFrame = (time: number) => {
+      if (!state.ctx || !state.canvas || !state.palette) return;
+
+      clearCanvas();
+
+      const positions = state.nodes.map((node) => ({
+        x: node.baseX + Math.sin(time * node.speed + node.phase) * node.driftX,
+        y: node.baseY + Math.cos(time * node.speed * 0.9 + node.phase) * node.driftY,
+      }));
+
+      for (const link of state.links) {
+        const from = positions[link.a];
+        const to = positions[link.b];
+        if (!from || !to) continue;
+
+        const pulse = 0.8 + Math.sin(time * 0.00035 + state.nodes[link.a].phase) * 0.2;
+        const alpha = link.alpha * pulse * (state.mode === "dark" ? 0.48 : 0.34);
+        const color = link.accent ? state.palette.accent : state.palette.link;
+
+        state.ctx.strokeStyle = `rgba(${color}, ${alpha})`;
+        state.ctx.lineWidth = link.accent ? 0.9 : 0.72;
+        state.ctx.beginPath();
+        state.ctx.moveTo(from.x, from.y);
+        state.ctx.lineTo(to.x, to.y);
+        state.ctx.stroke();
+      }
+
+      for (let index = 0; index < state.nodes.length; index += 1) {
+        const node = state.nodes[index];
+        const position = positions[index];
+        const pulse = 0.82 + Math.sin(time * node.speed * 1.8 + node.phase) * 0.26;
+        const radius = clamp(node.radius * pulse, 1.1, 3.6);
+        const opacity = clamp(node.opacity * pulse, 0.24, 0.92);
+
+        if (node.accent) {
+          state.ctx.fillStyle = `rgba(${state.palette.accent}, ${state.mode === "dark" ? 0.16 : 0.1})`;
+          state.ctx.beginPath();
+          state.ctx.arc(position.x, position.y, radius * 2.35, 0, Math.PI * 2);
+          state.ctx.fill();
+        }
+
+        state.ctx.fillStyle = `rgba(${state.palette.node}, ${opacity})`;
+        state.ctx.beginPath();
+        state.ctx.arc(position.x, position.y, radius, 0, Math.PI * 2);
+        state.ctx.fill();
+      }
+    };
+
     const renderFrame = (time: number) => {
-      if (!state.dynamicEnabled || !state.ctx || !state.canvas || !state.palette) return;
+      if (!state.dynamicEnabled) return;
 
       const delta = Math.min(time - state.lastTime || 16, 40);
       state.lastTime = time;
-      clearCanvas();
 
-      const connectionDistance = Math.min(Math.max(window.innerWidth * 0.15, 132), 208);
-
-      for (const particle of state.particles) {
-        particle.x += particle.vx * delta * 0.05;
-        particle.y += particle.vy * delta * 0.05;
-        particle.pulse += particle.pulseSpeed * delta;
-
-        if (particle.x < -24) particle.x = window.innerWidth + 24;
-        if (particle.x > window.innerWidth + 24) particle.x = -24;
-        if (particle.y < -24) particle.y = window.innerHeight + 24;
-        if (particle.y > window.innerHeight + 24) particle.y = -24;
-      }
-
-      for (let i = 0; i < state.particles.length; i += 1) {
-        const particle = state.particles[i];
-
-        for (let j = i + 1; j < state.particles.length; j += 1) {
-          const other = state.particles[j];
-          const dx = particle.x - other.x;
-          const dy = particle.y - other.y;
-          const distance = Math.hypot(dx, dy);
-
-          if (distance > connectionDistance) continue;
-
-          const alpha = (1 - distance / connectionDistance) * (state.mode === "dark" ? 0.18 : 0.12);
-          state.ctx.strokeStyle = `rgba(${state.palette.link}, ${alpha})`;
-          state.ctx.lineWidth = distance < connectionDistance * 0.42 ? 1.05 : 0.72;
-          state.ctx.beginPath();
-          state.ctx.moveTo(particle.x, particle.y);
-          state.ctx.lineTo(other.x, other.y);
-          state.ctx.stroke();
-        }
-      }
-
-      for (const particle of state.particles) {
-        const radius = particle.radius + Math.sin(particle.pulse) * 0.34;
-        const pulseOpacity = particle.opacity + Math.sin(particle.pulse * 0.9) * 0.08;
-        const safeOpacity = clamp(pulseOpacity, 0.24, 0.95);
-
-        state.ctx.fillStyle = `rgba(${state.palette.accent}, ${particle.glow * (state.mode === "dark" ? 1 : 0.8)})`;
-        state.ctx.beginPath();
-        state.ctx.arc(particle.x, particle.y, clamp(radius * 2.6, 2.8, 8.4), 0, Math.PI * 2);
-        state.ctx.fill();
-
-        state.ctx.fillStyle = `rgba(${state.palette.node}, ${safeOpacity * (state.mode === "dark" ? 1 : 0.88)})`;
-        state.ctx.beginPath();
-        state.ctx.arc(particle.x, particle.y, clamp(radius, 1.05, 3.8), 0, Math.PI * 2);
-        state.ctx.fill();
-      }
-
+      drawFrame(time + delta);
       state.animationFrame = window.requestAnimationFrame(renderFrame);
     };
 
@@ -174,13 +240,10 @@ export function InteractiveBackground() {
     };
 
     const start = () => {
-      if (!state.dynamicEnabled) {
-        stop();
-        clearCanvas();
-        return;
-      }
+      stop();
 
-      if (state.animationFrame) {
+      if (!state.dynamicEnabled) {
+        drawFrame(0);
         return;
       }
 
@@ -242,12 +305,6 @@ export function InteractiveBackground() {
       state.reduceMotionQuery.addListener(syncMotionPreference);
     }
 
-    if (state.desktopMotionQuery.addEventListener) {
-      state.desktopMotionQuery.addEventListener("change", handleResize);
-    } else {
-      state.desktopMotionQuery.addListener(handleResize);
-    }
-
     return () => {
       stop();
       themeObserver.disconnect();
@@ -259,21 +316,14 @@ export function InteractiveBackground() {
       } else {
         state.reduceMotionQuery.removeListener(syncMotionPreference);
       }
-
-      if (state.desktopMotionQuery.removeEventListener) {
-        state.desktopMotionQuery.removeEventListener("change", handleResize);
-      } else {
-        state.desktopMotionQuery.removeListener(handleResize);
-      }
     };
   }, []);
 
   return (
     <div className="portfolio-background" aria-hidden="true" data-portfolio-background>
       <canvas className="portfolio-background__canvas"></canvas>
-      <div className="portfolio-background__halo"></div>
-      <div className="portfolio-background__spotlight"></div>
-      <div className="portfolio-background__noise"></div>
+      <div className="portfolio-background__wash"></div>
+      <div className="portfolio-background__vignette"></div>
     </div>
   );
 }
