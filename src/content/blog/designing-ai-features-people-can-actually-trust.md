@@ -2,6 +2,7 @@
 title: "Designing AI Features People Can Actually Trust"
 description: "Trust in AI products does not come from model quality alone. It comes from transparent system behavior, reviewable outputs, and good product boundaries."
 pubDate: "2026-04-28"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/designing-ai-features-people-can-actually-trust.jpg"
 badge: "AI"
 tags: ["ai", "product", "trust"]
@@ -60,3 +61,28 @@ That is why I like evaluating:
 These metrics describe whether the system is behaving like a reliable assistant instead of just whether it produced text.
 
 Trust is earned through repeated correct expectations. The product should train the user to believe the right things about the model, not just the most flattering things.
+
+## Technical Deep Dive
+
+Trust increases when the runtime records enough structure to replay why the assistant made a recommendation. That means the system needs source evidence, prompt lineage, guardrail outcomes, and a clean handoff to human correction.
+
+For AI features, I want every user-visible decision to leave behind a runtime record outside the generated text itself. That usually means logging the retrieval set, prompt version, tool calls, guardrail verdicts, and the reviewer action that finalized the output. Without that, teams argue from anecdotes instead of traces.
+
+```json
+{
+  "workflowId": "doc-triage-8472",
+  "promptVersion": "review-loop@12",
+  "retrievalHitCount": 6,
+  "guardrailVerdict": "allow-with-review",
+  "reviewAction": "edited-and-approved"
+}
+```
+
+### Checks I would wire in before widening rollout
+
+- review acceptance rate by workflow and prompt version
+- citation coverage for answers that claim factual certainty
+- frequency of user overrides after a confident model response
+- fallback rate when the retrieval set is thin or contradictory
+
+That level of observability is what turns an AI feature from a polished demo into an operational product surface.

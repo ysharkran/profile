@@ -2,6 +2,7 @@
 title: "When to Use Postgres, Redis, and Mongo Together"
 description: "Using multiple data stores can be justified, but only when each one has a clear job and the system makes those boundaries explicit."
 pubDate: "2026-02-08"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/when-to-use-postgres-redis-and-mongo-together.jpg"
 badge: "Data"
 tags: ["databases", "postgres", "redis"]
@@ -31,3 +32,26 @@ The technical question is not “can these stores work together?” Of course th
 - how observability and recovery work across them
 
 If those answers are fuzzy, multiple stores usually create more complexity than leverage. When the roles are explicit, though, the combination can be practical and powerful.
+
+## Technical Deep Dive
+
+A multi-datastore architecture is justified only when each engine owns a different failure and performance profile. The design should make it obvious which store is authoritative, which store is disposable, and what consistency debt is being purchased for speed.
+
+Shape changes are less dangerous than semantic changes. The safest systems version meaning as aggressively as they version fields, and they fail closed when inputs drift outside the contract. A contract that cannot tell consumers which values are stable enough for logic is only half a contract.
+
+```ts
+const Contract = z.object({
+  entityId: z.string(),
+  status: z.enum(["queued", "processing", "ready", "failed"]),
+  processedAt: z.string().datetime().nullable(),
+});
+```
+
+### Compatibility checks I would automate
+
+- writes that must land in the system of record before caches or projections update
+- document shapes that drift beyond what transactional tables can support cleanly
+- eviction or replication behavior that changes user-visible latency unexpectedly
+- operational playbooks for rebuilding derived state after corruption or outage
+
+Once the semantic boundary is explicit, downstream product bugs get much easier to predict and much cheaper to fix.

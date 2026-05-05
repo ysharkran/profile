@@ -2,6 +2,7 @@
 title: "The Gap Between AI Demos and AI Products"
 description: "A working prompt is not a working product. Production AI needs workflow design, failure management, and operating discipline around the model."
 pubDate: "2026-04-08"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/the-gap-between-ai-demos-and-ai-products.jpg"
 badge: "AI"
 tags: ["llm", "product", "operations"]
@@ -33,3 +34,28 @@ The question is not “can the model do this?” The better question is “can t
 That changes how you build. You care more about retries, fallback logic, confidence communication, data quality, and review states. You think about the whole system instead of the smartest part of the system.
 
 That is where the gap lives. Closing it is what turns AI work from novelty into product engineering.
+
+## Technical Deep Dive
+
+Demos usually optimize for a single beautiful turn. Products survive ugly turns: low-quality inputs, missing context, user corrections, partial failures, and policy edges where the right answer is to stop. That gap is mostly runtime design, not model benchmark design.
+
+For AI features, I want every user-visible decision to leave behind a runtime record outside the generated text itself. That usually means logging the retrieval set, prompt version, tool calls, guardrail verdicts, and the reviewer action that finalized the output. Without that, teams argue from anecdotes instead of traces.
+
+```json
+{
+  "workflowId": "doc-triage-8472",
+  "promptVersion": "review-loop@12",
+  "retrievalHitCount": 6,
+  "guardrailVerdict": "allow-with-review",
+  "reviewAction": "edited-and-approved"
+}
+```
+
+### Checks I would wire in before widening rollout
+
+- how often success depends on hidden operator curation behind the scenes
+- inputs that should short-circuit to deterministic software instead of generation
+- review burden shifted to support or operations after launch
+- places where evaluation data does not resemble production entropy
+
+That level of observability is what turns an AI feature from a polished demo into an operational product surface.

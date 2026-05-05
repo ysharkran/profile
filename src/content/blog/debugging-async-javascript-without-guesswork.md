@@ -2,6 +2,7 @@
 title: "Debugging Async JavaScript Without Guesswork"
 description: "Async bugs get expensive when engineers rely on intuition instead of narrowing the timeline, state transitions, and ownership of side effects."
 pubDate: "2026-05-04"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/debugging-async-javascript-without-guesswork.jpg"
 badge: "Code"
 tags: ["javascript", "debugging", "backend"]
@@ -97,3 +98,26 @@ This is the deeper lesson. The best fix is rarely â€œadd one more conditional.â€
 Async systems become easier to debug when they become more explicit. Clear transitions, scoped ownership, request identity, and readable logs do more for reliability than clever syntax ever will.
 
 That is the standard I aim for. If the behavior is concurrent, the code should admit that openly instead of pretending execution is linear until production proves otherwise.
+
+## Technical Deep Dive
+
+Async UI bugs become solvable the moment every request and every render commit gets a durable identity. That lets you prove which effect started the work, which result arrived late, and which branch still believed it owned the screen.
+
+Most frontend complexity comes from not deciding which layer owns latency and which layer owns truth. I prefer server data to remain server-shaped, route state to be explicit, and local UI state to stay ephemeral. Once those layers are blurred, bugs start looking random because the app no longer has a clear source of truth.
+
+```ts
+type ScreenState =
+  | { kind: "idle" }
+  | { kind: "loading"; requestId: string }
+  | { kind: "ready"; requestId: string; payloadVersion: number }
+  | { kind: "error"; requestId: string; message: string };
+```
+
+### Things I remove early
+
+- stale responses that still attempt to commit state
+- cleanup handlers that run after a replacement request has already started
+- shared mutable objects crossing component or hook boundaries
+- branches that distinguish network failure from cancellation too late
+
+That discipline keeps component trees from quietly turning into infrastructure.
