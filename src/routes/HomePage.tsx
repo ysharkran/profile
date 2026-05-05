@@ -72,8 +72,9 @@ export function HomePage() {
               <h2 className="text-4xl font-bold">Featured Projects</h2>
               <p className="section-copy mt-3 max-w-3xl">
                 Public repos that feel closer to real company work: SaaS-style web apps, AI-facing
-                products, and cross-platform applications that can be forked and reshaped into your
-                own portfolio direction.
+                products, cross-platform applications, and domain-specific systems across commerce,
+                fintech, insurance, and automotive workflows that can be forked and reshaped into
+                your own portfolio direction.
               </p>
             </div>
             <a href="/projects" className="btn btn-ghost border border-base-300/80 px-5">

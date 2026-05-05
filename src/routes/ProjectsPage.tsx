@@ -10,8 +10,9 @@ export function ProjectsPage() {
         <h1 className="text-5xl font-bold">Project Portfolio</h1>
         <p className="section-copy max-w-4xl">
           The cards below point to public repos behind product-style web apps, AI products, and
-          cross-platform experiences. If you fork one, you can later replace the repo path in one
-          place and point the card at your own GitHub version instead.
+          cross-platform experiences, plus more domain-specific applications across commerce, DeFi,
+          insurance, and automotive workflows. If you fork one, you can later replace the repo path
+          in one place and point the card at your own GitHub version instead.
         </p>
       </section>
 

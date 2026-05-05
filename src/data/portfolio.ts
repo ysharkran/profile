@@ -19,6 +19,7 @@ const githubRepoUrl = (repoPath: string) => `https://github.com/${repoPath}`;
 type UpstreamProject = {
   title: string;
   repoLabel: string;
+  repoUrl?: string;
   description: string;
   image: string;
   badge: string;
@@ -113,11 +114,53 @@ const upstreamProjects = {
     image: "/projects/ente.png",
     badge: "Mobile",
   },
+  saleorStorefront: {
+    title: "Saleor Storefront",
+    repoLabel: "saleor/storefront",
+    description:
+      "Composable commerce storefront with catalog discovery, cart, checkout, and channel-aware purchase flows that feel like a serious ecommerce frontend product.",
+    image: "/projects/saleor-storefront.png",
+    badge: "Ecommerce",
+  },
+  mercurStorefront: {
+    title: "Mercur Storefront",
+    repoLabel: "mercurjs/b2c-marketplace-storefront",
+    description:
+      "Multi-vendor marketplace storefront with strong shopping UX, seller-friendly structure, and a clear fit for resale or recommerce-style product experiences.",
+    image: "/projects/mercur-storefront.png",
+    badge: "Recommerce",
+  },
+  rotki: {
+    title: "rotki",
+    repoLabel: "rotki/rotki",
+    description:
+      "Privacy-first DeFi and crypto portfolio product with PnL tracking, accounting, onchain visibility, and the kind of domain-heavy data surfaces fintech teams actually ship.",
+    image: "/projects/rotki.png",
+    badge: "DeFi",
+  },
+  openImis: {
+    title: "openIMIS",
+    repoLabel: "openimis/openimis-fe_js",
+    description:
+      "Health insurance operations product covering beneficiaries, contributions, providers, claims review, and payouts in a workflow-heavy application surface.",
+    image: "/projects/openimis-health-insurance.jpeg",
+    badge: "Health Insurance",
+  },
+  autorizz: {
+    title: "Autorizz",
+    repoLabel: "Defcon27/Autorizz",
+    repoUrl:
+      "https://github.com/Defcon27/Autorizz-Car-Dealership-System-using-NodeJS-Express-MongoDB",
+    description:
+      "Automotive retail and dealership management app with vehicle inventory, booking flows, customer records, and admin-side operations for real car sales teams.",
+    image: "/projects/autorizz.png",
+    badge: "Car Dealer",
+  },
 } as const satisfies Record<string, UpstreamProject>;
 
 const buildProject = (project: UpstreamProject) => ({
   ...project,
-  url: githubRepoUrl(project.repoLabel),
+  url: project.repoUrl ?? githubRepoUrl(project.repoLabel),
 });
 
 export const homeHighlights = [
@@ -148,10 +191,10 @@ export const focusAreas = [
 ];
 
 export const featuredProjects = [
+  buildProject(upstreamProjects.saleorStorefront),
   buildProject(upstreamProjects.openWebUi),
-  buildProject(upstreamProjects.dub),
-  buildProject(upstreamProjects.chatwoot),
-  buildProject(upstreamProjects.ente),
+  buildProject(upstreamProjects.rotki),
+  buildProject(upstreamProjects.autorizz),
 ];
 
 export const projectSections = [
@@ -185,6 +228,18 @@ export const projectSections = [
       buildProject(upstreamProjects.lobeChat),
       buildProject(upstreamProjects.ente),
       buildProject(upstreamProjects.appflowy),
+    ],
+  },
+  {
+    title: "Industry Vertical Products",
+    description:
+      "Repos that map closely to the kinds of domain-heavy apps companies build for specific markets: ecommerce, recommerce, DeFi, health insurance operations, and automotive retail.",
+    items: [
+      buildProject(upstreamProjects.saleorStorefront),
+      buildProject(upstreamProjects.mercurStorefront),
+      buildProject(upstreamProjects.rotki),
+      buildProject(upstreamProjects.openImis),
+      buildProject(upstreamProjects.autorizz),
     ],
   },
 ];
