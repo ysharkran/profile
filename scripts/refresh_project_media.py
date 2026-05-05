@@ -87,6 +87,41 @@ PROJECTS = [
         "image_url": "https://raw.githubusercontent.com/ente-io/ente/main/.github/assets/photos.png",
         "filename": "ente.png",
     },
+    {
+        "title": "Saleor Storefront",
+        "repo": "saleor/storefront",
+        "source_page": "https://github.com/saleor/storefront",
+        "image_url": "https://github.com/user-attachments/assets/a8e37c20-35c8-42e0-a9c5-5c0b6097b921",
+        "filename": "saleor-storefront.png",
+    },
+    {
+        "title": "Mercur B2C Storefront",
+        "repo": "mercurjs/b2c-marketplace-storefront",
+        "source_page": "https://github.com/mercurjs/b2c-marketplace-storefront",
+        "image_url": "https://cdn.prod.website-files.com/6790aeffc4b432ccaf1b56e5/67a21bd27b4ac8b812c1d84f_B2C%20Storefront%20Cover.png",
+        "filename": "mercur-storefront.png",
+    },
+    {
+        "title": "rotki",
+        "repo": "rotki/rotki",
+        "source_page": "https://docs.rotki.com/latest/usage-guides/customization.html",
+        "image_url": "https://docs.rotki.com/latest/images/sc_general_settings.png",
+        "filename": "rotki.png",
+    },
+    {
+        "title": "openIMIS",
+        "repo": "openimis/openimis-fe_js",
+        "source_page": "https://openimis.org/health-insurance",
+        "image_url": "https://openimis.org/sites/default/files/2022-09/healthinsuranceworkflow.jpeg",
+        "filename": "openimis-health-insurance.jpeg",
+    },
+    {
+        "title": "Autorizz",
+        "repo": "Defcon27/Autorizz-Car-Dealership-System-using-NodeJS-Express-MongoDB",
+        "source_page": "https://github.com/Defcon27/Autorizz-Car-Dealership-System-using-NodeJS-Express-MongoDB",
+        "image_url": "https://raw.githubusercontent.com/Defcon27/Autorizz-Car-Dealership-System-using-NodeJS-Express-MongoDB/master/docs/assets/admin_home_.png",
+        "filename": "autorizz.png",
+    },
 ]
 
 
