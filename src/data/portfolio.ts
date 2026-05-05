@@ -25,93 +25,93 @@ type UpstreamProject = {
 };
 
 const upstreamProjects = {
-  dify: {
-    title: "Dify",
-    repoLabel: "langgenius/dify",
+  dub: {
+    title: "Dub",
+    repoLabel: "dubinc/dub",
     description:
-      "Production-ready platform for building AI agents, multi-step workflows, knowledge apps, and model-powered internal products through a polished visual interface.",
-    image: "/projects/dify.png",
-    badge: "AI",
+      "Short-link management and attribution product with branded links, analytics, routing, and a polished SaaS-style dashboard that feels close to modern growth tooling.",
+    image: "/projects/dub.png",
+    badge: "SaaS",
   },
-  ragflow: {
-    title: "RAGFlow",
-    repoLabel: "infiniflow/ragflow",
+  formbricks: {
+    title: "Formbricks",
+    repoLabel: "formbricks/formbricks",
     description:
-      "Open-source RAG engine and agent workspace focused on retrieval quality, document pipelines, citations, and configurable knowledge workflows for LLM systems.",
-    image: "/projects/ragflow.png",
-    badge: "RAG",
+      "In-product survey and feedback platform for user research, onboarding flows, NPS, and product analytics with a real multi-tenant application surface.",
+    image: "/projects/formbricks.png",
+    badge: "Product Feedback",
   },
-  n8n: {
-    title: "n8n",
-    repoLabel: "n8n-io/n8n",
+  chatwoot: {
+    title: "Chatwoot",
+    repoLabel: "chatwoot/chatwoot",
     description:
-      "Visual workflow automation platform with 400+ integrations, AI nodes, code steps, and strong self-hosting support for serious operations teams.",
-    image: "/projects/n8n.png",
-    badge: "Automation",
+      "Customer support and engagement suite with shared inboxes, live chat, CRM context, and operator workflows that feel like an actual company product.",
+    image: "/projects/chatwoot.png",
+    badge: "Support",
   },
-  appsmith: {
-    title: "Appsmith",
-    repoLabel: "appsmithorg/appsmith",
+  papermark: {
+    title: "Papermark",
+    repoLabel: "mfts/papermark",
     description:
-      "Open-source low-code platform for building internal tools, dashboards, CRUD apps, and operator workflows on top of APIs, databases, and custom logic.",
-    image: "/projects/appsmith.webp",
-    badge: "Internal Tools",
-  },
-  tooljet: {
-    title: "ToolJet",
-    repoLabel: "ToolJet/ToolJet",
-    description:
-      "Open-source app builder for dashboards, admin panels, workflow tools, and AI-assisted internal applications with a strong product-grade interface.",
-    image: "/projects/tooljet.png",
-    badge: "Low-Code",
-  },
-  flagsmith: {
-    title: "Flagsmith",
-    repoLabel: "Flagsmith/flagsmith",
-    description:
-      "Feature flagging and remote config platform for controlled rollouts, segmentation, kill switches, experimentation, and multi-environment product delivery.",
-    image: "/projects/flagsmith.png",
-    badge: "Release Safety",
-  },
-  plane: {
-    title: "Plane",
-    repoLabel: "makeplane/plane",
-    description:
-      "Modern open-source project management platform with issues, cycles, docs, triage, and analytics that feels much closer to a shipped SaaS product than a demo repo.",
-    image: "/projects/plane.webp",
-    badge: "Product Ops",
-  },
-  oneuptime: {
-    title: "OneUptime",
-    repoLabel: "OneUptime/oneuptime",
-    description:
-      "Open-source monitoring and observability platform covering uptime checks, incidents, on-call, logs, workflows, and status pages in one system.",
-    image: "/projects/oneuptime.png",
-    badge: "Observability",
-  },
-  metabase: {
-    title: "Metabase",
-    repoLabel: "metabase/metabase",
-    description:
-      "Open-source BI and analytics application for dashboards, SQL exploration, self-serve reporting, embedded charts, and decision-oriented data workflows.",
-    image: "/projects/metabase.png",
-    badge: "Analytics",
+      "Document sharing and analytics product with tracked views, data-room style flows, and a strong user-facing experience around files and engagement.",
+    image: "/projects/papermark.png",
+    badge: "Docs SaaS",
   },
   calcom: {
     title: "Cal.com",
     repoLabel: "calcom/cal.com",
     description:
-      "Scheduling infrastructure platform with booking flows, routing forms, calendars, team availability, and APIs for productized time coordination.",
+      "Scheduling infrastructure and booking application with routing forms, calendar sync, teams, and a product surface that translates well to web and mobile flows.",
     image: "/projects/calcom.png",
     badge: "Scheduling",
   },
-  squads: {
-    title: "Squads Protocol v4",
-    repoLabel: "Squads-Protocol/v4",
+  twenty: {
+    title: "Twenty",
+    repoLabel: "twentyhq/twenty",
     description:
-      "Solana-native multisig and treasury coordination stack used for secure wallet operations, approvals, and transaction execution across Web3 teams.",
-    image: "/projects/squads-v4.png",
-    badge: "Web3",
+      "Modern CRM-style product with accounts, contacts, pipelines, and workflow automation that looks much closer to an actual startup application than a template repo.",
+    image: "/projects/twenty.png",
+    badge: "CRM",
+  },
+  memos: {
+    title: "Memos",
+    repoLabel: "usememos/memos",
+    description:
+      "Lightweight note-taking and knowledge product with a clean consumer-style interface, social publishing feel, and strong cross-device product direction.",
+    image: "/projects/memos.png",
+    badge: "Notes",
+  },
+  appflowy: {
+    title: "AppFlowy",
+    repoLabel: "appflowy-io/AppFlowy",
+    description:
+      "Cross-platform workspace product with documents, tasks, AI, and databases, giving you a project that feels closer to a real app company than a pure developer tool.",
+    image: "/projects/appflowy.png",
+    badge: "Cross-Platform",
+  },
+  reactHookForm: {
+    title: "React Hook Form",
+    repoLabel: "react-hook-form/react-hook-form",
+    description:
+      "A serious frontend package with product-grade adoption, documentation, API design, and real company usage around forms, validation, and UX-heavy app flows.",
+    image: "/projects/react-hook-form.png",
+    badge: "Package",
+  },
+  tanstackQuery: {
+    title: "TanStack Query",
+    repoLabel: "TanStack/query",
+    description:
+      "High-leverage frontend data-fetching package used in production apps everywhere, with a strong developer experience, ecosystem, and long-term product thinking.",
+    image: "/projects/tanstack-query.png",
+    badge: "Package",
+  },
+  shadcnUi: {
+    title: "shadcn/ui",
+    repoLabel: "shadcn-ui/ui",
+    description:
+      "Design-system starter and component distribution project that feels very close to the kind of internal/frontend package work strong product teams actually maintain.",
+    image: "/projects/shadcn-ui.png",
+    badge: "UI System",
   },
 } as const satisfies Record<string, UpstreamProject>;
 
@@ -148,43 +148,43 @@ export const focusAreas = [
 ];
 
 export const featuredProjects = [
-  buildProject(upstreamProjects.dify),
-  buildProject(upstreamProjects.appsmith),
-  buildProject(upstreamProjects.plane),
-  buildProject(upstreamProjects.oneuptime),
+  buildProject(upstreamProjects.dub),
+  buildProject(upstreamProjects.formbricks),
+  buildProject(upstreamProjects.chatwoot),
+  buildProject(upstreamProjects.twenty),
 ];
 
 export const projectSections = [
   {
-    title: "AI and Automation Platforms",
+    title: "Product Web Apps",
     description:
-      "Real open-source AI and workflow products with strong interfaces, active communities, and repo structures worth studying before you fork and adapt one into your own direction.",
+      "Public repos that feel much closer to the kind of multi-user SaaS applications teams build at companies: customer-facing dashboards, product workflows, analytics, and real business flows.",
     items: [
-      buildProject(upstreamProjects.dify),
-      buildProject(upstreamProjects.ragflow),
-      buildProject(upstreamProjects.n8n),
-    ],
-  },
-  {
-    title: "Internal Tools and Product Platforms",
-    description:
-      "These are polished application repos with real operator-facing UI. They are strong upstream candidates if you want to fork, restyle, and then gradually replace the product logic with your own work.",
-    items: [
-      buildProject(upstreamProjects.appsmith),
-      buildProject(upstreamProjects.tooljet),
-      buildProject(upstreamProjects.flagsmith),
-      buildProject(upstreamProjects.plane),
-    ],
-  },
-  {
-    title: "Ops, Analytics, and Product Infrastructure",
-    description:
-      "Applications with clear business value, strong dashboards, and real deployment surface area. These are useful if you want the Projects tab to feel more like a serious product engineer's watchlist than a template gallery.",
-    items: [
-      buildProject(upstreamProjects.oneuptime),
-      buildProject(upstreamProjects.metabase),
+      buildProject(upstreamProjects.dub),
+      buildProject(upstreamProjects.formbricks),
+      buildProject(upstreamProjects.papermark),
       buildProject(upstreamProjects.calcom),
-      buildProject(upstreamProjects.squads),
+    ],
+  },
+  {
+    title: "Team and Collaboration Products",
+    description:
+      "Repos with stronger application feel than infrastructure feel: support tools, CRM-like products, knowledge apps, and cross-platform experiences that resemble company-built product teams.",
+    items: [
+      buildProject(upstreamProjects.chatwoot),
+      buildProject(upstreamProjects.twenty),
+      buildProject(upstreamProjects.memos),
+      buildProject(upstreamProjects.appflowy),
+    ],
+  },
+  {
+    title: "Packages and Frontend Building Blocks",
+    description:
+      "A smaller set of public packages that still feel real-world and company-relevant: the kind of frontend foundations, UI systems, and reusable modules senior product teams actually maintain.",
+    items: [
+      buildProject(upstreamProjects.reactHookForm),
+      buildProject(upstreamProjects.tanstackQuery),
+      buildProject(upstreamProjects.shadcnUi),
     ],
   },
 ];

@@ -52,7 +52,7 @@ export function ProjectShowcaseCard({
         </div>
         <p className="mt-4 text-[0.98rem] leading-7 text-base-content/74">{description}</p>
         <div className="mt-auto pt-6 text-sm font-semibold uppercase tracking-[0.16em] text-primary/80">
-          Open upstream repo
+          Open public repo
         </div>
       </div>
     </SmartLink>

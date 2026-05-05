@@ -71,9 +71,9 @@ export function HomePage() {
             <div>
               <h2 className="text-4xl font-bold">Featured Projects</h2>
               <p className="section-copy mt-3 max-w-3xl">
-                Real open-source applications with strong product surfaces, active repos, and clean
-                codebases that are worth studying, forking, and then reshaping into your own portfolio
-                work.
+                Public repos that feel closer to real company work: SaaS-style web apps, product
+                workflows, cross-platform tools, and reusable frontend foundations that can be forked
+                and reshaped into your own portfolio direction.
               </p>
             </div>
             <a href="/projects" className="btn btn-ghost border border-base-300/80 px-5">
