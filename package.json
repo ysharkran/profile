@@ -1,10 +1,12 @@
 {
-  "name": "new-portfolio",
+  "name": "yaroslav-portfolio-fresh",
   "private": true,
   "version": "0.0.0",
+  "description": "Fresh React Vite rebuild of Yaroslav Shapran's portfolio frontend.",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
