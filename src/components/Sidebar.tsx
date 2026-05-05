@@ -60,30 +60,6 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
               <div className="mt-4">
                 <div className="font-display text-[1.68rem] leading-none">{profile.name}</div>
                 <div className="sidebar-meta mt-2 text-sm uppercase tracking-[0.18em]">{primaryRole}</div>
-                <div className="mt-4 grid gap-2.5 text-sm">
-                  <a
-                    className="sidebar-identity-row rounded-2xl px-3 py-2.5"
-                    href={`mailto:${profile.email}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <span className="sidebar-identity-label">Email</span>
-                    <span className="sidebar-identity-value">{profile.email}</span>
-                  </a>
-                  <div className="sidebar-identity-row rounded-2xl px-3 py-2.5">
-                    <span className="sidebar-identity-label">Location</span>
-                    <span className="sidebar-identity-value">{profile.location}</span>
-                  </div>
-                  <a
-                    className="sidebar-identity-row rounded-2xl px-3 py-2.5"
-                    href={profile.resumeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <span className="sidebar-identity-label">Resume</span>
-                    <span className="sidebar-identity-value">Open PDF</span>
-                  </a>
-                </div>
               </div>
             </div>
 
