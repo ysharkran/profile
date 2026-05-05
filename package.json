@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
-    "daisyui": "^5.5.19",
+    "daisyui": "^4.4.10",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-markdown": "^10.1.0",
