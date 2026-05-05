@@ -6,6 +6,8 @@ type Particle = {
   vx: number;
   vy: number;
   radius: number;
+  opacity: number;
+  glow: number;
   pulse: number;
   pulseSpeed: number;
 };
@@ -64,17 +66,19 @@ export function InteractiveBackground() {
 
     const particleCountForViewport = () => {
       const area = window.innerWidth * window.innerHeight;
-      if (area < 540000) return 22;
-      if (area < 980000) return 34;
-      return 48;
+      if (area < 540000) return 30;
+      if (area < 980000) return 48;
+      return 68;
     };
 
     const createParticle = (): Particle => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      radius: 0.9 + Math.random() * 1.65,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: (Math.random() - 0.5) * 0.22,
+      radius: 1.2 + Math.random() * 2.1,
+      opacity: 0.38 + Math.random() * 0.48,
+      glow: 0.08 + Math.random() * 0.14,
       pulse: Math.random() * Math.PI * 2,
       pulseSpeed: 0.0016 + Math.random() * 0.0028,
     });
@@ -109,7 +113,7 @@ export function InteractiveBackground() {
       state.lastTime = time;
       clearCanvas();
 
-      const connectionDistance = Math.min(Math.max(window.innerWidth * 0.14, 126), 194);
+      const connectionDistance = Math.min(Math.max(window.innerWidth * 0.15, 132), 208);
 
       for (const particle of state.particles) {
         particle.x += particle.vx * delta * 0.05;
@@ -133,9 +137,9 @@ export function InteractiveBackground() {
 
           if (distance > connectionDistance) continue;
 
-          const alpha = (1 - distance / connectionDistance) * (state.mode === "dark" ? 0.14 : 0.09);
+          const alpha = (1 - distance / connectionDistance) * (state.mode === "dark" ? 0.18 : 0.12);
           state.ctx.strokeStyle = `rgba(${state.palette.link}, ${alpha})`;
-          state.ctx.lineWidth = distance < connectionDistance * 0.42 ? 0.95 : 0.65;
+          state.ctx.lineWidth = distance < connectionDistance * 0.42 ? 1.05 : 0.72;
           state.ctx.beginPath();
           state.ctx.moveTo(particle.x, particle.y);
           state.ctx.lineTo(other.x, other.y);
@@ -144,16 +148,18 @@ export function InteractiveBackground() {
       }
 
       for (const particle of state.particles) {
-        const radius = particle.radius + Math.sin(particle.pulse) * 0.26;
+        const radius = particle.radius + Math.sin(particle.pulse) * 0.34;
+        const pulseOpacity = particle.opacity + Math.sin(particle.pulse * 0.9) * 0.08;
+        const safeOpacity = clamp(pulseOpacity, 0.24, 0.95);
 
-        state.ctx.fillStyle = `rgba(${state.palette.accent}, ${state.mode === "dark" ? 0.06 : 0.04})`;
+        state.ctx.fillStyle = `rgba(${state.palette.accent}, ${particle.glow * (state.mode === "dark" ? 1 : 0.8)})`;
         state.ctx.beginPath();
-        state.ctx.arc(particle.x, particle.y, clamp(radius * 2.2, 2.2, 6.2), 0, Math.PI * 2);
+        state.ctx.arc(particle.x, particle.y, clamp(radius * 2.6, 2.8, 8.4), 0, Math.PI * 2);
         state.ctx.fill();
 
-        state.ctx.fillStyle = `rgba(${state.palette.node}, ${state.mode === "dark" ? 0.8 : 0.62})`;
+        state.ctx.fillStyle = `rgba(${state.palette.node}, ${safeOpacity * (state.mode === "dark" ? 1 : 0.88)})`;
         state.ctx.beginPath();
-        state.ctx.arc(particle.x, particle.y, clamp(radius, 0.85, 2.8), 0, Math.PI * 2);
+        state.ctx.arc(particle.x, particle.y, clamp(radius, 1.05, 3.8), 0, Math.PI * 2);
         state.ctx.fill();
       }
 
@@ -265,7 +271,6 @@ export function InteractiveBackground() {
   return (
     <div className="portfolio-background" aria-hidden="true" data-portfolio-background>
       <canvas className="portfolio-background__canvas"></canvas>
-      <div className="portfolio-background__dots"></div>
       <div className="portfolio-background__halo"></div>
       <div className="portfolio-background__spotlight"></div>
       <div className="portfolio-background__noise"></div>
