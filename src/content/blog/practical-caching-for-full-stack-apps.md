@@ -2,7 +2,7 @@
 title: "Practical Caching for Full-Stack Apps"
 description: "Caching is most effective when ownership and invalidation are obvious. The goal is faster systems with fewer surprises, not hidden state with better benchmarks."
 pubDate: "2026-03-17"
-heroImage: "/blog/caching-redis.png"
+heroImage: "/blog/practical-caching-for-full-stack-apps.jpg"
 badge: "Performance"
 tags: ["caching", "performance", "full-stack"]
 ---

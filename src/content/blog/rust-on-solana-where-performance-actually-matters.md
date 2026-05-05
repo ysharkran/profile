@@ -2,7 +2,7 @@
 title: "Rust on Solana: Where Performance Actually Matters"
 description: "Solana development rewards precision. The most important performance work is usually about state shape, instruction design, and operational clarity."
 pubDate: "2026-04-12"
-heroImage: "/blog/solana-anchor.png"
+heroImage: "/blog/rust-on-solana-where-performance-actually-matters.jpg"
 badge: "Rust"
 tags: ["rust", "solana", "web3"]
 ---

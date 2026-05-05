@@ -2,7 +2,7 @@
 title: "Writing Tests That Catch Regressions Instead of Chasing Coverage"
 description: "Coverage numbers are easy to report and easy to misread. Valuable tests are the ones that make dangerous changes harder to ship by accident."
 pubDate: "2026-05-02"
-heroImage: "/blog/tests-vitest.png"
+heroImage: "/blog/writing-tests-that-catch-regressions-instead-of-chasing-coverage.jpg"
 badge: "Code"
 tags: ["testing", "quality", "engineering"]
 ---

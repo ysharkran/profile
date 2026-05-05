@@ -2,7 +2,7 @@
 title: "Designing AI Features People Can Actually Trust"
 description: "Trust in AI products does not come from model quality alone. It comes from transparent system behavior, reviewable outputs, and good product boundaries."
 pubDate: "2026-04-28"
-heroImage: "/blog/ai-trust-langfuse.png"
+heroImage: "/blog/designing-ai-features-people-can-actually-trust.jpg"
 badge: "AI"
 tags: ["ai", "product", "trust"]
 ---

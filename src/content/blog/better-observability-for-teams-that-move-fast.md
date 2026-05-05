@@ -2,7 +2,7 @@
 title: "Better Observability for Teams That Move Fast"
 description: "Observability is not about collecting every signal. It is about making incidents cheaper to understand and routine behavior easier to trust."
 pubDate: "2026-03-25"
-heroImage: "/blog/observability-openobserve.png"
+heroImage: "/blog/better-observability-for-teams-that-move-fast.jpg"
 badge: "Ops"
 tags: ["observability", "ops", "reliability"]
 ---

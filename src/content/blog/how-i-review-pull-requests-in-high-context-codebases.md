@@ -2,7 +2,7 @@
 title: "How I Review Pull Requests in High-Context Codebases"
 description: "Good PR review is not about finding nits. It is about protecting system behavior, contract clarity, and future change velocity in code that already carries a lot of history."
 pubDate: "2026-05-01"
-heroImage: "/blog/pr-review-reviewdog.png"
+heroImage: "/blog/how-i-review-pull-requests-in-high-context-codebases.jpg"
 badge: "Code"
 tags: ["code-review", "engineering", "teams"]
 ---

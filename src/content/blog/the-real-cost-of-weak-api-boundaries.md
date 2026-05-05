@@ -2,7 +2,7 @@
 title: "The Real Cost of Weak API Boundaries"
 description: "Weak boundaries do not fail dramatically at first. They fail by making every future change slower, riskier, and harder to reason about."
 pubDate: "2026-03-12"
-heroImage: "/blog/api-boundaries-graphql-inspector.png"
+heroImage: "/blog/the-real-cost-of-weak-api-boundaries.jpg"
 badge: "API"
 tags: ["api", "boundaries", "systems"]
 ---

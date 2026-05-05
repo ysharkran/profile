@@ -2,7 +2,7 @@
 title: "Remote Engineering Habits That Scale Across Time Zones"
 description: "Distributed teams work better when they optimize for clarity by default instead of treating clarity as something meetings are supposed to repair later."
 pubDate: "2026-02-14"
-heroImage: "/blog/remote-zulip.png"
+heroImage: "/blog/remote-engineering-habits-that-scale-across-time-zones.jpg"
 badge: "Remote"
 tags: ["remote", "teams", "delivery"]
 ---

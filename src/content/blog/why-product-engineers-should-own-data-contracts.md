@@ -2,7 +2,7 @@
 title: "Why Product Engineers Should Own Data Contracts"
 description: "A surprising number of product bugs are not UI problems or backend problems. They are contract problems between teams, services, and assumptions."
 pubDate: "2026-04-25"
-heroImage: "/blog/data-contracts-openapi-generator.png"
+heroImage: "/blog/why-product-engineers-should-own-data-contracts.jpg"
 badge: "Data"
 tags: ["data", "api", "product"]
 ---

@@ -2,7 +2,7 @@
 title: "When to Use Postgres, Redis, and Mongo Together"
 description: "Using multiple data stores can be justified, but only when each one has a clear job and the system makes those boundaries explicit."
 pubDate: "2026-02-08"
-heroImage: "/blog/datastores-mongodb.png"
+heroImage: "/blog/when-to-use-postgres-redis-and-mongo-together.jpg"
 badge: "Data"
 tags: ["databases", "postgres", "redis"]
 ---

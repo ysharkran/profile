@@ -2,7 +2,7 @@
 title: "Shipping Internal Tools People Want to Open Again"
 description: "Internal tooling succeeds when it respects time, reduces context switching, and fits the way teams already work instead of forcing a ceremony around itself."
 pubDate: "2026-04-03"
-heroImage: "/blog/internal-tools-appsmith.png"
+heroImage: "/blog/shipping-internal-tools-people-want-to-open-again.jpg"
 badge: "Product"
 tags: ["internal-tools", "ux", "teams"]
 ---

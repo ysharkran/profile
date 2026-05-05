@@ -2,7 +2,7 @@
 title: "Event-Driven Workflows Without Turning Systems Into Puzzles"
 description: "Event-driven systems are useful when they reduce coupling, but they become painful when teams stop designing for traceability and replay safety."
 pubDate: "2026-03-21"
-heroImage: "/blog/event-driven-temporal.png"
+heroImage: "/blog/event-driven-workflows-without-turning-systems-into-puzzles.jpg"
 badge: "Systems"
 tags: ["events", "backend", "design"]
 ---

@@ -2,7 +2,7 @@
 title: "Making Dashboards Useful Instead of Decorative"
 description: "A useful dashboard helps someone decide what to do next. A decorative dashboard only confirms that charts were technically possible to build."
 pubDate: "2026-02-20"
-heroImage: "/blog/dashboards-grafana.png"
+heroImage: "/blog/making-dashboards-useful-instead-of-decorative.jpg"
 badge: "Product"
 tags: ["dashboards", "product", "analytics"]
 ---

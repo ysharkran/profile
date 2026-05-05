@@ -2,7 +2,7 @@
 title: "What Changed My Mind About Microservices"
 description: "Microservices are not a maturity badge. They are an operational tradeoff that only pays off when a team is ready to absorb the coordination cost."
 pubDate: "2026-04-16"
-heroImage: "/blog/microservices-backstage.png"
+heroImage: "/blog/what-changed-my-mind-about-microservices.jpg"
 badge: "Architecture"
 tags: ["microservices", "systems", "delivery"]
 ---

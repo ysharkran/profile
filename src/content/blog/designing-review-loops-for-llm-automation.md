@@ -2,7 +2,7 @@
 title: "Designing Review Loops for LLM Automation"
 description: "The most useful LLM systems are usually not fully autonomous. They are well-designed review systems that apply automation where it actually reduces human effort."
 pubDate: "2026-03-08"
-heroImage: "/blog/llm-review-dify.png"
+heroImage: "/blog/designing-review-loops-for-llm-automation.jpg"
 badge: "LLM"
 tags: ["llm", "automation", "workflow"]
 ---

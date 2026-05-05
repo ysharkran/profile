@@ -2,7 +2,7 @@
 title: "Refactoring Node.js Services Without Freezing Delivery"
 description: "The hardest part of refactoring services is preserving team momentum while improving structure. Good refactors reduce future change cost without pausing product work."
 pubDate: "2026-05-03"
-heroImage: "/blog/nodejs-refactor-nest.png"
+heroImage: "/blog/refactoring-nodejs-services-without-freezing-delivery.jpg"
 badge: "Code"
 tags: ["nodejs", "refactoring", "backend"]
 ---

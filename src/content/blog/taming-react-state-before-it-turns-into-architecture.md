@@ -2,7 +2,7 @@
 title: "Taming React State Before It Turns Into Architecture"
 description: "React state problems usually start small. They become architectural when ownership, derivation, and update rules are left implicit for too long."
 pubDate: "2026-04-30"
-heroImage: "/blog/react-state-zustand.png"
+heroImage: "/blog/taming-react-state-before-it-turns-into-architecture.jpg"
 badge: "Code"
 tags: ["react", "frontend", "state-management"]
 ---

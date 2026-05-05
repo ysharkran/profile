@@ -2,7 +2,7 @@
 title: "Feature Flags as an Engineering Safety System"
 description: "Feature flags are most useful when they reduce release risk and learning cost, not when they become a permanent layer of accidental product logic."
 pubDate: "2026-02-01"
-heroImage: "/blog/feature-flags-flagsmith.png"
+heroImage: "/blog/feature-flags-as-an-engineering-safety-system.jpg"
 badge: "Platform"
 tags: ["feature-flags", "release", "platform"]
 ---

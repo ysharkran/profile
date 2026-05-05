@@ -2,7 +2,7 @@
 title: "Writing Docs That Reduce Onboarding Time"
 description: "Good technical documentation does not try to capture everything. It prioritizes the decisions and pathways a new engineer actually needs to become useful quickly."
 pubDate: "2026-01-26"
-heroImage: "/blog/docs-docusaurus.png"
+heroImage: "/blog/writing-docs-that-reduce-onboarding-time.jpg"
 badge: "Docs"
 tags: ["docs", "onboarding", "teams"]
 ---

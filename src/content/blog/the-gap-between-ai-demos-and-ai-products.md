@@ -2,7 +2,7 @@
 title: "The Gap Between AI Demos and AI Products"
 description: "A working prompt is not a working product. Production AI needs workflow design, failure management, and operating discipline around the model."
 pubDate: "2026-04-08"
-heroImage: "/blog/ai-products-openwebui.png"
+heroImage: "/blog/the-gap-between-ai-demos-and-ai-products.jpg"
 badge: "AI"
 tags: ["llm", "product", "operations"]
 ---

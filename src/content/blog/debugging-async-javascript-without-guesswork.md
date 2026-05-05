@@ -2,7 +2,7 @@
 title: "Debugging Async JavaScript Without Guesswork"
 description: "Async bugs get expensive when engineers rely on intuition instead of narrowing the timeline, state transitions, and ownership of side effects."
 pubDate: "2026-05-04"
-heroImage: "/blog/debugging-nodejs.png"
+heroImage: "/blog/debugging-async-javascript-without-guesswork.jpg"
 badge: "Code"
 tags: ["javascript", "debugging", "backend"]
 ---

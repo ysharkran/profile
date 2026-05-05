@@ -2,7 +2,7 @@
 title: "How I Think About Reliability in Payment Flows"
 description: "Payment reliability is not just uptime. It is confidence that money-moving workflows behave predictably under retries, partial failures, and operational pressure."
 pubDate: "2026-02-26"
-heroImage: "/blog/payments-medusa.png"
+heroImage: "/blog/how-i-think-about-reliability-in-payment-flows.jpg"
 badge: "Fintech"
 tags: ["payments", "reliability", "backend"]
 ---

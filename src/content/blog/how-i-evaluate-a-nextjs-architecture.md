@@ -2,7 +2,7 @@
 title: "How I Evaluate a Next.js Architecture"
 description: "Framework choices matter less than boundary choices. A good Next.js codebase makes rendering, data flow, and ownership legible under product pressure."
 pubDate: "2026-03-30"
-heroImage: "/blog/nextjs-architecture.png"
+heroImage: "/blog/how-i-evaluate-a-nextjs-architecture.jpg"
 badge: "Frontend"
 tags: ["nextjs", "frontend", "architecture"]
 ---

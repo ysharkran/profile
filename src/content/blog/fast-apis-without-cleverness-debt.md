@@ -2,7 +2,7 @@
 title: "Fast APIs Without Cleverness Debt"
 description: "Performance work gets more useful when it stays readable. The goal is sustainable speed, not a codebase that only one engineer can safely touch."
 pubDate: "2026-04-20"
-heroImage: "/blog/fast-apis-fastify.png"
+heroImage: "/blog/fast-apis-without-cleverness-debt.jpg"
 badge: "Backend"
 tags: ["backend", "performance", "architecture"]
 ---

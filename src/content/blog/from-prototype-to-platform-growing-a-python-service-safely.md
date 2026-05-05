@@ -2,7 +2,7 @@
 title: "From Prototype to Platform: Growing a Python Service Safely"
 description: "Python makes it easy to start fast. The challenge is evolving that speed into a dependable service without freezing the product every time complexity increases."
 pubDate: "2026-03-03"
-heroImage: "/blog/python-service-fastapi.png"
+heroImage: "/blog/from-prototype-to-platform-growing-a-python-service-safely.jpg"
 badge: "Python"
 tags: ["python", "platform", "backend"]
 ---

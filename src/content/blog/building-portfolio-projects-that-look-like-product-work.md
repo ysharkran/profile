@@ -2,7 +2,7 @@
 title: "Building Portfolio Projects That Look Like Product Work"
 description: "Strong portfolio projects do more than show code. They show judgment about scope, tradeoffs, product behavior, and the shape of a system under realistic constraints."
 pubDate: "2026-01-18"
-heroImage: "/blog/portfolio-product-work.png"
+heroImage: "/blog/building-portfolio-projects-that-look-like-product-work.jpg"
 badge: "Career"
 tags: ["portfolio", "career", "product"]
 ---
