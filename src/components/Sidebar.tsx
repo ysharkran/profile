@@ -46,7 +46,7 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex w-[21rem] max-w-[88vw] flex-col bg-transparent px-4 py-4 transition-transform duration-300 lg:sticky lg:top-0 lg:left-auto lg:inset-y-auto lg:z-40 lg:h-screen lg:max-w-none lg:flex-none lg:self-start ${open ? "translate-x-0" : "-translate-x-[110%] lg:translate-x-0"}`}
       >
-        <div className="sidebar-panel flex min-h-full flex-col rounded-[2rem] p-4 backdrop-blur-xl">
+        <div className="sidebar-panel flex min-h-full flex-col rounded-[2rem] p-4">
           <div className="sidebar-card w-full rounded-[1.6rem] p-5">
             <SmartLink to="/" className="block" onClick={onClose}>
               <div className="avatar block transition ease-in-out hover:scale-[102%]">

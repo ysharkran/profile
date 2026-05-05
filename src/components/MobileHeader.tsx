@@ -8,7 +8,7 @@ type MobileHeaderProps = {
 
 export function MobileHeader({ onMenuOpen }: MobileHeaderProps) {
   return (
-    <div className="sticky top-0 z-30 flex h-16 w-full justify-center border-b border-base-300/70 bg-base-100/85 text-base-content backdrop-blur-xl transition-all duration-100 lg:hidden">
+    <div className="sticky top-0 z-30 flex h-16 w-full justify-center border-b border-base-300/70 bg-base-100/95 text-base-content transition-all duration-100 lg:hidden">
       <div className="navbar max-w-[100vw] px-3">
         <div className="navbar-start">
           <button type="button" className="btn btn-square btn-ghost" onClick={onMenuOpen} aria-label="Open navigation">

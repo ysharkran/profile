@@ -190,16 +190,17 @@ html[data-theme="portfolio-light"] .portfolio-background__vignette {
 .surface-panel {
     border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
     background:
-        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 92%, white 8%) 0%, color-mix(in srgb, oklch(var(--b1)) 96%, transparent) 100%);
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 94%, white 6%) 0%, color-mix(in srgb, oklch(var(--b2)) 96%, white 4%) 100%);
     border-radius: 1.8rem;
     box-shadow:
         0 14px 34px color-mix(in srgb, oklch(var(--n)) 8%, transparent),
         inset 0 1px 0 color-mix(in srgb, white 26%, transparent);
+    isolation: isolate;
 }
 
 html[data-theme="portfolio-dark"] .surface-panel {
     background:
-        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 94%, white 3%) 0%, color-mix(in srgb, oklch(var(--b1)) 98%, transparent) 100%);
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 90%, oklch(var(--n)) 10%) 0%, color-mix(in srgb, oklch(var(--b2)) 94%, oklch(var(--n)) 6%) 100%);
     box-shadow:
         0 18px 40px color-mix(in srgb, black 34%, transparent),
         inset 0 1px 0 color-mix(in srgb, white 9%, transparent);
@@ -242,7 +243,7 @@ html[data-theme="portfolio-dark"] .surface-panel {
     padding: 0.55rem 0.9rem;
     border-radius: 999px;
     border: 1px solid color-mix(in srgb, oklch(var(--bc)) 12%, transparent);
-    background: color-mix(in srgb, oklch(var(--b1)) 80%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 92%, white 8%);
     font-size: 0.82rem;
     font-weight: 700;
     color: color-mix(in srgb, oklch(var(--bc)) 78%, transparent);
@@ -260,7 +261,7 @@ html[data-theme="portfolio-dark"] .surface-panel {
 .metric-card {
     border-radius: 1.25rem;
     border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
-    background: color-mix(in srgb, oklch(var(--b1)) 82%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 94%, white 6%);
     padding: 1rem 1.05rem;
 }
 
@@ -280,16 +281,17 @@ html[data-theme="portfolio-dark"] .surface-panel {
 .sidebar-panel {
     border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
     background:
-        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 84%, oklch(var(--n)) 16%) 0%, color-mix(in srgb, oklch(var(--b2)) 90%, oklch(var(--n)) 10%) 100%);
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 92%, oklch(var(--n)) 8%) 0%, color-mix(in srgb, oklch(var(--b2)) 95%, oklch(var(--n)) 5%) 100%);
     color: oklch(var(--bc));
     box-shadow:
         0 24px 58px color-mix(in srgb, oklch(var(--n)) 12%, transparent),
         inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+    isolation: isolate;
 }
 
 html[data-theme="portfolio-dark"] .sidebar-panel {
     background:
-        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 76%, oklch(var(--n)) 24%) 0%, color-mix(in srgb, oklch(var(--b2)) 82%, oklch(var(--n)) 18%) 100%);
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 88%, oklch(var(--n)) 12%) 0%, color-mix(in srgb, oklch(var(--b2)) 92%, oklch(var(--n)) 8%) 100%);
     box-shadow:
         0 30px 72px color-mix(in srgb, black 40%, transparent),
         inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
@@ -298,13 +300,13 @@ html[data-theme="portfolio-dark"] .sidebar-panel {
 .sidebar-card,
 .sidebar-footer-panel {
     border: 1px solid color-mix(in srgb, oklch(var(--bc)) 9%, transparent);
-    background: color-mix(in srgb, oklch(var(--b1)) 76%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 94%, white 6%);
     box-shadow: inset 0 1px 0 color-mix(in srgb, white 14%, transparent);
 }
 
 html[data-theme="portfolio-dark"] .sidebar-card,
 html[data-theme="portfolio-dark"] .sidebar-footer-panel {
-    background: color-mix(in srgb, white 4%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 94%, white 6%);
 }
 
 .sidebar-meta,
@@ -402,12 +404,6 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
     }
 }
 
-@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
-    .surface-panel {
-        backdrop-filter: blur(8px);
-    }
-}
-
 @media (max-width: 1023px), (hover: none), (pointer: coarse) {
     main::before {
         display: none;
@@ -415,10 +411,6 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
 
     .portfolio-background__wash {
         filter: blur(26px) saturate(100%);
-    }
-
-    .surface-panel {
-        backdrop-filter: none;
     }
 }
 
