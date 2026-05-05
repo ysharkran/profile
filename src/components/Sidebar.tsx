@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { profile, profileQuickFacts } from "../data/portfolio";
+import { profile } from "../data/portfolio";
 import { SmartLink } from "./SmartLink";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -52,38 +52,36 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
             <div className="sidebar-card w-full rounded-[1.6rem] p-5">
               <SmartLink to="/" className="block" onClick={onClose}>
                 <div className="avatar block transition ease-in-out hover:scale-[102%]">
-                  <div className="w-[5.4rem]">
-                    <img className="mask mask-circle" src="/profile.svg" alt="Yaroslav Shapran profile avatar" />
+                  <div className="h-[5rem] w-[5rem] overflow-hidden rounded-full border border-base-300/70">
+                    <img className="h-full w-full object-cover" src="/profile-photo.jpg" alt="Yaroslav Shapran profile avatar" />
                   </div>
                 </div>
               </SmartLink>
               <div className="mt-4">
                 <div className="font-display text-[1.68rem] leading-none">{profile.name}</div>
                 <div className="sidebar-meta mt-2 text-sm uppercase tracking-[0.18em]">{primaryRole}</div>
-                <p className="sidebar-copy mt-4 text-[0.95rem] leading-6">
-                  {profile.headline}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="sidebar-tag">AI systems</span>
-                  <span className="sidebar-tag">Platform delivery</span>
-                  <span className="sidebar-tag">Remote</span>
-                </div>
-                <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                  {profileQuickFacts.map((item) => (
-                    <div key={item.label} className="sidebar-quick-fact rounded-2xl px-3 py-2.5">
-                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-base-content/45">
-                        {item.label}
-                      </div>
-                      <div className="mt-1 text-xs leading-5 text-base-content/80">{item.value}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <a className="btn btn-sm btn-primary border-0 px-4" href={profile.resumeUrl} target="_blank" rel="noreferrer">
-                    Resume PDF
+                <div className="mt-4 grid gap-2.5 text-sm">
+                  <a
+                    className="sidebar-identity-row rounded-2xl px-3 py-2.5"
+                    href={`mailto:${profile.email}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="sidebar-identity-label">Email</span>
+                    <span className="sidebar-identity-value">{profile.email}</span>
                   </a>
-                  <a className="btn btn-sm btn-ghost border border-base-300/80 px-4" href={`mailto:${profile.email}`} target="_blank" rel="noreferrer">
-                    Email
+                  <div className="sidebar-identity-row rounded-2xl px-3 py-2.5">
+                    <span className="sidebar-identity-label">Location</span>
+                    <span className="sidebar-identity-value">{profile.location}</span>
+                  </div>
+                  <a
+                    className="sidebar-identity-row rounded-2xl px-3 py-2.5"
+                    href={profile.resumeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="sidebar-identity-label">Resume</span>
+                    <span className="sidebar-identity-value">Open PDF</span>
                   </a>
                 </div>
               </div>

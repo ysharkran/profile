@@ -473,6 +473,26 @@ html[data-theme="portfolio-dark"] .surface-panel {
     background: color-mix(in srgb, oklch(var(--b1)) 90%, white 10%);
 }
 
+.sidebar-identity-row {
+    display: grid;
+    gap: 0.18rem;
+    border: 1px solid color-mix(in srgb, oklch(var(--bc)) 9%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 90%, white 10%);
+}
+
+.sidebar-identity-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, oklch(var(--bc)) 48%, transparent);
+}
+
+.sidebar-identity-value {
+    color: color-mix(in srgb, oklch(var(--bc)) 84%, transparent);
+    line-height: 1.5;
+}
+
 .sidebar-panel {
     border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
     background:
