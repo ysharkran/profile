@@ -1,0 +1,20 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="48" y1="50" x2="1126" y2="598" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172554"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="32" fill="url(#bg)"/>
+  <rect x="82" y="82" width="1036" height="468" rx="28" fill="#091123" stroke="#93C5FD" stroke-opacity="0.18"/>
+  <text x="120" y="176" fill="#EFF6FF" font-size="70" font-family="Arial, sans-serif" font-weight="700">Data Foundations</text>
+  <text x="120" y="236" fill="#BFDBFE" font-size="28" font-family="Arial, sans-serif">Contracts, storage choices, and the hidden agreements</text>
+  <text x="120" y="274" fill="#BFDBFE" font-size="28" font-family="Arial, sans-serif">that decide whether product behavior stays coherent.</text>
+  <ellipse cx="260" cy="394" rx="118" ry="48" fill="#1D4ED8" fill-opacity="0.34"/>
+  <ellipse cx="260" cy="436" rx="118" ry="48" fill="#1D4ED8" fill-opacity="0.24"/>
+  <ellipse cx="260" cy="352" rx="118" ry="48" fill="#1D4ED8" fill-opacity="0.42"/>
+  <rect x="464" y="330" width="558" height="172" rx="24" fill="#0F172A" stroke="#60A5FA" stroke-opacity="0.18"/>
+  <rect x="506" y="370" width="182" height="16" rx="8" fill="#EFF6FF" fill-opacity="0.82"/>
+  <rect x="506" y="404" width="452" height="12" rx="6" fill="#60A5FA" fill-opacity="0.72"/>
+  <rect x="506" y="434" width="386" height="12" rx="6" fill="#93C5FD" fill-opacity="0.54"/>
+</svg>

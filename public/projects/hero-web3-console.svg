@@ -1,0 +1,19 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="72" y1="58" x2="1110" y2="716" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#5B21B6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="40" fill="url(#bg)"/>
+  <rect x="80" y="76" width="1040" height="608" rx="34" fill="#0B1223" stroke="#D8B4FE" stroke-opacity="0.18"/>
+  <text x="122" y="174" fill="#FAF5FF" font-size="72" font-family="Arial, sans-serif" font-weight="700">Web3 Console</text>
+  <text x="122" y="228" fill="#E9D5FF" font-size="28" font-family="Arial, sans-serif">Treasury visibility, wallet flows, and product-quality on-chain operations.</text>
+  <polygon points="614,286 740,212 866,286 866,436 740,510 614,436" fill="#4C1D95" fill-opacity="0.92"/>
+  <polygon points="746,286 872,212 998,286 998,436 872,510 746,436" fill="#6D28D9" fill-opacity="0.74"/>
+  <polygon points="482,286 608,212 734,286 734,436 608,510 482,436" fill="#7C3AED" fill-opacity="0.34"/>
+  <rect x="126" y="316" width="282" height="194" rx="28" fill="#141A31" stroke="#D8B4FE" stroke-opacity="0.16"/>
+  <rect x="164" y="356" width="132" height="16" rx="8" fill="#FAF5FF" fill-opacity="0.82"/>
+  <rect x="164" y="392" width="198" height="12" rx="6" fill="#C084FC" fill-opacity="0.72"/>
+  <rect x="164" y="424" width="168" height="12" rx="6" fill="#E9D5FF" fill-opacity="0.58"/>
+</svg>

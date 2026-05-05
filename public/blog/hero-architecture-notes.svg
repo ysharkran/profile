@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="44" y1="40" x2="1112" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="32" fill="url(#bg)"/>
+  <circle cx="1022" cy="124" r="152" fill="#94A3B8" fill-opacity="0.12"/>
+  <rect x="84" y="82" width="1032" height="466" rx="28" fill="#0B1223" stroke="#CBD5E1" stroke-opacity="0.18"/>
+  <text x="120" y="176" fill="#F8FAFC" font-size="70" font-family="Arial, sans-serif" font-weight="700">Architecture Notes</text>
+  <text x="120" y="234" fill="#CBD5E1" font-size="28" font-family="Arial, sans-serif">Boundaries, event flows, service design, and the tradeoffs</text>
+  <text x="120" y="272" fill="#CBD5E1" font-size="28" font-family="Arial, sans-serif">that decide whether a system gets easier or harder over time.</text>
+  <path d="M206 380H430V454H206V380Z" fill="#111827" stroke="#94A3B8" stroke-opacity="0.24"/>
+  <path d="M488 312H712V386H488V312Z" fill="#111827" stroke="#94A3B8" stroke-opacity="0.24"/>
+  <path d="M770 380H994V454H770V380Z" fill="#111827" stroke="#94A3B8" stroke-opacity="0.24"/>
+  <path d="M430 417H488M712 349H770" stroke="#CBD5E1" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="430" cy="417" r="10" fill="#E2E8F0"/>
+  <circle cx="488" cy="417" r="10" fill="#E2E8F0"/>
+  <circle cx="712" cy="349" r="10" fill="#E2E8F0"/>
+  <circle cx="770" cy="349" r="10" fill="#E2E8F0"/>
+</svg>

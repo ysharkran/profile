@@ -1,0 +1,22 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="60" x2="1110" y2="710" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="40" fill="url(#bg)"/>
+  <rect x="80" y="76" width="1040" height="608" rx="34" fill="#0C1623" stroke="#5EEAD4" stroke-opacity="0.2"/>
+  <text x="126" y="176" fill="#F0FDFA" font-size="72" font-family="Arial, sans-serif" font-weight="700">Fintech Copilot</text>
+  <text x="126" y="230" fill="#99F6E4" font-size="28" font-family="Arial, sans-serif">Reconciliation review, payment exceptions, and auditable automation.</text>
+  <rect x="126" y="304" width="334" height="258" rx="28" fill="#101827" stroke="#5EEAD4" stroke-opacity="0.18"/>
+  <rect x="510" y="304" width="496" height="258" rx="28" fill="#082B2A" stroke="#5EEAD4" stroke-opacity="0.18"/>
+  <rect x="168" y="350" width="122" height="16" rx="8" fill="#F0FDFA" fill-opacity="0.82"/>
+  <rect x="168" y="384" width="236" height="12" rx="6" fill="#2DD4BF" fill-opacity="0.72"/>
+  <rect x="168" y="416" width="188" height="12" rx="6" fill="#99F6E4" fill-opacity="0.56"/>
+  <rect x="550" y="352" width="168" height="16" rx="8" fill="#F0FDFA" fill-opacity="0.82"/>
+  <rect x="550" y="388" width="272" height="12" rx="6" fill="#2DD4BF" fill-opacity="0.72"/>
+  <rect x="550" y="420" width="388" height="12" rx="6" fill="#99F6E4" fill-opacity="0.56"/>
+  <path d="M574 490H938" stroke="#5EEAD4" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="746" cy="490" r="14" fill="#F0FDFA"/>
+</svg>

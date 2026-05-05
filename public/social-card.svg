@@ -1,0 +1,34 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="32" y1="20" x2="1090" y2="610" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.52" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="742" y1="88" x2="1006" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#93C5FD" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="32" fill="url(#bg)"/>
+  <circle cx="1016" cy="120" r="190" fill="#60A5FA" fill-opacity="0.08"/>
+  <circle cx="126" cy="570" r="200" fill="#38BDF8" fill-opacity="0.08"/>
+  <rect x="72" y="78" width="150" height="150" rx="75" fill="#0B1120" stroke="#BFDBFE" stroke-opacity="0.45"/>
+  <path d="M106 183C118 159 138 147 167 147C196 147 216 159 228 183" stroke="#E2E8F0" stroke-width="10" stroke-linecap="round" stroke-opacity="0.9"/>
+  <circle cx="167" cy="112" r="32" fill="#E2E8F0" fill-opacity="0.92"/>
+  <text x="167" y="215" text-anchor="middle" fill="#F8FAFC" font-size="28" font-family="Arial, sans-serif" font-weight="700">YS</text>
+  <text x="72" y="312" fill="#E2E8F0" font-size="62" font-family="Arial, sans-serif" font-weight="700">Yaroslav Shapran</text>
+  <text x="72" y="372" fill="#93C5FD" font-size="30" font-family="Arial, sans-serif" font-weight="600">Senior Software Engineer / Product Engineer / AI-ML</text>
+  <text x="72" y="438" fill="#CBD5E1" font-size="28" font-family="Arial, sans-serif">AI-native products, cloud-native systems, and full-stack delivery.</text>
+  <text x="72" y="482" fill="#CBD5E1" font-size="28" font-family="Arial, sans-serif">React, Next.js, Node.js, Python, Rust, AWS, and Web3.</text>
+  <rect x="774" y="92" width="318" height="446" rx="28" fill="url(#panel)" stroke="#BFDBFE" stroke-opacity="0.22"/>
+  <rect x="812" y="146" width="244" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.82"/>
+  <rect x="812" y="194" width="188" height="14" rx="7" fill="#93C5FD" fill-opacity="0.82"/>
+  <rect x="812" y="254" width="242" height="76" rx="18" fill="#0B1120" stroke="#BFDBFE" stroke-opacity="0.22"/>
+  <rect x="838" y="284" width="92" height="10" rx="5" fill="#E2E8F0" fill-opacity="0.82"/>
+  <rect x="838" y="308" width="160" height="10" rx="5" fill="#93C5FD" fill-opacity="0.68"/>
+  <rect x="812" y="354" width="242" height="76" rx="18" fill="#0B1120" stroke="#BFDBFE" stroke-opacity="0.22"/>
+  <rect x="838" y="384" width="112" height="10" rx="5" fill="#E2E8F0" fill-opacity="0.82"/>
+  <rect x="838" y="408" width="146" height="10" rx="5" fill="#93C5FD" fill-opacity="0.68"/>
+  <rect x="812" y="454" width="150" height="16" rx="8" fill="#38BDF8" fill-opacity="0.82"/>
+</svg>

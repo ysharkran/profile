@@ -1,0 +1,544 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.time-line-container>div:last-child .education__time>.education__line {
+    display: none;
+}
+
+:root {
+    color-scheme: light;
+    --font-body: "Manrope", "Segoe UI", sans-serif;
+    --font-display: "Space Grotesk", "Avenir Next", sans-serif;
+    --portfolio-pointer-x: 68vw;
+    --portfolio-pointer-y: 28vh;
+    --portfolio-parallax-shift-x: 0px;
+    --portfolio-parallax-shift-y: 0px;
+    --portfolio-bg-grid-rgb: 27, 36, 52;
+    --portfolio-bg-canvas-rgb: 29, 78, 216;
+    --portfolio-bg-node-rgb: 15, 118, 110;
+    --portfolio-bg-link-rgb: 29, 78, 216;
+    --portfolio-bg-accent-rgb: 217, 119, 6;
+    --portfolio-bg-cursor-rgb: 59, 130, 246;
+}
+
+html[data-theme="portfolio-light"] {
+    --portfolio-bg-grid-rgb: 27, 36, 52;
+    --portfolio-bg-canvas-rgb: 29, 78, 216;
+    --portfolio-bg-node-rgb: 15, 118, 110;
+    --portfolio-bg-link-rgb: 59, 130, 246;
+    --portfolio-bg-accent-rgb: 217, 119, 6;
+    --portfolio-bg-cursor-rgb: 29, 78, 216;
+}
+
+html[data-theme="portfolio-dark"] {
+    color-scheme: dark;
+    --portfolio-bg-grid-rgb: 231, 237, 247;
+    --portfolio-bg-canvas-rgb: 125, 211, 252;
+    --portfolio-bg-node-rgb: 52, 211, 153;
+    --portfolio-bg-link-rgb: 96, 165, 250;
+    --portfolio-bg-accent-rgb: 245, 158, 11;
+    --portfolio-bg-cursor-rgb: 125, 211, 252;
+}
+
+html,
+body {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+html {
+    background: oklch(var(--b1));
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    font-family: var(--font-body);
+    background-image:
+        radial-gradient(circle at 14% 10%, rgba(var(--portfolio-bg-canvas-rgb), 0.14) 0, transparent 24rem),
+        radial-gradient(circle at 84% 78%, rgba(var(--portfolio-bg-node-rgb), 0.11) 0, transparent 22rem),
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 94%, white 6%) 0%, oklch(var(--b1)) 52%, oklch(var(--b2)) 100%);
+    color: oklch(var(--bc));
+}
+
+.drawer-content,
+.drawer-side aside {
+    background-color: transparent;
+}
+
+.drawer-side {
+    scrollbar-width: thin;
+}
+
+main {
+    position: relative;
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, oklch(var(--p)) 14%, transparent);
+    filter: blur(56px);
+    pointer-events: none;
+    opacity: 0.72;
+}
+
+.btn,
+.menu a,
+.card,
+.rounded-lg,
+.badge {
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display,
+.card-title {
+    font-family: var(--font-display);
+    letter-spacing: -0.04em;
+}
+
+p,
+li,
+span,
+a,
+button {
+    text-wrap: pretty;
+}
+
+.portfolio-shell {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+}
+
+.portfolio-content-shell {
+    position: relative;
+    background: transparent;
+}
+
+.portfolio-background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.portfolio-background>* {
+    position: absolute;
+}
+
+.portfolio-background__canvas {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.72;
+}
+
+.portfolio-background__grid {
+    inset: 0;
+    background-image:
+        linear-gradient(to right, rgba(var(--portfolio-bg-grid-rgb), 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(var(--portfolio-bg-grid-rgb), 0.06) 1px, transparent 1px);
+    background-size: 38px 38px;
+    opacity: 0.2;
+    transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.18), calc(var(--portfolio-parallax-shift-y) * 0.18), 0);
+    mask-image: radial-gradient(circle at center, black 46%, transparent 94%);
+}
+
+.portfolio-background__halo {
+    inset: -12%;
+    background:
+        radial-gradient(circle at var(--portfolio-pointer-x) var(--portfolio-pointer-y), rgba(var(--portfolio-bg-canvas-rgb), 0.22) 0, transparent 20rem),
+        radial-gradient(circle at 18% 22%, rgba(var(--portfolio-bg-link-rgb), 0.1) 0, transparent 22rem),
+        radial-gradient(circle at 78% 26%, rgba(var(--portfolio-bg-node-rgb), 0.12) 0, transparent 18rem),
+        radial-gradient(circle at 70% 78%, rgba(var(--portfolio-bg-accent-rgb), 0.08) 0, transparent 18rem);
+    filter: blur(28px) saturate(108%);
+    transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.45), calc(var(--portfolio-parallax-shift-y) * 0.45), 0);
+}
+
+.portfolio-background__spotlight {
+    inset: 0;
+    background:
+        radial-gradient(circle 10rem at var(--portfolio-pointer-x) var(--portfolio-pointer-y), rgba(var(--portfolio-bg-cursor-rgb), 0.12) 0, rgba(var(--portfolio-bg-cursor-rgb), 0.035) 42%, transparent 72%),
+        linear-gradient(135deg, rgba(var(--portfolio-bg-link-rgb), 0.08) 0, transparent 32%, transparent 68%, rgba(var(--portfolio-bg-node-rgb), 0.08) 100%);
+    mix-blend-mode: screen;
+    opacity: 0.62;
+}
+
+.portfolio-background__noise {
+    inset: 0;
+    background:
+        repeating-linear-gradient(115deg, rgba(var(--portfolio-bg-grid-rgb), 0.032) 0 1px, transparent 1px 88px),
+        repeating-linear-gradient(-115deg, rgba(var(--portfolio-bg-grid-rgb), 0.032) 0 1px, transparent 1px 104px);
+    opacity: 0.24;
+    transform: translate3d(calc(var(--portfolio-parallax-shift-x) * -0.14), calc(var(--portfolio-parallax-shift-y) * -0.14), 0);
+    mask-image: radial-gradient(circle at center, black 44%, transparent 92%);
+}
+
+html[data-background-mode="dynamic"] .portfolio-background__halo {
+    animation: technical-halo-float 22s ease-in-out infinite alternate;
+}
+
+html[data-background-mode="dynamic"] .portfolio-background__spotlight {
+    animation: technical-spotlight-breathe 14s ease-in-out infinite alternate;
+}
+
+html[data-background-mode="static"] .portfolio-background__canvas {
+    opacity: 0;
+}
+
+html[data-background-mode="static"] .portfolio-background__grid,
+html[data-background-mode="static"] .portfolio-background__halo,
+html[data-background-mode="static"] .portfolio-background__noise {
+    transform: none;
+}
+
+html[data-background-mode="static"] .portfolio-background__halo,
+html[data-background-mode="static"] .portfolio-background__spotlight {
+    animation: none;
+}
+
+html[data-theme="portfolio-dark"] .portfolio-background__grid {
+    opacity: 0.24;
+}
+
+html[data-theme="portfolio-dark"] .portfolio-background__halo {
+    filter: blur(34px) saturate(116%);
+}
+
+html[data-theme="portfolio-dark"] .portfolio-background__spotlight {
+    opacity: 0.72;
+}
+
+html[data-theme="portfolio-dark"] .portfolio-background__noise {
+    opacity: 0.3;
+}
+
+html[data-theme="portfolio-light"] .portfolio-background__halo {
+    filter: blur(30px) saturate(104%);
+}
+
+html[data-theme="portfolio-light"] .portfolio-background__spotlight {
+    opacity: 0.5;
+}
+
+html[data-theme="portfolio-light"] .portfolio-background__noise {
+    opacity: 0.2;
+}
+
+.portfolio-main {
+    width: 100%;
+    max-width: 1120px;
+    padding: 2.25rem 1.4rem 4rem;
+}
+
+.portfolio-stack {
+    display: grid;
+    gap: 1.4rem;
+}
+
+.surface-panel {
+    border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
+    background:
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 92%, white 8%) 0%, color-mix(in srgb, oklch(var(--b1)) 96%, transparent) 100%);
+    border-radius: 1.8rem;
+    box-shadow:
+        0 14px 34px color-mix(in srgb, oklch(var(--n)) 8%, transparent),
+        inset 0 1px 0 color-mix(in srgb, white 26%, transparent);
+}
+
+html[data-theme="portfolio-dark"] .surface-panel {
+    background:
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 94%, white 3%) 0%, color-mix(in srgb, oklch(var(--b1)) 98%, transparent) 100%);
+    box-shadow:
+        0 18px 40px color-mix(in srgb, black 34%, transparent),
+        inset 0 1px 0 color-mix(in srgb, white 9%, transparent);
+}
+
+.section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, oklch(var(--bc)) 68%, oklch(var(--p)) 32%);
+}
+
+.section-kicker::before {
+    content: "";
+    width: 2.5rem;
+    height: 1px;
+    background: color-mix(in srgb, oklch(var(--p)) 58%, transparent);
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 0.95;
+    font-weight: 700;
+}
+
+.section-copy {
+    color: color-mix(in srgb, oklch(var(--bc)) 76%, transparent);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, oklch(var(--bc)) 12%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 80%, transparent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: color-mix(in srgb, oklch(var(--bc)) 78%, transparent);
+}
+
+.eyebrow-pill::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: oklch(var(--a));
+    box-shadow: 0 0 0 5px color-mix(in srgb, oklch(var(--a)) 14%, transparent);
+}
+
+.metric-card {
+    border-radius: 1.25rem;
+    border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 82%, transparent);
+    padding: 1rem 1.05rem;
+}
+
+.metric-value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.metric-label {
+    margin-top: 0.35rem;
+    color: color-mix(in srgb, oklch(var(--bc)) 70%, transparent);
+    font-size: 0.92rem;
+}
+
+.sidebar-panel {
+    border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
+    background:
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 84%, oklch(var(--n)) 16%) 0%, color-mix(in srgb, oklch(var(--b2)) 90%, oklch(var(--n)) 10%) 100%);
+    color: oklch(var(--bc));
+    box-shadow:
+        0 24px 58px color-mix(in srgb, oklch(var(--n)) 12%, transparent),
+        inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+}
+
+html[data-theme="portfolio-dark"] .sidebar-panel {
+    background:
+        linear-gradient(180deg, color-mix(in srgb, oklch(var(--b1)) 76%, oklch(var(--n)) 24%) 0%, color-mix(in srgb, oklch(var(--b2)) 82%, oklch(var(--n)) 18%) 100%);
+    box-shadow:
+        0 30px 72px color-mix(in srgb, black 40%, transparent),
+        inset 0 1px 0 color-mix(in srgb, white 10%, transparent);
+}
+
+.sidebar-card,
+.sidebar-footer-panel {
+    border: 1px solid color-mix(in srgb, oklch(var(--bc)) 9%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 76%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, white 14%, transparent);
+}
+
+html[data-theme="portfolio-dark"] .sidebar-card,
+html[data-theme="portfolio-dark"] .sidebar-footer-panel {
+    background: color-mix(in srgb, white 4%, transparent);
+}
+
+.sidebar-meta,
+.sidebar-section-label {
+    color: color-mix(in srgb, oklch(var(--bc)) 50%, transparent);
+}
+
+.sidebar-copy,
+.sidebar-note {
+    color: color-mix(in srgb, oklch(var(--bc)) 72%, transparent);
+}
+
+.sidebar-link {
+    border-color: transparent;
+    color: color-mix(in srgb, oklch(var(--bc)) 76%, transparent);
+    background: transparent;
+}
+
+.sidebar-link:hover {
+    border-color: color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 72%, transparent);
+    color: oklch(var(--bc));
+    transform: translateX(4px);
+}
+
+.sidebar-link.is-active {
+    border-color: color-mix(in srgb, oklch(var(--p)) 16%, color-mix(in srgb, oklch(var(--bc)) 10%, transparent));
+    background: linear-gradient(135deg, color-mix(in srgb, oklch(var(--p)) 18%, transparent), color-mix(in srgb, oklch(var(--s)) 12%, transparent));
+    color: oklch(var(--bc));
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, white 16%, transparent),
+        0 10px 24px color-mix(in srgb, oklch(var(--n)) 10%, transparent);
+}
+
+html[data-theme="portfolio-dark"] .sidebar-link.is-active {
+    color: white;
+}
+
+.sidebar-icon-link {
+    border-color: color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 72%, transparent);
+    color: color-mix(in srgb, oklch(var(--bc)) 76%, transparent);
+}
+
+.sidebar-icon-link:hover {
+    border-color: color-mix(in srgb, oklch(var(--p)) 18%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 58%, oklch(var(--p)) 12%);
+    color: oklch(var(--bc));
+    transform: translateY(-2px);
+}
+
+.project-grid,
+.article-grid,
+.info-grid {
+    display: grid;
+    gap: 1.2rem;
+}
+
+@media (min-width: 860px) {
+    .project-grid,
+    .article-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.listing-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.page-heading {
+    display: grid;
+    gap: 0.85rem;
+    padding: 1.75rem 1.75rem 1.45rem;
+}
+
+.soft-divider {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, oklch(var(--bc)) 14%, transparent) 18%, color-mix(in srgb, oklch(var(--bc)) 14%, transparent) 82%, transparent 100%);
+    margin: 0.4rem 0;
+}
+
+.prose {
+    --tw-prose-body: color-mix(in srgb, oklch(var(--bc)) 84%, transparent);
+    --tw-prose-headings: oklch(var(--bc));
+    --tw-prose-links: oklch(var(--p));
+    --tw-prose-bold: oklch(var(--bc));
+}
+
+@keyframes technical-halo-float {
+    from {
+        transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.35), calc(var(--portfolio-parallax-shift-y) * 0.35), 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(calc(var(--portfolio-parallax-shift-x) * 0.55), calc(var(--portfolio-parallax-shift-y) * 0.55), 0) scale(1.06);
+    }
+}
+
+@keyframes technical-spotlight-breathe {
+    from {
+        transform: scale(1);
+        opacity: 0.72;
+    }
+
+    to {
+        transform: scale(1.03);
+        opacity: 0.96;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-background__halo {
+        animation: none;
+    }
+
+    .portfolio-background__spotlight {
+        animation: none;
+    }
+
+    .portfolio-background__grid,
+    .portfolio-background__halo,
+    .portfolio-background__noise {
+        transform: none;
+    }
+
+    .sidebar-link:hover,
+    .sidebar-icon-link:hover {
+        transform: none;
+    }
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    .surface-panel {
+        backdrop-filter: blur(8px);
+    }
+}
+
+@media (max-width: 1023px), (hover: none), (pointer: coarse) {
+    main::before,
+    .portfolio-background__noise {
+        display: none;
+    }
+
+    .portfolio-background__grid {
+        background-size: 48px 48px;
+        mask-image: none;
+        opacity: 0.12;
+    }
+
+    .portfolio-background__halo,
+    .portfolio-background__spotlight {
+        animation: none;
+        transform: none;
+    }
+
+    .portfolio-background__halo {
+        filter: blur(24px) saturate(100%);
+        opacity: 0.72;
+    }
+
+    .portfolio-background__spotlight {
+        opacity: 0.36;
+    }
+
+    .surface-panel {
+        backdrop-filter: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .portfolio-main {
+        padding-top: 3rem;
+    }
+}
