@@ -423,6 +423,10 @@ export const skillGroups = [
     items: ["PyTorch", "TensorFlow", "Scikit-learn", "OpenAI APIs", "System Design", "Performance Optimization"],
   },
   {
+    title: "Automation & Unit Testing",
+    items: ["Selenium", "Jest", "Cypress", "Playwright", "Vitest", "Testing Library", "Puppeteer"],
+  },
+  {
     title: "Blockchain and Web3",
     items: ["Rust", "Solana", "Web3.js"],
   },

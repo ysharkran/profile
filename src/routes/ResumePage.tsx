@@ -1,4 +1,5 @@
 import { AppShell } from "../components/AppShell";
+import { SkillChip } from "../components/SkillChip";
 import { Timeline } from "../components/Timeline";
 import {
   careerHighlights,
@@ -222,9 +223,7 @@ export function ResumePage() {
               <h3 className="text-[1.18rem] font-bold">{group.title}</h3>
               <div className="mt-4 flex flex-wrap gap-2.5">
                 {group.items.map((skill) => (
-                  <span key={skill} className="resume-skill-chip">
-                    {skill}
-                  </span>
+                  <SkillChip key={skill} skill={skill} />
                 ))}
               </div>
             </article>
