@@ -3,6 +3,7 @@ import {
   type PropsWithChildren,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
 } from "react";
@@ -15,7 +16,7 @@ type ThemeContextValue = {
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
-const STORAGE_KEY = "portfolio-theme";
+export const STORAGE_KEY = "portfolio-theme";
 
 const getSystemTheme = (): ThemeMode =>
   window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -24,6 +25,7 @@ const paintTheme = (mode: ThemeMode) => {
   document.documentElement.dataset.theme =
     mode === "dark" ? "portfolio-dark" : "portfolio-light";
   document.documentElement.dataset.colorMode = mode;
+  document.documentElement.style.colorScheme = mode;
 };
 
 export function ThemeProvider({ children }: PropsWithChildren) {
@@ -35,7 +37,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
     return getSystemTheme();
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     paintTheme(mode);
     window.localStorage.setItem(STORAGE_KEY, mode);
   }, [mode]);

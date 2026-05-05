@@ -6,7 +6,7 @@ type ThemeToggleProps = {
 
 export function ThemeToggle({ compact = false }: ThemeToggleProps) {
   const { mode, toggle } = useTheme();
-  const nextLabel = mode === "dark" ? "Light mode" : "Dark mode";
+  const nextLabel = mode === "dark" ? "Switch to light mode" : "Switch to dark mode";
 
   return (
     <button
@@ -18,7 +18,7 @@ export function ThemeToggle({ compact = false }: ThemeToggleProps) {
           : "w-full justify-between normal-case border-base-300/80 bg-base-100/70 text-base-content hover:bg-base-100",
       ].join(" ")}
       onClick={toggle}
-      aria-label="Toggle theme"
+      aria-label={nextLabel}
       aria-pressed={mode === "dark"}
     >
       <span className="flex items-center gap-2">
