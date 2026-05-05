@@ -138,6 +138,17 @@ button {
     opacity: 0.78;
 }
 
+.portfolio-background__dots {
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(var(--portfolio-bg-link-rgb), 0.16) 1px, transparent 1.2px),
+        radial-gradient(circle, rgba(var(--portfolio-bg-node-rgb), 0.12) 1px, transparent 1.2px);
+    background-position: 0 0, 14px 14px;
+    background-size: 28px 28px;
+    opacity: 0.34;
+    mask-image: radial-gradient(circle at center, black 52%, transparent 96%);
+}
+
 .portfolio-background__grid {
     inset: 0;
     background-image:
@@ -203,6 +214,10 @@ html[data-theme="portfolio-dark"] .portfolio-background__grid {
     opacity: 0.22;
 }
 
+html[data-theme="portfolio-dark"] .portfolio-background__dots {
+    opacity: 0.28;
+}
+
 html[data-theme="portfolio-dark"] .portfolio-background__halo {
     filter: blur(38px) saturate(118%);
 }
@@ -217,6 +232,10 @@ html[data-theme="portfolio-dark"] .portfolio-background__noise {
 
 html[data-theme="portfolio-light"] .portfolio-background__halo {
     filter: blur(32px) saturate(104%);
+}
+
+html[data-theme="portfolio-light"] .portfolio-background__dots {
+    opacity: 0.38;
 }
 
 html[data-theme="portfolio-light"] .portfolio-background__spotlight {
@@ -478,6 +497,7 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
     }
 
     .portfolio-background__grid,
+    .portfolio-background__dots,
     .portfolio-background__halo,
     .portfolio-background__noise {
         transform: none;
@@ -505,6 +525,12 @@ html[data-theme="portfolio-dark"] .sidebar-link.is-active {
         background-size: 48px 48px;
         mask-image: none;
         opacity: 0.12;
+    }
+
+    .portfolio-background__dots {
+        background-size: 22px 22px;
+        mask-image: none;
+        opacity: 0.24;
     }
 
     .portfolio-background__halo,

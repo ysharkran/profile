@@ -64,17 +64,17 @@ export function InteractiveBackground() {
 
     const particleCountForViewport = () => {
       const area = window.innerWidth * window.innerHeight;
-      if (area < 540000) return 14;
-      if (area < 980000) return 20;
-      return 28;
+      if (area < 540000) return 22;
+      if (area < 980000) return 34;
+      return 48;
     };
 
     const createParticle = (): Particle => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      radius: 1 + Math.random() * 1.8,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      radius: 0.9 + Math.random() * 1.65,
       pulse: Math.random() * Math.PI * 2,
       pulseSpeed: 0.0016 + Math.random() * 0.0028,
     });
@@ -109,7 +109,7 @@ export function InteractiveBackground() {
       state.lastTime = time;
       clearCanvas();
 
-      const connectionDistance = Math.min(Math.max(window.innerWidth * 0.12, 118), 172);
+      const connectionDistance = Math.min(Math.max(window.innerWidth * 0.14, 126), 194);
 
       for (const particle of state.particles) {
         particle.x += particle.vx * delta * 0.05;
@@ -133,9 +133,9 @@ export function InteractiveBackground() {
 
           if (distance > connectionDistance) continue;
 
-          const alpha = (1 - distance / connectionDistance) * (state.mode === "dark" ? 0.18 : 0.11);
+          const alpha = (1 - distance / connectionDistance) * (state.mode === "dark" ? 0.14 : 0.09);
           state.ctx.strokeStyle = `rgba(${state.palette.link}, ${alpha})`;
-          state.ctx.lineWidth = distance < connectionDistance * 0.45 ? 1.1 : 0.8;
+          state.ctx.lineWidth = distance < connectionDistance * 0.42 ? 0.95 : 0.65;
           state.ctx.beginPath();
           state.ctx.moveTo(particle.x, particle.y);
           state.ctx.lineTo(other.x, other.y);
@@ -146,12 +146,12 @@ export function InteractiveBackground() {
       for (const particle of state.particles) {
         const radius = particle.radius + Math.sin(particle.pulse) * 0.26;
 
-        state.ctx.fillStyle = `rgba(${state.palette.accent}, ${state.mode === "dark" ? 0.08 : 0.05})`;
+        state.ctx.fillStyle = `rgba(${state.palette.accent}, ${state.mode === "dark" ? 0.06 : 0.04})`;
         state.ctx.beginPath();
         state.ctx.arc(particle.x, particle.y, clamp(radius * 2.2, 2.2, 6.2), 0, Math.PI * 2);
         state.ctx.fill();
 
-        state.ctx.fillStyle = `rgba(${state.palette.node}, ${state.mode === "dark" ? 0.76 : 0.58})`;
+        state.ctx.fillStyle = `rgba(${state.palette.node}, ${state.mode === "dark" ? 0.8 : 0.62})`;
         state.ctx.beginPath();
         state.ctx.arc(particle.x, particle.y, clamp(radius, 0.85, 2.8), 0, Math.PI * 2);
         state.ctx.fill();
@@ -265,6 +265,7 @@ export function InteractiveBackground() {
   return (
     <div className="portfolio-background" aria-hidden="true" data-portfolio-background>
       <canvas className="portfolio-background__canvas"></canvas>
+      <div className="portfolio-background__dots"></div>
       <div className="portfolio-background__grid"></div>
       <div className="portfolio-background__halo"></div>
       <div className="portfolio-background__spotlight"></div>
