@@ -6,6 +6,7 @@ type ProjectShowcaseCardProps = {
   image?: string;
   url: string;
   badge?: string;
+  repoLabel?: string;
   target?: string;
 };
 
@@ -15,6 +16,7 @@ export function ProjectShowcaseCard({
   image,
   url,
   badge,
+  repoLabel,
   target = "_blank",
 }: ProjectShowcaseCardProps) {
   return (
@@ -37,13 +39,20 @@ export function ProjectShowcaseCard({
         </div>
       )}
       <div className="flex h-full flex-col p-5 md:p-6">
+        {repoLabel && (
+          <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-base-content/46">
+            {repoLabel}
+          </div>
+        )}
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-[1.65rem] font-bold leading-tight transition group-hover:text-primary">{title}</h3>
+          <h3 className={`${repoLabel ? "mt-3" : ""} text-[1.65rem] font-bold leading-tight transition group-hover:text-primary`}>
+            {title}
+          </h3>
           {badge && <span className="badge badge-secondary border-0 px-3 py-3 font-semibold">{badge}</span>}
         </div>
         <p className="mt-4 text-[0.98rem] leading-7 text-base-content/74">{description}</p>
         <div className="mt-auto pt-6 text-sm font-semibold uppercase tracking-[0.16em] text-primary/80">
-          Open repo
+          Open upstream repo
         </div>
       </div>
     </SmartLink>

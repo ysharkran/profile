@@ -71,9 +71,9 @@ export function HomePage() {
             <div>
               <h2 className="text-4xl font-bold">Featured Projects</h2>
               <p className="section-copy mt-3 max-w-3xl">
-                Experience-backed case studies and open-source-ready concepts shaped around AI systems,
-                fintech workflows, platform tooling, and Web3 operations, currently paired with strong
-                public reference repos.
+                Real open-source applications with strong product surfaces, active repos, and clean
+                codebases that are worth studying, forking, and then reshaping into your own portfolio
+                work.
               </p>
             </div>
             <a href="/projects" className="btn btn-ghost border border-base-300/80 px-5">

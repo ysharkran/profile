@@ -16,33 +16,109 @@ export const profile = {
 
 const githubRepoUrl = (repoPath: string) => `https://github.com/${repoPath}`;
 
-const referenceRepos = {
-  aiOps: "langgenius/dify",
-  paymentReconciliation: "The-Commit-Company/mint",
-  defiPortfolio: "rotki/rotki",
-  solanaTreasury: "Squads-Protocol/v4",
-  cloudMigration: "openchoreo/openchoreo",
-  ragKnowledge: "infiniflow/ragflow",
-  promptEvaluation: "promptfoo/promptfoo",
-  documentIntake: "docling-project/docling",
-  apiContracts: "graphql-hive/graphql-inspector",
-  featureFlags: "Flagsmith/flagsmith",
-  incidentTimeline: "OneUptime/oneuptime",
-} as const;
+type UpstreamProject = {
+  title: string;
+  repoLabel: string;
+  description: string;
+  image: string;
+  badge: string;
+};
 
-const referenceRepoImages = {
-  aiOps: "/projects/ref-ai-ops-dify.png",
-  paymentReconciliation: "/projects/ref-payment-mint.png",
-  defiPortfolio: "/projects/ref-defi-rotki.png",
-  solanaTreasury: "/projects/ref-solana-squads-v4.png",
-  cloudMigration: "/projects/ref-cloud-openchoreo.png",
-  ragKnowledge: "/projects/ref-rag-ragflow.png",
-  promptEvaluation: "/projects/ref-prompt-promptfoo.png",
-  documentIntake: "/projects/ref-docling.png",
-  apiContracts: "/projects/ref-api-graphql-inspector.png",
-  featureFlags: "/projects/ref-flagsmith.png",
-  incidentTimeline: "/projects/ref-incident-oneuptime.png",
-} as const;
+const upstreamProjects = {
+  dify: {
+    title: "Dify",
+    repoLabel: "langgenius/dify",
+    description:
+      "Production-ready platform for building AI agents, multi-step workflows, knowledge apps, and model-powered internal products through a polished visual interface.",
+    image: "/projects/dify.png",
+    badge: "AI",
+  },
+  ragflow: {
+    title: "RAGFlow",
+    repoLabel: "infiniflow/ragflow",
+    description:
+      "Open-source RAG engine and agent workspace focused on retrieval quality, document pipelines, citations, and configurable knowledge workflows for LLM systems.",
+    image: "/projects/ragflow.png",
+    badge: "RAG",
+  },
+  n8n: {
+    title: "n8n",
+    repoLabel: "n8n-io/n8n",
+    description:
+      "Visual workflow automation platform with 400+ integrations, AI nodes, code steps, and strong self-hosting support for serious operations teams.",
+    image: "/projects/n8n.png",
+    badge: "Automation",
+  },
+  appsmith: {
+    title: "Appsmith",
+    repoLabel: "appsmithorg/appsmith",
+    description:
+      "Open-source low-code platform for building internal tools, dashboards, CRUD apps, and operator workflows on top of APIs, databases, and custom logic.",
+    image: "/projects/appsmith.webp",
+    badge: "Internal Tools",
+  },
+  tooljet: {
+    title: "ToolJet",
+    repoLabel: "ToolJet/ToolJet",
+    description:
+      "Open-source app builder for dashboards, admin panels, workflow tools, and AI-assisted internal applications with a strong product-grade interface.",
+    image: "/projects/tooljet.png",
+    badge: "Low-Code",
+  },
+  flagsmith: {
+    title: "Flagsmith",
+    repoLabel: "Flagsmith/flagsmith",
+    description:
+      "Feature flagging and remote config platform for controlled rollouts, segmentation, kill switches, experimentation, and multi-environment product delivery.",
+    image: "/projects/flagsmith.png",
+    badge: "Release Safety",
+  },
+  plane: {
+    title: "Plane",
+    repoLabel: "makeplane/plane",
+    description:
+      "Modern open-source project management platform with issues, cycles, docs, triage, and analytics that feels much closer to a shipped SaaS product than a demo repo.",
+    image: "/projects/plane.webp",
+    badge: "Product Ops",
+  },
+  oneuptime: {
+    title: "OneUptime",
+    repoLabel: "OneUptime/oneuptime",
+    description:
+      "Open-source monitoring and observability platform covering uptime checks, incidents, on-call, logs, workflows, and status pages in one system.",
+    image: "/projects/oneuptime.png",
+    badge: "Observability",
+  },
+  metabase: {
+    title: "Metabase",
+    repoLabel: "metabase/metabase",
+    description:
+      "Open-source BI and analytics application for dashboards, SQL exploration, self-serve reporting, embedded charts, and decision-oriented data workflows.",
+    image: "/projects/metabase.png",
+    badge: "Analytics",
+  },
+  calcom: {
+    title: "Cal.com",
+    repoLabel: "calcom/cal.com",
+    description:
+      "Scheduling infrastructure platform with booking flows, routing forms, calendars, team availability, and APIs for productized time coordination.",
+    image: "/projects/calcom.png",
+    badge: "Scheduling",
+  },
+  squads: {
+    title: "Squads Protocol v4",
+    repoLabel: "Squads-Protocol/v4",
+    description:
+      "Solana-native multisig and treasury coordination stack used for secure wallet operations, approvals, and transaction execution across Web3 teams.",
+    image: "/projects/squads-v4.png",
+    badge: "Web3",
+  },
+} as const satisfies Record<string, UpstreamProject>;
+
+const buildProject = (project: UpstreamProject) => ({
+  ...project,
+  url: githubRepoUrl(project.repoLabel),
+});
 
 export const homeHighlights = [
   "8+ years building product and platform software",
@@ -72,141 +148,43 @@ export const focusAreas = [
 ];
 
 export const featuredProjects = [
-  {
-    title: "AI Operations Intelligence Platform",
-    description:
-      "Production-style case study for an internal analytics and automation platform using Python, FastAPI, React, PyTorch, and OpenAI APIs. Focused on document understanding, workflow automation, and measurable ops efficiency gains.",
-    image: referenceRepoImages.aiOps,
-    url: githubRepoUrl(referenceRepos.aiOps),
-    badge: "Case Study",
-  },
-  {
-    title: "DeFi Portfolio Tracker",
-    description:
-      "Multi-wallet dashboard built with Next.js, Node.js, PostgreSQL, and Web3.js to aggregate positions, PnL, token exposure, and transaction history across DeFi protocols.",
-    image: referenceRepoImages.defiPortfolio,
-    url: githubRepoUrl(referenceRepos.defiPortfolio),
-    badge: "Web3",
-  },
-  {
-    title: "Solana Treasury Console",
-    description:
-      "Rust and Solana-focused operator console for monitoring treasury movements, contract interactions, and settlement workflows with a clean React interface for non-technical teams.",
-    image: referenceRepoImages.solanaTreasury,
-    url: githubRepoUrl(referenceRepos.solanaTreasury),
-    badge: "Rust",
-  },
-  {
-    title: "RAG Knowledge Console",
-    description:
-      "Knowledge retrieval workspace concept mapped to a strong public RAG reference repo with document pipelines, citations, and agent-ready context handling.",
-    image: referenceRepoImages.ragKnowledge,
-    url: githubRepoUrl(referenceRepos.ragKnowledge),
-    badge: "RAG",
-  },
+  buildProject(upstreamProjects.dify),
+  buildProject(upstreamProjects.appsmith),
+  buildProject(upstreamProjects.plane),
+  buildProject(upstreamProjects.oneuptime),
 ];
 
 export const projectSections = [
   {
-    title: "Experience-Backed Case Studies",
+    title: "AI and Automation Platforms",
     description:
-      "These project concepts are aligned with your resume and paired with the closest public reference repositories I found. They are the strongest candidates to turn into your own public repositories first.",
+      "Real open-source AI and workflow products with strong interfaces, active communities, and repo structures worth studying before you fork and adapt one into your own direction.",
     items: [
-      {
-        title: "AI Operations Intelligence Platform",
-        description:
-          "Python, FastAPI, React, and OpenAI-based platform for automating high-volume operations workflows with NLP pipelines, review queues, and analytics dashboards.",
-        image: referenceRepoImages.aiOps,
-        url: githubRepoUrl(referenceRepos.aiOps),
-        badge: "AI",
-      },
-      {
-        title: "Payment Reconciliation Copilot",
-        description:
-          "A secure workflow assistant for finance teams that ingests transaction feeds, highlights mismatches, proposes resolutions, and keeps a full audit trail across third-party systems.",
-        image: referenceRepoImages.paymentReconciliation,
-        url: githubRepoUrl(referenceRepos.paymentReconciliation),
-        badge: "Fintech",
-      },
-      {
-        title: "DeFi Portfolio Tracker",
-        description:
-          "Next.js and Node.js dashboard for tracking token balances, protocol positions, wallet activity, and exposure trends with alerting for significant market changes.",
-        image: referenceRepoImages.defiPortfolio,
-        url: githubRepoUrl(referenceRepos.defiPortfolio),
-        badge: "Web3",
-      },
-      {
-        title: "Solana Treasury Console",
-        description:
-          "Operational interface for Solana-based treasury monitoring, transaction inspection, and contract-driven settlement workflows powered by Rust services and a React frontend.",
-        image: referenceRepoImages.solanaTreasury,
-        url: githubRepoUrl(referenceRepos.solanaTreasury),
-        badge: "Rust",
-      },
-      {
-        title: "Cloud Migration Control Center",
-        description:
-          "AWS, Docker, Kubernetes, and Terraform project focused on service migration readiness, release safety checks, environment drift visibility, and delivery metrics for cloud-native teams.",
-        image: referenceRepoImages.cloudMigration,
-        url: githubRepoUrl(referenceRepos.cloudMigration),
-        badge: "Platform",
-      },
+      buildProject(upstreamProjects.dify),
+      buildProject(upstreamProjects.ragflow),
+      buildProject(upstreamProjects.n8n),
     ],
   },
   {
-    title: "Open-Source Repositories To Publish",
+    title: "Internal Tools and Product Platforms",
     description:
-      "These are polished repo directions that fit your stack and make the portfolio feel deeper. For now, each card points to a best-match public repo you can study and later replace with your own implementation.",
+      "These are polished application repos with real operator-facing UI. They are strong upstream candidates if you want to fork, restyle, and then gradually replace the product logic with your own work.",
     items: [
-      {
-        title: "RAG Knowledge Console",
-        description:
-          "Document ingestion and retrieval workspace with chunking, citations, semantic search, prompt traces, and evaluation views for internal knowledge assistants.",
-        image: referenceRepoImages.ragKnowledge,
-        url: githubRepoUrl(referenceRepos.ragKnowledge),
-        badge: "LLM",
-      },
-      {
-        title: "Prompt Evaluation Lab",
-        description:
-          "A regression-testing toolkit for prompts and model outputs with scenario packs, rubric scoring, side-by-side comparisons, and release gating for AI teams.",
-        image: referenceRepoImages.promptEvaluation,
-        url: githubRepoUrl(referenceRepos.promptEvaluation),
-        badge: "AI",
-      },
-      {
-        title: "Document Intake AI Pipeline",
-        description:
-          "End-to-end system for parsing PDFs and forms into structured records with human review, confidence scoring, and export-ready APIs for downstream tools.",
-        image: referenceRepoImages.documentIntake,
-        url: githubRepoUrl(referenceRepos.documentIntake),
-        badge: "Automation",
-      },
-      {
-        title: "API Contract Observatory",
-        description:
-          "Developer tooling that watches OpenAPI and GraphQL schemas, surfaces breaking changes, and generates change reports before they hit production consumers.",
-        image: referenceRepoImages.apiContracts,
-        url: githubRepoUrl(referenceRepos.apiContracts),
-        badge: "DX",
-      },
-      {
-        title: "Feature Flags Control Plane",
-        description:
-          "Multi-tenant rollout platform with environment targeting, kill switches, experiment tracking, and a lightweight SDK for frontend and backend services.",
-        image: referenceRepoImages.featureFlags,
-        url: githubRepoUrl(referenceRepos.featureFlags),
-        badge: "SaaS",
-      },
-      {
-        title: "Realtime Incident Timeline",
-        description:
-          "Operational dashboard that combines logs, deploys, alerts, and manual annotations into a single incident timeline for faster debugging and postmortems.",
-        image: referenceRepoImages.incidentTimeline,
-        url: githubRepoUrl(referenceRepos.incidentTimeline),
-        badge: "Ops",
-      },
+      buildProject(upstreamProjects.appsmith),
+      buildProject(upstreamProjects.tooljet),
+      buildProject(upstreamProjects.flagsmith),
+      buildProject(upstreamProjects.plane),
+    ],
+  },
+  {
+    title: "Ops, Analytics, and Product Infrastructure",
+    description:
+      "Applications with clear business value, strong dashboards, and real deployment surface area. These are useful if you want the Projects tab to feel more like a serious product engineer's watchlist than a template gallery.",
+    items: [
+      buildProject(upstreamProjects.oneuptime),
+      buildProject(upstreamProjects.metabase),
+      buildProject(upstreamProjects.calcom),
+      buildProject(upstreamProjects.squads),
     ],
   },
 ];

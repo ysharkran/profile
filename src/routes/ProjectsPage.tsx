@@ -9,8 +9,9 @@ export function ProjectsPage() {
         <div className="section-kicker">Portfolio</div>
         <h1 className="text-5xl font-bold">Project Portfolio</h1>
         <p className="section-copy max-w-4xl">
-          The links below now point to best-match public reference repositories and their real GitHub
-          preview images. Once you publish your own repos, these can be swapped out cleanly.
+          The cards below point to real upstream GitHub application repos and official product
+          screenshots. If you fork one, you can later swap the repo path in one place and point the
+          card at your own GitHub version instead.
         </p>
       </section>
 
