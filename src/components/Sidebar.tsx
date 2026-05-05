@@ -47,81 +47,81 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex w-[21rem] max-w-[88vw] flex-col bg-transparent px-4 py-4 transition-transform duration-300 lg:sticky lg:top-0 lg:left-auto lg:inset-y-auto lg:z-40 lg:h-screen lg:max-w-none lg:flex-none lg:self-start ${open ? "translate-x-0" : "-translate-x-[110%] lg:translate-x-0"}`}
       >
-        <div className="sidebar-panel flex min-h-full flex-col rounded-[2rem] p-4">
-          <div className="sidebar-card w-full rounded-[1.6rem] p-5">
-            <SmartLink to="/" className="block" onClick={onClose}>
-              <div className="avatar block transition ease-in-out hover:scale-[102%]">
-                <div className="w-[5.8rem]">
-                  <img className="mask mask-circle" src="/profile.svg" alt="Yaroslav Shapran profile avatar" />
+        <div className="sidebar-panel flex h-full min-h-0 flex-col overflow-hidden rounded-[2rem] p-4">
+          <div className="sidebar-scroll flex min-h-0 flex-1 flex-col overflow-y-auto pr-1">
+            <div className="sidebar-card w-full rounded-[1.6rem] p-5">
+              <SmartLink to="/" className="block" onClick={onClose}>
+                <div className="avatar block transition ease-in-out hover:scale-[102%]">
+                  <div className="w-[5.4rem]">
+                    <img className="mask mask-circle" src="/profile.svg" alt="Yaroslav Shapran profile avatar" />
+                  </div>
+                </div>
+              </SmartLink>
+              <div className="mt-4">
+                <div className="font-display text-[1.68rem] leading-none">{profile.name}</div>
+                <div className="sidebar-meta mt-2 text-sm uppercase tracking-[0.18em]">{primaryRole}</div>
+                <p className="sidebar-copy mt-4 text-[0.95rem] leading-6">
+                  {profile.headline}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <span className="sidebar-tag">AI systems</span>
+                  <span className="sidebar-tag">Platform delivery</span>
+                  <span className="sidebar-tag">Remote</span>
+                </div>
+                <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {profileQuickFacts.map((item) => (
+                    <div key={item.label} className="sidebar-quick-fact rounded-2xl px-3 py-2.5">
+                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-base-content/45">
+                        {item.label}
+                      </div>
+                      <div className="mt-1 text-xs leading-5 text-base-content/80">{item.value}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a className="btn btn-sm btn-primary border-0 px-4" href={profile.resumeUrl} target="_blank" rel="noreferrer">
+                    Resume PDF
+                  </a>
+                  <a className="btn btn-sm btn-ghost border border-base-300/80 px-4" href={`mailto:${profile.email}`} target="_blank" rel="noreferrer">
+                    Email
+                  </a>
                 </div>
               </div>
-            </SmartLink>
-            <div className="mt-4">
-              <div className="font-display text-[1.75rem] leading-none">{profile.name}</div>
-              <div className="sidebar-meta mt-2 text-sm uppercase tracking-[0.18em]">{primaryRole}</div>
-              <p className="sidebar-copy mt-4 text-sm leading-7">
-                {profile.headline}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="sidebar-tag">AI systems</span>
-                <span className="sidebar-tag">Platform delivery</span>
-                <span className="sidebar-tag">Remote</span>
-              </div>
-              <div className="mt-4 grid gap-2">
-                {profileQuickFacts.map((item) => (
-                  <div key={item.label} className="sidebar-quick-fact rounded-2xl px-3 py-3">
-                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-base-content/45">
-                      {item.label}
-                    </div>
-                    <div className="mt-1 text-xs leading-6 text-base-content/80">{item.value}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <a className="btn btn-sm btn-primary border-0 px-4" href={profile.resumeUrl} target="_blank" rel="noreferrer">
-                  Resume PDF
-                </a>
-                <a className="btn btn-sm btn-ghost border border-base-300/80 px-4" href={`mailto:${profile.email}`} target="_blank" rel="noreferrer">
-                  Email
-                </a>
-              </div>
             </div>
-          </div>
 
-          <div className="mt-4 px-1">
-            <ThemeToggle />
-          </div>
+            <div className="mt-4 px-1">
+              <ThemeToggle />
+            </div>
 
-          <div className="sidebar-section-label mt-6 px-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em]">
-            Navigate
-          </div>
+            <div className="sidebar-section-label mt-6 px-2 text-[0.78rem] font-semibold uppercase tracking-[0.18em]">
+              Navigate
+            </div>
 
-          <ul className="menu mt-2 grow shrink gap-1 overflow-y-auto menu-md">
-            {navigationItems.map((item) => (
-              <li key={item.id}>
-                <NavLink
-                  to={item.href}
+            <ul className="menu mt-2 gap-1 menu-md">
+              {navigationItems.map((item) => (
+                <li key={item.id}>
+                  <NavLink
+                    to={item.href}
+                    onClick={onClose}
+                    className={`sidebar-link rounded-2xl border py-3 text-base ${activeItemId === item.id ? "is-active" : ""}`}
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+              <li>
+                <a
+                  className="sidebar-link rounded-2xl border py-3 text-base"
+                  href={`mailto:${profile.email}`}
+                  target="_blank"
+                  rel="noreferrer"
                   onClick={onClose}
-                  className={`sidebar-link rounded-2xl border py-3 text-base ${activeItemId === item.id ? "is-active" : ""}`}
                 >
-                  {item.label}
-                </NavLink>
+                  Contact
+                </a>
               </li>
-            ))}
-            <li>
-              <a
-                className="sidebar-link rounded-2xl border py-3 text-base"
-                href={`mailto:${profile.email}`}
-                target="_blank"
-                rel="noreferrer"
-                onClick={onClose}
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
+            </ul>
 
-          <div className="mt-auto">
             <div className="mt-6 block h-10 pointer-events-none [mask-image:linear-gradient(transparent,#000000)]"></div>
             <div className="sidebar-footer-panel rounded-[1.4rem] px-4 pb-4 pt-3">
               <div className="sidebar-section-label mb-3 text-[0.78rem] font-semibold uppercase tracking-[0.18em]">
