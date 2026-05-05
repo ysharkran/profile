@@ -50,14 +50,14 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
         <div className="sidebar-panel flex h-full min-h-0 flex-col overflow-hidden rounded-[2rem] p-4">
           <div className="sidebar-scroll flex min-h-0 flex-1 flex-col overflow-y-auto pr-1">
             <div className="sidebar-card w-full rounded-[1.6rem] p-5">
-              <SmartLink to="/" className="block" onClick={onClose}>
+              <SmartLink to="/" className="flex justify-center" onClick={onClose}>
                 <div className="avatar block transition ease-in-out hover:scale-[102%]">
                   <div className="h-[5rem] w-[5rem] overflow-hidden rounded-full border border-base-300/70">
                     <img className="h-full w-full object-cover" src="/profile-photo.jpg" alt="Yaroslav Shapran profile avatar" />
                   </div>
                 </div>
               </SmartLink>
-              <div className="mt-4">
+              <div className="mt-4 text-center">
                 <div className="font-display text-[1.68rem] leading-none">{profile.name}</div>
                 <div className="sidebar-meta mt-2 text-sm uppercase tracking-[0.18em]">{primaryRole}</div>
               </div>
