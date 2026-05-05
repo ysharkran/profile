@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type NetworkNode = {
   baseX: number;
@@ -20,6 +20,9 @@ type NetworkLink = {
 };
 
 export function InteractiveBackground() {
+  const backgroundRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
     const navigatorWithConnection = navigator as Navigator & {
       connection?: {
@@ -28,7 +31,8 @@ export function InteractiveBackground() {
     };
 
     const state = {
-      host: null as HTMLDivElement | null,
+      scene: null as HTMLDivElement | null,
+      background: backgroundRef.current,
       canvas: null as HTMLCanvasElement | null,
       ctx: null as CanvasRenderingContext2D | null,
       animationFrame: 0,
@@ -76,8 +80,8 @@ export function InteractiveBackground() {
     const getSceneHeight = () =>
       Math.max(
         window.innerHeight,
-        state.host?.scrollHeight ?? 0,
-        state.host?.offsetHeight ?? 0,
+        state.scene?.scrollHeight ?? 0,
+        state.scene?.offsetHeight ?? 0,
         document.documentElement.scrollHeight,
         document.body.scrollHeight
       );
@@ -169,10 +173,11 @@ export function InteractiveBackground() {
     };
 
     const resizeCanvas = () => {
-      if (!state.canvas || !state.ctx) return;
+      if (!state.background || !state.canvas || !state.ctx) return;
 
       state.sceneHeight = getSceneHeight();
       state.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
+      state.background.style.height = `${state.sceneHeight}px`;
       state.canvas.width = Math.floor(window.innerWidth * state.devicePixelRatio);
       state.canvas.height = Math.floor(state.sceneHeight * state.devicePixelRatio);
       state.canvas.style.width = `${window.innerWidth}px`;
@@ -276,11 +281,12 @@ export function InteractiveBackground() {
       start();
     };
 
-    state.host = document.querySelector("[data-portfolio-background]");
-    state.canvas = document.querySelector(".portfolio-background__canvas");
+    state.scene = document.querySelector("[data-portfolio-scene]");
+    state.background = backgroundRef.current;
+    state.canvas = canvasRef.current;
     state.ctx = state.canvas?.getContext("2d") ?? null;
 
-    if (!state.host || !state.canvas || !state.ctx) return undefined;
+    if (!state.scene || !state.background || !state.canvas || !state.ctx) return undefined;
 
     syncPalette();
     syncBackgroundMode();
@@ -311,7 +317,7 @@ export function InteractiveBackground() {
       attributes: true,
       attributeFilter: ["data-theme", "data-color-mode"],
     });
-    resizeObserver.observe(state.host);
+    resizeObserver.observe(state.scene);
     resizeObserver.observe(document.body);
 
     window.addEventListener("resize", handleResize);
@@ -339,8 +345,8 @@ export function InteractiveBackground() {
   }, []);
 
   return (
-    <div className="portfolio-background" aria-hidden="true" data-portfolio-background>
-      <canvas className="portfolio-background__canvas"></canvas>
+    <div ref={backgroundRef} className="portfolio-background" aria-hidden="true" data-portfolio-background>
+      <canvas ref={canvasRef} className="portfolio-background__canvas"></canvas>
       <div className="portfolio-background__wash"></div>
       <div className="portfolio-background__vignette"></div>
     </div>

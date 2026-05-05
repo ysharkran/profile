@@ -39,7 +39,7 @@ export function AppShell({
   const pageTitle = title ? `${title} | ${SITE_TITLE.split(" | ")[0]}` : SITE_TITLE;
 
   return (
-    <div className="portfolio-shell">
+    <div className="portfolio-shell" data-portfolio-scene>
       <InteractiveBackground />
       {includeSidebar && <MobileHeader onMenuOpen={() => setSidebarOpen(true)} />}
       <div className="relative items-start lg:flex">
