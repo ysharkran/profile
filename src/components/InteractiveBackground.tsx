@@ -28,12 +28,14 @@ export function InteractiveBackground() {
     };
 
     const state = {
+      host: null as HTMLDivElement | null,
       canvas: null as HTMLCanvasElement | null,
       ctx: null as CanvasRenderingContext2D | null,
       animationFrame: 0,
       nodes: [] as NetworkNode[],
       links: [] as NetworkLink[],
       lastTime: 0,
+      sceneHeight: 0,
       palette: null as null | {
         link: string;
         node: string;
@@ -71,9 +73,18 @@ export function InteractiveBackground() {
       document.documentElement.dataset.backgroundMode = state.dynamicEnabled ? "dynamic" : "static";
     };
 
+    const getSceneHeight = () =>
+      Math.max(
+        window.innerHeight,
+        state.host?.scrollHeight ?? 0,
+        state.host?.offsetHeight ?? 0,
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+      );
+
     const seedNetwork = () => {
       const width = window.innerWidth;
-      const height = window.innerHeight;
+      const height = state.sceneHeight;
       const spacingX = clamp(width / 16, 72, 104);
       const spacingY = spacingX * 0.72;
       const cols = Math.ceil(width / spacingX) + 3;
@@ -160,18 +171,19 @@ export function InteractiveBackground() {
     const resizeCanvas = () => {
       if (!state.canvas || !state.ctx) return;
 
+      state.sceneHeight = getSceneHeight();
       state.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
       state.canvas.width = Math.floor(window.innerWidth * state.devicePixelRatio);
-      state.canvas.height = Math.floor(window.innerHeight * state.devicePixelRatio);
+      state.canvas.height = Math.floor(state.sceneHeight * state.devicePixelRatio);
       state.canvas.style.width = `${window.innerWidth}px`;
-      state.canvas.style.height = `${window.innerHeight}px`;
+      state.canvas.style.height = `${state.sceneHeight}px`;
       state.ctx.setTransform(state.devicePixelRatio, 0, 0, state.devicePixelRatio, 0, 0);
 
       seedNetwork();
     };
 
     const clearCanvas = () => {
-      state.ctx?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      state.ctx?.clearRect(0, 0, window.innerWidth, state.sceneHeight);
     };
 
     const drawFrame = (time: number) => {
@@ -264,10 +276,11 @@ export function InteractiveBackground() {
       start();
     };
 
+    state.host = document.querySelector("[data-portfolio-background]");
     state.canvas = document.querySelector(".portfolio-background__canvas");
     state.ctx = state.canvas?.getContext("2d") ?? null;
 
-    if (!state.canvas || !state.ctx) return undefined;
+    if (!state.host || !state.canvas || !state.ctx) return undefined;
 
     syncPalette();
     syncBackgroundMode();
@@ -290,11 +303,16 @@ export function InteractiveBackground() {
       syncBackgroundMode();
       start();
     });
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
 
     themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["data-theme", "data-color-mode"],
     });
+    resizeObserver.observe(state.host);
+    resizeObserver.observe(document.body);
 
     window.addEventListener("resize", handleResize);
     document.addEventListener("visibilitychange", onVisibilityChange);
@@ -308,6 +326,7 @@ export function InteractiveBackground() {
     return () => {
       stop();
       themeObserver.disconnect();
+      resizeObserver.disconnect();
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", onVisibilityChange);
 

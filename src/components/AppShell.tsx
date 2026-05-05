@@ -42,7 +42,7 @@ export function AppShell({
     <div className="portfolio-shell">
       <InteractiveBackground />
       {includeSidebar && <MobileHeader onMenuOpen={() => setSidebarOpen(true)} />}
-      <div className="relative lg:flex">
+      <div className="relative items-start lg:flex">
         {includeSidebar && (
           <Sidebar
             open={sidebarOpen}

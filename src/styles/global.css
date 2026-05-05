@@ -112,15 +112,17 @@ button {
     position: relative;
     z-index: 1;
     isolation: isolate;
+    min-height: 100vh;
 }
 
 .portfolio-content-shell {
     position: relative;
     background: transparent;
+    z-index: 1;
 }
 
 .portfolio-background {
-    position: fixed;
+    position: absolute;
     inset: 0;
     overflow: hidden;
     pointer-events: none;
