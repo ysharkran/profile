@@ -2,6 +2,7 @@
 title: "Why Product Engineers Should Own Data Contracts"
 description: "A surprising number of product bugs are not UI problems or backend problems. They are contract problems between teams, services, and assumptions."
 pubDate: "2026-04-25"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/why-product-engineers-should-own-data-contracts.jpg"
 badge: "Data"
 tags: ["data", "api", "product"]
@@ -62,3 +63,26 @@ A good contract should make it obvious:
 When that information is buried in tribal knowledge, the contract is weaker than it looks.
 
 Product engineering is stronger when the boundary between services feels intentional instead of accidental. Owning data contracts is one of the most practical ways to get there.
+
+## Technical Deep Dive
+
+Owning the contract means owning the meaning of the fields that drive UX, workflow branching, and automation. Product engineers are often the first people to notice semantic drift because the UI is where ambiguous data stops looking abstract and starts looking broken.
+
+Shape changes are less dangerous than semantic changes. The safest systems version meaning as aggressively as they version fields, and they fail closed when inputs drift outside the contract. A contract that cannot tell consumers which values are stable enough for logic is only half a contract.
+
+```ts
+const Contract = z.object({
+  entityId: z.string(),
+  status: z.enum(["queued", "processing", "ready", "failed"]),
+  processedAt: z.string().datetime().nullable(),
+});
+```
+
+### Compatibility checks I would automate
+
+- contract diffs reviewed alongside the user states they can affect
+- authoritative field documentation for statuses, timestamps, and identifiers
+- runtime alerts for nullability or enum drift on critical product paths
+- deprecation windows enforced in tooling instead of polite team memory
+
+Once the semantic boundary is explicit, downstream product bugs get much easier to predict and much cheaper to fix.

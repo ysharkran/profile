@@ -496,11 +496,11 @@ def append_section(theme: str, lead: str, bullets: list[str]) -> str:
 
             ```rust
             #[derive(BorshSerialize, BorshDeserialize)]
-            pub struct PositionState {
+            pub struct PositionState {{
                 pub authority: Pubkey,
                 pub sequence: u64,
                 pub status: u8,
-            }
+            }}
             ```
 
             ### Bottlenecks I'd measure first
@@ -519,12 +519,12 @@ def append_section(theme: str, lead: str, bullets: list[str]) -> str:
             The fastest way to make a product surface feel shallow is to optimize the panel instead of the workflow. I like to model the operator's next action, the state they need to verify it, and the audit trail left behind. When those three things are sharp, the interface starts feeling much more expensive than it actually is.
 
             ```ts
-            type WorkflowView = {
+            type WorkflowView = {{
               summary: string;
               blockingChecks: string[];
               nextRecommendedAction: string;
               auditReference: string;
-            };
+            }};
             ```
 
             ### Product signals I care about

@@ -2,6 +2,7 @@
 title: "Writing Tests That Catch Regressions Instead of Chasing Coverage"
 description: "Coverage numbers are easy to report and easy to misread. Valuable tests are the ones that make dangerous changes harder to ship by accident."
 pubDate: "2026-05-02"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/writing-tests-that-catch-regressions-instead-of-chasing-coverage.jpg"
 badge: "Code"
 tags: ["testing", "quality", "engineering"]
@@ -74,3 +75,28 @@ The point is not elegance. It is keeping the feedback loop tight enough that peo
 Strong tests do not just guard code. They clarify the intended behavior of the system. They make reviews easier because the reader can see what the team considers important. They make refactors safer because behavior has a stable executable description.
 
 That is the outcome I optimize for. Not the prettiest report. Not the biggest percentage. A suite that catches the changes we would actually regret shipping.
+
+## Technical Deep Dive
+
+The best test suites encode business invariants and failure recovery, not just line execution. A test should make it difficult to accidentally break a workflow the team cares about, even if the implementation details beneath that workflow keep changing.
+
+Process becomes technical when it defines what evidence counts as done, what context must survive handoff, and how quickly the next engineer can recover state after interruption. If the loop cannot be audited, it eventually becomes ceremony instead of leverage.
+
+```yaml
+review_contract:
+  invariant_changed: required
+  rollout_risk: required
+  evidence_links:
+    - test
+    - dashboard
+    - runbook
+```
+
+### Friction worth keeping on purpose
+
+- cases where a mutation is correct only if the follow-up side effect also happens
+- workflow tests that cover retries, partial failure, and rollback semantics
+- boundary tests for contracts, pagination, sorting, and permission checks
+- metrics on flaky timing assumptions so the suite itself becomes observable
+
+Good process shortens decision latency because it makes the important context portable.

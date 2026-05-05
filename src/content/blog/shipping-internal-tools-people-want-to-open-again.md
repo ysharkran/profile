@@ -2,6 +2,7 @@
 title: "Shipping Internal Tools People Want to Open Again"
 description: "Internal tooling succeeds when it respects time, reduces context switching, and fits the way teams already work instead of forcing a ceremony around itself."
 pubDate: "2026-04-03"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/shipping-internal-tools-people-want-to-open-again.jpg"
 badge: "Product"
 tags: ["internal-tools", "ux", "teams"]
@@ -33,3 +34,27 @@ One of my favorite signals is simple: do people come back without being told to?
 The strongest internal products feel sharp, forgiving, and deeply aware of the workflow around them. They save attention, not just clicks.
 
 That is the goal I optimize for. When an internal tool becomes the easiest place to get real work done, adoption stops being a rollout challenge and starts becoming the default behavior.
+
+## Technical Deep Dive
+
+Internal tools become sticky when they cut a real decision path down to a smaller number of clicks, tabs, and mental joins. The key is not adding more controls. It is reducing lookup cost while preserving the auditability an operations team needs to move confidently.
+
+The fastest way to make a product surface feel shallow is to optimize the panel instead of the workflow. I like to model the operator's next action, the state they need to verify it, and the audit trail left behind. When those three things are sharp, the interface starts feeling much more expensive than it actually is.
+
+```ts
+type WorkflowView = {
+  summary: string;
+  blockingChecks: string[];
+  nextRecommendedAction: string;
+  auditReference: string;
+};
+```
+
+### Product signals I care about
+
+- how many systems an operator still has to cross-check for one answer
+- which actions need previews, dry runs, or confirmation of downstream impact
+- where the tool should pre-compute context instead of asking users to assemble it
+- what telemetry proves the tool shortened task completion instead of just adding UI
+
+Great product engineering usually looks like fewer clicks, clearer trust boundaries, and better evidence around the next decision.

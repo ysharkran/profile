@@ -2,6 +2,7 @@
 title: "Taming React State Before It Turns Into Architecture"
 description: "React state problems usually start small. They become architectural when ownership, derivation, and update rules are left implicit for too long."
 pubDate: "2026-04-30"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/taming-react-state-before-it-turns-into-architecture.jpg"
 badge: "Code"
 tags: ["react", "frontend", "state-management"]
@@ -63,3 +64,26 @@ A healthy state model makes it easy to answer:
 Those answers matter more than the choice of state library.
 
 React state becomes architecture when the product depends on it to coordinate meaningful behavior. The best way to keep that architecture healthy is to make ownership and derivation explicit early, before convenience decisions harden into invisible system rules.
+
+## Technical Deep Dive
+
+React state spirals when every new concern gets promoted to global just because it crosses two components. I would rather draw the ownership map first: server truth, route-scoped derivation, ephemeral UI state, and shared process state that genuinely survives navigation.
+
+Most frontend complexity comes from not deciding which layer owns latency and which layer owns truth. I prefer server data to remain server-shaped, route state to be explicit, and local UI state to stay ephemeral. Once those layers are blurred, bugs start looking random because the app no longer has a clear source of truth.
+
+```ts
+type ScreenState =
+  | { kind: "idle" }
+  | { kind: "loading"; requestId: string }
+  | { kind: "ready"; requestId: string; payloadVersion: number }
+  | { kind: "error"; requestId: string; message: string };
+```
+
+### Things I remove early
+
+- derived state duplicated in multiple hooks with different invalidation timing
+- optimistic updates that cannot be reconciled cleanly after a failed mutation
+- selectors that hide expensive recomputation on every render
+- stores that mix async transport concerns with presentational toggles
+
+That discipline keeps component trees from quietly turning into infrastructure.

@@ -2,6 +2,7 @@
 title: "Rust on Solana: Where Performance Actually Matters"
 description: "Solana development rewards precision. The most important performance work is usually about state shape, instruction design, and operational clarity."
 pubDate: "2026-04-12"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/rust-on-solana-where-performance-actually-matters.jpg"
 badge: "Rust"
 tags: ["rust", "solana", "web3"]
@@ -51,3 +52,27 @@ That is one reason I think of performance broadly here. Fast diagnosis is part o
 Rust does not make systems simple automatically, but it does push engineers toward being explicit about ownership and invalid states. In contract work, that pressure is useful. It makes the code declare more of its assumptions up front, which tends to improve review quality and reduce the number of “we thought this path was impossible” moments later.
 
 For chain-facing systems, that kind of honesty is not a luxury. It is one of the things that makes the system operable.
+
+## Technical Deep Dive
+
+On Solana, performance arguments only become useful when they name compute units, account contention, serialization overhead, and rent tradeoffs. 'Rust is fast' is not an architecture decision; account layout and instruction shape are.
+
+At lower levels, performance work stops being about syntax and becomes about memory layout, serialization cost, contention, and recovery semantics. The winning design is usually the one that names those constraints first instead of rediscovering them under production load.
+
+```rust
+#[derive(BorshSerialize, BorshDeserialize)]
+pub struct PositionState {
+    pub authority: Pubkey,
+    pub sequence: u64,
+    pub status: u8,
+}
+```
+
+### Bottlenecks I'd measure first
+
+- account reads that expand compute without improving composability
+- serialization formats that are convenient but too expensive in hot paths
+- contention on shared writable accounts during popular workflows
+- client assumptions that create unnecessary instruction fan-out
+
+Once the constraints are explicit, optimization decisions become engineering tradeoffs instead of folklore.

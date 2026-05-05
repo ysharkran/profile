@@ -2,6 +2,7 @@
 title: "How I Review Pull Requests in High-Context Codebases"
 description: "Good PR review is not about finding nits. It is about protecting system behavior, contract clarity, and future change velocity in code that already carries a lot of history."
 pubDate: "2026-05-01"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/how-i-review-pull-requests-in-high-context-codebases.jpg"
 badge: "Code"
 tags: ["code-review", "engineering", "teams"]
@@ -70,3 +71,28 @@ Review should raise the bar, not stall the team for the reviewer’s entertainme
 The ideal PR review leaves the code safer, the intent clearer, and the team more aligned on what matters in that part of the system. It should improve future changes too, because review is one of the places where engineering standards are actually taught.
 
 That is why I take it seriously. In high-context codebases, the review process is one of the last good opportunities to catch hidden risk before the change becomes history.
+
+## Technical Deep Dive
+
+In dense codebases, review quality comes from making the claim legible before evaluating the diff. I want the author to identify the invariant being changed, the blast radius, and the evidence that tells us the new behavior is correct under load and rollback.
+
+Process becomes technical when it defines what evidence counts as done, what context must survive handoff, and how quickly the next engineer can recover state after interruption. If the loop cannot be audited, it eventually becomes ceremony instead of leverage.
+
+```yaml
+review_contract:
+  invariant_changed: required
+  rollout_risk: required
+  evidence_links:
+    - test
+    - dashboard
+    - runbook
+```
+
+### Friction worth keeping on purpose
+
+- diffs that hide behavior changes behind naming cleanup or file moves
+- tests that pass but fail to capture the production invariant being modified
+- observability changes missing from risky workflow edits
+- migration steps that are implied in the code but absent from the rollout plan
+
+Good process shortens decision latency because it makes the important context portable.

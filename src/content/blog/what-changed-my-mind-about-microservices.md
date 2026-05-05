@@ -2,6 +2,7 @@
 title: "What Changed My Mind About Microservices"
 description: "Microservices are not a maturity badge. They are an operational tradeoff that only pays off when a team is ready to absorb the coordination cost."
 pubDate: "2026-04-16"
+updatedDate: "May 4, 2026"
 heroImage: "/blog/what-changed-my-mind-about-microservices.jpg"
 badge: "Architecture"
 tags: ["microservices", "systems", "delivery"]
@@ -63,3 +64,27 @@ Incremental extraction also makes it easier to reverse or adjust course. A one-w
 Can the current team operate this model well? That question matters more than whether the architecture sounds modern. If the answer is no, the design may still be technically respectable and strategically wrong.
 
 That is ultimately what changed my mind. Microservices are useful, but only when the organization can absorb the coordination model they impose.
+
+## Technical Deep Dive
+
+My view on microservices improved once I stopped treating them as a purity move and started treating them as an economic choice. Boundaries are only worth the overhead when they buy clearer deployment risk, data ownership, or team velocity under conflicting change schedules.
+
+When someone says an architecture is scalable, I translate that claim into boundaries, failure domains, and deployable slices. If those are unclear, the architecture is still branding. The useful question is not whether the diagram looks modern. It is whether the next change can be shipped, verified, and rolled back cleanly.
+
+```ts
+interface BoundaryDecision {
+  owner: string;
+  sourceOfTruth: string;
+  failureIsolation: string;
+  migrationPath: string;
+}
+```
+
+### Questions I want answered in the ADR
+
+- whether the boundary reduces or increases cross-team release coordination
+- how many queries now require distributed joins for a single operator workflow
+- which services can fail independently without corrupting shared business state
+- whether the interface is stable enough to survive separate lifecycles
+
+Strong architecture writing lowers coordination cost before it raises abstraction.
