@@ -437,6 +437,32 @@ html[data-theme="portfolio-dark"] .surface-panel {
     padding-left: 2rem;
 }
 
+.resume-contact-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, oklch(var(--bc)) 10%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 90%, white 10%);
+    color: color-mix(in srgb, oklch(var(--bc)) 82%, transparent);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.resume-contact-link:hover {
+    border-color: color-mix(in srgb, oklch(var(--p)) 18%, transparent);
+    background: color-mix(in srgb, oklch(var(--b1)) 78%, oklch(var(--p)) 8%);
+    color: oklch(var(--bc));
+}
+
+.resume-contact-link::after {
+    content: "↗";
+    font-size: 0.85rem;
+    color: color-mix(in srgb, oklch(var(--p)) 70%, transparent);
+}
+
 .sidebar-tag {
     font-size: 0.72rem;
     letter-spacing: 0.04em;

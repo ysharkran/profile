@@ -65,6 +65,17 @@ export function ResumePage() {
               Best fit for teams building product-heavy systems where frontend polish, backend
               reliability, and domain complexity all matter at the same time.
             </div>
+            <div className="mt-5 grid gap-2">
+              <a className="resume-contact-link" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
+              <a className="resume-contact-link" href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>
+                {profile.phone}
+              </a>
+              <a className="resume-contact-link" href={profile.linkedinUrl} target="_blank" rel="noreferrer">
+                LinkedIn profile
+              </a>
+            </div>
           </div>
         </div>
       </section>
