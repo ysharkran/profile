@@ -1,98 +1,102 @@
 ---
-title: "How I Review Pull Requests in High-Context Codebases"
-description: "Good PR review is not about finding nits. It is about protecting system behavior, contract clarity, and future change velocity in code that already carries a lot of history."
+title: "How I Review Pull Requests When the Codebase Already Has History"
+description: "In mature systems I read for behavior, contracts, rollout risk, and future change cost before I care about code style."
 pubDate: "2026-05-01"
-updatedDate: "May 4, 2026"
+updatedDate: "May 5, 2026"
 heroImage: "/blog/how-i-review-pull-requests-in-high-context-codebases.jpg"
 badge: "Code"
 tags: ["code-review", "engineering", "teams"]
 ---
 
-Pull request review gets shallow when teams confuse activity with scrutiny. Long comment threads do not necessarily mean good review. In complex codebases, the real value is finding the few questions that matter before a change becomes the new baseline.
+Older codebases punish shallow review. Once a system has history, integrations, half-deprecated assumptions, and operators depending on existing behavior, a “looks good to me” review is usually just optimism in nice clothing.
 
-## I read for risk before style
+I try to review pull requests in that order of reality.
 
-The first pass is not about formatting or abstraction taste. It is about identifying risk categories:
+## First pass: business behavior and rollout risk
+
+My first read is not about style. It is about risk:
 
 - could this change alter business behavior
 - does it weaken a contract or assumption
-- is there rollout or migration risk
+- does it change rollout or migration risk
 - does it create hidden operational cost
-- is the test story strong enough for the change being made
+- is the test story strong enough for the type of change being made
 
-That framing helps avoid wasting attention on low-impact details while missing the real risk.
+If I spend my attention on naming before I understand those things, I am reviewing the wrong layer.
 
-## Context is part of the review
+## I treat surrounding context as part of the diff
 
-In older codebases, no diff is truly isolated. I want to understand:
+In high-context systems, no diff is actually isolated. I want to know:
 
 - what area of the system this touches
 - which adjacent workflows depend on it
 - whether the author is creating a new pattern or extending an old one
 - whether the change is reducing or increasing local complexity
 
-Sometimes the most important review comment is not “change this line” but “this boundary is getting blurrier and that will hurt the next feature.”
+Sometimes the highest-value review comment is not “change this line.” It is “this boundary is getting blurrier and we are going to pay for that during the next feature.”
 
-## I look for contract drift
+## I look hard for contract drift and hidden state
 
-One of the best uses of review attention is detecting when the code has changed its contract without saying so. That might be:
+These are the regressions that are easy to merge and expensive to debug:
 
 - an API field meaning something slightly different
 - a new optional branch that downstream code is not prepared for
 - retry behavior changing silently
 - a status flag no longer being authoritative
 
-These are the changes that create strange bugs two weeks later because everyone assumed the contract stayed stable.
+They often look small because the code still compiles and the happy path still passes. But in production they show up as “random” bugs, reconciliation problems, or support tickets nobody can reproduce cleanly.
 
-## Good review asks for clarity, not ceremony
+## The comments I care about most name future cost
 
-I like requests that sharpen reasoning:
+The most useful review comments usually sound like:
 
-- what failure mode does this handle
-- why is this the right boundary for the new logic
-- what makes this safe under retries or stale data
-- should this behavior be documented in code or tests
+- this makes the source of truth less obvious
+- this branch changes retry semantics without saying so
+- this new abstraction hides a domain rule we will need again
+- this migration path is unclear if rollback is required
 
-Those questions improve the patch without turning review into performance art.
+That is much more valuable than filling a PR with cosmetic nits while the risky behavior slides through untouched.
 
-## What I try not to do
+## Style matters later, not first
 
-I avoid:
+I still care about readability, naming, and local shape. I just refuse to give them the same mental priority as behavior, contracts, and rollout safety.
 
-- suggesting broad rewrites when a local fix is correct enough
-- forcing personal style preferences where the system already has a pattern
-- commenting on every possible improvement regardless of impact
-- blocking on elegance when safety and clarity are already strong
+If the change is risky, elegant formatting does not rescue it.
 
-Review should raise the bar, not stall the team for the reviewer’s entertainment.
+## A good PR should lower reviewer guesswork
 
-## The best outcome
+When I review, I want the PR itself to answer the important questions:
 
-The ideal PR review leaves the code safer, the intent clearer, and the team more aligned on what matters in that part of the system. It should improve future changes too, because review is one of the places where engineering standards are actually taught.
+- what invariant changed
+- what rollout risk exists
+- what evidence says this is safe
+- what adjacent workflows should be watched after merge
 
-That is why I take it seriously. In high-context codebases, the review process is one of the last good opportunities to catch hidden risk before the change becomes history.
+If I have to infer all of that from scattered implementation details, the change is under-explained no matter how solid the code may be.
 
 ## Technical Deep Dive
 
-In dense codebases, review quality comes from making the claim legible before evaluating the diff. I want the author to identify the invariant being changed, the blast radius, and the evidence that tells us the new behavior is correct under load and rollback.
+In mature systems, PR review is partly an architecture exercise. I am not only checking whether the code works. I am checking whether it makes the next safe change easier or harder.
 
-Process becomes technical when it defines what evidence counts as done, what context must survive handoff, and how quickly the next engineer can recover state after interruption. If the loop cannot be audited, it eventually becomes ceremony instead of leverage.
+Review comments are often the earliest place where architecture drift becomes visible. A reviewer is one of the few people looking at the change with enough distance to notice when a local optimization is creating global confusion.
+
+The best pull requests answer questions before reviewers ask them: what changed, what assumptions moved, how it will be validated, and how rollback works if the change behaves badly.
 
 ```yaml
-review_contract:
-  invariant_changed: required
-  rollout_risk: required
-  evidence_links:
-    - test
-    - dashboard
-    - runbook
+review_expectations:
+  invariant: required
+  blast_radius: required
+  evidence:
+    - tests
+    - metrics
+  migration_notes: optional
 ```
 
-### Friction worth keeping on purpose
+### Questions I use repeatedly
 
-- diffs that hide behavior changes behind naming cleanup or file moves
-- tests that pass but fail to capture the production invariant being modified
-- observability changes missing from risky workflow edits
-- migration steps that are implied in the code but absent from the rollout plan
+- where is the new source of truth after this change
+- what behavior changed even though the type shape stayed valid
+- can this be rolled back independently of adjacent deploys
+- what will on-call need in order to explain this path at 2 a.m.
 
-Good process shortens decision latency because it makes the important context portable.
+Those questions keep review anchored to system behavior instead of local cleverness.

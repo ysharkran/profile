@@ -19,10 +19,11 @@ export function BlogArchivePage({ pageNumber = 1 }: BlogArchivePageProps) {
     <AppShell title="Blog">
       <section className="surface-panel page-heading">
         <div className="section-kicker">Blog</div>
-        <h1 className="text-5xl font-bold">Writing on Engineering Work</h1>
+        <h1 className="text-5xl font-bold">Production Notes and Strong Opinions</h1>
         <p className="section-copy max-w-4xl">
-          Long-form notes on product engineering, backend systems, frontend architecture, debugging,
-          delivery tradeoffs, AI workflows, and code that has to hold up in production.
+          Fewer generic explainers, more notes from the part of engineering work that hurts:
+          refactors under roadmap pressure, flaky workflows, debugging ugly incidents, AI review
+          loops, and the tradeoffs that decide whether a system stays operable in production.
         </p>
       </section>
 

@@ -97,8 +97,8 @@ export function HomePage() {
             <div>
               <h2 className="text-4xl font-bold">Latest Engineering Notes</h2>
               <p className="section-copy mt-3 max-w-3xl">
-                Longer-form writing on software delivery, AI systems, architecture, debugging, and the
-                practical side of building dependable products.
+                Production-facing writing on delivery pressure, review loops, debugging, contracts,
+                and the system decisions that usually matter more than framework fashion.
               </p>
             </div>
             <a href="/blog" className="btn btn-ghost border border-base-300/80 px-5">
