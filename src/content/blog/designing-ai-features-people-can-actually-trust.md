@@ -1,66 +1,83 @@
 ---
-title: "Designing AI Features People Can Actually Trust"
-description: "Trust in AI products does not come from model quality alone. It comes from transparent system behavior, reviewable outputs, and good product boundaries."
+title: "What Made Our AI Features Trustworthy Enough to Ship"
+description: "The difference between an AI demo and an AI product was not model quality. It was review loops, evidence, recoverability, and explicit boundaries for when the system should refuse automation."
 pubDate: "2026-04-28"
-updatedDate: "May 4, 2026"
+updatedDate: "May 5, 2026"
 heroImage: "/blog/designing-ai-features-people-can-actually-trust.jpg"
 badge: "AI"
 tags: ["ai", "product", "trust"]
 ---
 
-The fastest way to lose confidence in an AI feature is to make it feel magical. Teams often assume delight comes from hiding complexity. In reality, users trust systems that explain what they did, why they did it, and where the edges are.
+The biggest AI product lesson I keep relearning is that trust did not come from getting a slightly better model answer. It came from redesigning the workflow around the moments where the model could be confidently wrong.
 
-When I think about AI product design, I start with the failure mode rather than the happy path. If the model is wrong, how obvious is the error? If the answer is incomplete, does the interface make that uncertainty visible? If the user wants to correct the result, do they have a clean way to do it without fighting the tool?
+That was the difference between a polished demo and something I would actually let operators use.
 
-Three product decisions matter more than teams usually admit.
+## I assume the model will be wrong in important ways
 
-## 1. Show evidence, not just answers
+When I think about an AI feature, I do not start from the happy path. I start from the expensive miss:
 
-For summarization, extraction, or recommendation features, the model output should point back to its source. Citations, snippets, confidence ranges, or linked records all help. Users do not need a lecture about the architecture. They need enough evidence to verify the outcome quickly.
+- the extracted field is plausible but wrong
+- the summary omits the sentence that changes the decision
+- the classification is overconfident on thin evidence
+- the workflow keeps moving even though the model should have asked for review
 
-## 2. Build a real review loop
+If the product cannot survive those misses cleanly, it is not ready no matter how impressive the best examples look.
 
-Many AI workflows are only partially automatable. That is not a failure. A review queue with good affordances is often the difference between a useful product and a risky one. If the model can reduce human effort by half while preserving control, that is already meaningful product value.
+## Evidence beats confidence
 
-## 3. Be explicit about the contract
+Users do not trust a system because it sounds polished. They trust it because they can verify the important parts quickly.
 
-AI features should have a product contract the same way APIs do. Define what the system is expected to handle well, what it should refuse, and what kind of fallback behavior users can expect. This reduces support load and keeps internal teams aligned.
+That is why I prefer outputs that point back to evidence:
 
-The lesson is simple: trust is a systems property. Better prompts help, better models help, and more data helps. But users mostly judge trust through interface behavior. If the product makes model reasoning inspectable, makes intervention easy, and communicates limits honestly, adoption goes up and resistance goes down.
+- cited snippets
+- highlighted source spans
+- linked records
+- explicit confidence or coverage gaps
 
-The strongest AI products feel less like magic and more like a competent teammate. That is the standard worth building toward.
+“Trust me” is a bad product contract for AI. “Here is why I said this” is much better.
 
-## Trust falls apart at handoff points
+## Review loops are part of the product, not an admission of failure
 
-One detail teams underestimate is how often trust is lost outside the model itself. It disappears during handoff:
+A lot of AI product teams still behave as if human review means the automation failed. I think that is backward.
 
-- when the input context is incomplete
-- when the output arrives without enough explanation
-- when the user cannot tell whether the system has finished
-- when correction is possible but awkward
+For many real workflows, review is the product surface that makes automation safe enough to use at all. If the model reduces operator effort by half while preserving control, that is already a serious win.
 
-That means product teams should evaluate the entire loop, not just prompt quality. A model that is technically good can still produce an untrustworthy experience if the surrounding workflow leaves too much ambiguity.
+So I care a lot about the review queue:
 
-## The best AI features expose recoverability
+- can the user approve fast cases quickly
+- can they correct partially right output without starting over
+- can they see what the model used as evidence
+- can they escalate to manual handling without fighting the UI
 
-Recoverability is one of the clearest signs of maturity in an AI product. If the system is wrong, how quickly can a user recover? If a response is partially right, can the user edit the useful part without redoing everything? If automation is inappropriate for a case, can the workflow hand off cleanly to a manual path?
+That interaction matters more than a slightly prettier prompt.
 
-These questions matter because users do not evaluate intelligence abstractly. They evaluate how expensive the system makes mistakes.
+## Recoverability is what users actually evaluate
 
-## Metrics should include confidence behavior
+Users do not evaluate intelligence abstractly. They evaluate how expensive the system makes mistakes.
 
-Most teams measure adoption and raw acceptance rates. Those are useful, but they miss an important layer: how often did the system present confidence appropriately? Overconfident wrong answers damage trust more than cautious partial answers. Underconfident answers can make a capable system feel weak.
+That means the real design question is: if the model is wrong, how quickly can the user recover?
 
-That is why I like evaluating:
+I trust AI features more when they have:
 
-- correction frequency by workflow type
+- a clear fallback path
+- editable outputs
+- explicit refusal conditions
+- review history that explains who changed what
+
+The more recoverable the product feels, the more comfortable users become giving it real work.
+
+## The rollout metrics I trust are behavioral
+
+Adoption and acceptance rate are useful, but they are incomplete.
+
+The metrics I trust more are:
+
 - disagreement rate between model and reviewer
-- how often users request source verification
-- completion time with and without AI assistance
+- correction frequency by workflow type
+- override rate after high-confidence responses
+- completion time with and without the AI assist
 
-These metrics describe whether the system is behaving like a reliable assistant instead of just whether it produced text.
-
-Trust is earned through repeated correct expectations. The product should train the user to believe the right things about the model, not just the most flattering things.
+Those tell me whether the system behaves like a reliable teammate or just generates plausible text.
 
 ## Technical Deep Dive
 
@@ -78,7 +95,7 @@ For AI features, I want every user-visible decision to leave behind a runtime re
 }
 ```
 
-### Checks I would wire in before widening rollout
+### Checks I wire in before widening rollout
 
 - review acceptance rate by workflow and prompt version
 - citation coverage for answers that claim factual certainty
