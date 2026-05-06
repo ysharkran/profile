@@ -120,6 +120,11 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
                     <path d="M20 4H4a2 2 0 0 0-2 2v.217l10 5.714 10-5.714V6a2 2 0 0 0-2-2Zm2 4.383-9.504 5.431a1 1 0 0 1-.992 0L2 8.383V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8.383Z"></path>
                   </svg>
                 </a>
+                <a href={profile.telegramUrl} target="_blank" rel="noreferrer" className="sidebar-icon-link inline-flex h-10 w-10 items-center justify-center rounded-2xl border" aria-label="Telegram" title={profile.telegramHandle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.944 4.666c.146-.94-.77-1.685-1.62-1.317L3.34 10.17c-.86.35-.801 1.592.089 1.858l3.49 1.043 1.313 4.07c.262.811 1.263.986 1.768.308l1.954-2.63 3.832 3.116c.669.545 1.674.172 1.824-.677l4.334-13.59Zm-4.38 2.24-8.11 7.242a.75.75 0 0 0-.229.397l-.41 1.96-.83-2.572a.75.75 0 0 0-.49-.487l-2.507-.75 12.576-5.79Z"></path>
+                  </svg>
+                </a>
                 <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="sidebar-icon-link inline-flex h-10 w-10 items-center justify-center rounded-2xl border" aria-label="Linkedin" title="Linkedin">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <circle cx="4.983" cy="5.009" r="2.188"></circle>

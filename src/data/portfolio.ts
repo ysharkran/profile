@@ -11,6 +11,8 @@ export const profile = {
   availability: "Open to remote collaboration worldwide and comfortable working across time zones.",
   email: "asapran417@gmail.com",
   phone: "+380-67-735-2481",
+  telegramUrl: "https://t.me/coder0420",
+  telegramHandle: "@coder0420",
   linkedinUrl: "https://linkedin.com/in/yaroslav-shapran",
   githubUrl: "https://github.com/your-github-handle",
   resumeUrl: withBasePath("/Yaroslav-Shapran-Resume.pdf"),
