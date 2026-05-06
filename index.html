@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="portfolio-light" data-color-mode="light">
+<html lang="en" data-theme="portfolio-dark" data-color-mode="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -9,12 +9,7 @@
       (() => {
         const storageKey = "portfolio-theme";
         const stored = window.localStorage.getItem(storageKey);
-        const mode =
-          stored === "light" || stored === "dark"
-            ? stored
-            : window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
+        const mode = stored === "light" || stored === "dark" ? stored : "dark";
 
         document.documentElement.dataset.theme =
           mode === "dark" ? "portfolio-dark" : "portfolio-light";

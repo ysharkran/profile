@@ -2,7 +2,6 @@ import {
   createContext,
   type PropsWithChildren,
   useContext,
-  useEffect,
   useLayoutEffect,
   useMemo,
   useState,
@@ -18,9 +17,6 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 export const STORAGE_KEY = "portfolio-theme";
 
-const getSystemTheme = (): ThemeMode =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-
 const paintTheme = (mode: ThemeMode) => {
   document.documentElement.dataset.theme =
     mode === "dark" ? "portfolio-dark" : "portfolio-light";
@@ -30,41 +26,17 @@ const paintTheme = (mode: ThemeMode) => {
 
 export function ThemeProvider({ children }: PropsWithChildren) {
   const [mode, setMode] = useState<ThemeMode>(() => {
-    if (typeof window === "undefined") return "light";
+    if (typeof window === "undefined") return "dark";
 
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
-    return getSystemTheme();
+    return "dark";
   });
 
   useLayoutEffect(() => {
     paintTheme(mode);
     window.localStorage.setItem(STORAGE_KEY, mode);
   }, [mode]);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (!stored) {
-        setMode(getSystemTheme());
-      }
-    };
-
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener("change", onChange);
-    } else {
-      mediaQuery.addListener(onChange);
-    }
-
-    return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener("change", onChange);
-      } else {
-        mediaQuery.removeListener(onChange);
-      }
-    };
-  }, []);
 
   const value = useMemo(
     () => ({

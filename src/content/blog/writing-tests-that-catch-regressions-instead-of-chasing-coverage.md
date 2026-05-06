@@ -1,38 +1,34 @@
 ---
-title: "Writing Tests That Catch Regressions Instead of Chasing Coverage"
-description: "Coverage numbers are easy to report and easy to misread. Valuable tests are the ones that make dangerous changes harder to ship by accident."
+title: "The Tests I Write Before Touching Payment, Workflow, or Contract Code"
+description: "I care less about coverage percentages than whether the suite blocks the expensive failures: wrong money movement, broken retries, and silent contract drift."
 pubDate: "2026-05-02"
-updatedDate: "May 4, 2026"
+updatedDate: "May 5, 2026"
 heroImage: "/blog/writing-tests-that-catch-regressions-instead-of-chasing-coverage.jpg"
 badge: "Code"
 tags: ["testing", "quality", "engineering"]
 ---
 
-Teams talk about tests as if the main decision is unit versus integration versus end-to-end. That matters, but the more important question is whether the suite protects the failures that actually cost the team time.
+I have seen too many “healthy” test suites let expensive failures through to care much about coverage on its own.
 
-Coverage can be a useful input. It is not a strategy.
+If I am touching payment logic, workflow state, retries, or contract-heavy APIs, I want the suite to stop the failures we would actually regret shipping, not merely prove that helper functions executed.
 
-## Start from regression cost
+## I start from regression cost, not file structure
 
-When I think about testing, I start by identifying the failures that would hurt most:
+The question is not “what kind of tests do we usually write here?” The question is “what is the most expensive thing this code could do wrong?”
 
-- financial mistakes
-- broken workflows on critical paths
+That list is usually some version of:
+
+- duplicate money movement
+- wrong workflow transitions
 - silent data corruption
-- schema or contract drift
-- race conditions that only appear under load or retries
+- contract drift across service boundaries
+- retries or rollbacks behaving differently than the team assumes
 
-The goal of the test suite is to make those failures harder to ship accidentally. That means the tests should mirror risk, not just file structure.
+Once I know the cost, the test strategy gets much easier.
 
-## The wrong tests still create confidence theater
+## The first tests I add are boundary tests
 
-It is possible to have a large suite and still be underprotected. This usually happens when tests confirm implementation details rather than behavior. A refactor breaks twenty tests even though the product still works, or worse, a risky change passes because the tests only checked shallow function outputs.
-
-Good tests should make the desired behavior hard to misunderstand.
-
-## Favor tests at the seam of change
-
-I like tests that sit close to boundaries where regressions are expensive:
+For risky systems, I rarely start with private helper tests. I start at boundaries where product behavior becomes real:
 
 - API contract edges
 - data transformation rules
@@ -40,47 +36,52 @@ I like tests that sit close to boundaries where regressions are expensive:
 - queue or event behavior
 - key user workflow transitions
 
-Those tests tend to stay valuable longer because they are attached to product behavior rather than code shape.
+Those are the places where a harmless-looking refactor turns into a real incident.
 
-## A test should answer “what could go wrong here?”
+## I write for failure modes, not just happy paths
 
-That question keeps the suite honest. If a workflow can fail due to retries, write for retry behavior. If an aggregation can break when optional fields disappear, write for missing field behavior. If an endpoint is sensitive to ordering, write for ordering.
+This is the part teams skip when they are moving fast. A happy-path test is useful, but it rarely catches the failure that will wake somebody up later.
 
-Tests become more useful when they are written with failure imagination instead of implementation proximity.
+For workflow or money-moving code, I want explicit coverage for:
 
-## Use coverage as a flashlight, not a target
+- retries
+- partial failure
+- idempotency
+- ordering sensitivity
+- null or missing optional fields
+- contract values that remain syntactically valid while changing meaning
 
-Low coverage in a risky module can be a strong signal. High coverage in a low-signal area can be meaningless. I prefer using coverage reports to find blind spots and then deciding whether those blind spots matter to the system.
+If the code depends on those cases in production, the suite should name them directly.
 
-This usually leads to a more focused suite:
+## Coverage is a flashlight, not a target
 
-- fewer brittle tests around trivial glue
-- more scenario tests around risky behavior
-- more contract and integration checks where change crosses boundaries
+I still read coverage reports. I just do not mistake them for a plan.
 
-## Keep feedback speed in mind
+Low coverage on a risky boundary is a useful warning. High coverage on glue code is often vanity. The report is there to show blind spots, not hand me success criteria.
 
-A test suite that catches the right bugs but takes too long to run will slowly lose influence. Engineers start bypassing it, ignoring flaky failures, or treating it as something CI handles later.
+That usually leads to a smaller but stronger suite:
 
-That is why I like layered suites:
+- fewer brittle tests around implementation details
+- more contract and integration coverage where change crosses boundaries
+- more scenario tests that mirror real workflow damage
 
-- fast local tests for common regression paths
-- integration tests for boundary confidence
-- slower end-to-end tests for highest-value journeys
+## Fast feedback still matters
 
-The point is not elegance. It is keeping the feedback loop tight enough that people trust it during real delivery work.
+A suite that catches the right bugs but takes too long to run will still decay. Engineers stop trusting it, ignore flakes, or treat it as something CI deals with later.
 
-## What good tests feel like in practice
+So I prefer layered feedback:
 
-Strong tests do not just guard code. They clarify the intended behavior of the system. They make reviews easier because the reader can see what the team considers important. They make refactors safer because behavior has a stable executable description.
+- fast local tests around risky business rules
+- integration checks around contracts and persistence
+- slower end-to-end coverage only for the most valuable journeys
 
-That is the outcome I optimize for. Not the prettiest report. Not the biggest percentage. A suite that catches the changes we would actually regret shipping.
+If the suite cannot participate in daily delivery, it stops being an engineering tool and becomes an aspiration.
 
 ## Technical Deep Dive
 
-The best test suites encode business invariants and failure recovery, not just line execution. A test should make it difficult to accidentally break a workflow the team cares about, even if the implementation details beneath that workflow keep changing.
+The best suites encode business invariants and failure recovery, not just line execution. I want tests that make it hard to accidentally break a workflow the team cares about even after the implementation underneath it gets reorganized.
 
-Process becomes technical when it defines what evidence counts as done, what context must survive handoff, and how quickly the next engineer can recover state after interruption. If the loop cannot be audited, it eventually becomes ceremony instead of leverage.
+That is why I like review contracts around risky code. If a change alters business invariants, rollout behavior, or failure recovery, the PR should have to show evidence explicitly.
 
 ```yaml
 review_contract:
@@ -92,11 +93,11 @@ review_contract:
     - runbook
 ```
 
-### Friction worth keeping on purpose
+### Friction I keep on purpose
 
 - cases where a mutation is correct only if the follow-up side effect also happens
 - workflow tests that cover retries, partial failure, and rollback semantics
 - boundary tests for contracts, pagination, sorting, and permission checks
 - metrics on flaky timing assumptions so the suite itself becomes observable
 
-Good process shortens decision latency because it makes the important context portable.
+That kind of friction is worth paying because it blocks the failures that are actually expensive.
