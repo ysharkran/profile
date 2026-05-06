@@ -30,7 +30,7 @@ type UpstreamProject = {
 const upstreamProjects = {
   dub: {
     title: "Dub",
-    repoLabel: "dubinc/dub",
+    repoLabel: "ysharkran/Dub",
     description:
       "Short-link management and attribution product with branded links, analytics, routing, and a polished SaaS-style dashboard that feels close to modern growth tooling.",
     image: withBasePath("/projects/dub.png"),
@@ -38,7 +38,7 @@ const upstreamProjects = {
   },
   formbricks: {
     title: "Formbricks",
-    repoLabel: "formbricks/formbricks",
+    repoLabel: "ysharkran/Formbricks",
     description:
       "In-product survey and feedback platform for user research, onboarding flows, NPS, and product analytics with a real multi-tenant application surface.",
     image: withBasePath("/projects/formbricks.png"),
@@ -46,7 +46,7 @@ const upstreamProjects = {
   },
   chatwoot: {
     title: "Chatwoot",
-    repoLabel: "chatwoot/chatwoot",
+    repoLabel: "ysharkran/Chatwoot",
     description:
       "Customer support and engagement suite with shared inboxes, live chat, CRM context, and operator workflows that feel like an actual company product.",
     image: withBasePath("/projects/chatwoot.png"),
@@ -54,7 +54,7 @@ const upstreamProjects = {
   },
   papermark: {
     title: "Papermark",
-    repoLabel: "mfts/papermark",
+    repoLabel: "ysharkran/Papermark",
     description:
       "Document sharing and analytics product with tracked views, data-room style flows, and a strong user-facing experience around files and engagement.",
     image: withBasePath("/projects/papermark.png"),
@@ -62,7 +62,7 @@ const upstreamProjects = {
   },
   calcom: {
     title: "Cal.com",
-    repoLabel: "calcom/cal.com",
+    repoLabel: "ysharkran/calcom",
     description:
       "Scheduling infrastructure and booking application with routing forms, calendar sync, teams, and a product surface that translates well to web and mobile flows.",
     image: withBasePath("/projects/calcom.png"),
@@ -70,7 +70,7 @@ const upstreamProjects = {
   },
   twenty: {
     title: "Twenty",
-    repoLabel: "twentyhq/twenty",
+    repoLabel: "ysharkran/Twenty",
     description:
       "Modern CRM-style product with accounts, contacts, pipelines, and workflow automation that looks much closer to an actual startup application than a template repo.",
     image: withBasePath("/projects/twenty.png"),
@@ -78,7 +78,7 @@ const upstreamProjects = {
   },
   memos: {
     title: "Memos",
-    repoLabel: "usememos/memos",
+    repoLabel: "ysharkran/Memos",
     description:
       "Lightweight note-taking and knowledge product with a clean consumer-style interface, social publishing feel, and strong cross-device product direction.",
     image: withBasePath("/projects/memos.png"),
@@ -94,7 +94,7 @@ const upstreamProjects = {
   },
   openWebUi: {
     title: "Open WebUI",
-    repoLabel: "open-webui/open-webui",
+    repoLabel: "ysharkran/Open-WebUI",
     description:
       "AI workspace product for model chat, tool use, knowledge retrieval, and operator-facing workflows with a polished interface that reads like a real company app.",
     image: withBasePath("/projects/open-webui.png"),
@@ -102,7 +102,7 @@ const upstreamProjects = {
   },
   lobeChat: {
     title: "Lobe Chat",
-    repoLabel: "lobehub/lobe-chat",
+    repoLabel: "ysharkran/Lobe-Chat",
     description:
       "AI assistant application with multi-model chat, agents, plugins, and consumer-grade product polish across the kind of interface surface strong AI teams actually ship.",
     image: withBasePath("/projects/lobe-chat.webp"),
@@ -110,7 +110,7 @@ const upstreamProjects = {
   },
   ente: {
     title: "Ente",
-    repoLabel: "ente-io/ente",
+    repoLabel: "ysharkran/Ente",
     description:
       "Encrypted photo and file product with strong mobile-first execution, subscription-grade UX, and real cross-platform depth instead of a developer-tool feel.",
     image: withBasePath("/projects/ente.png"),
@@ -118,7 +118,7 @@ const upstreamProjects = {
   },
   saleorStorefront: {
     title: "Saleor Storefront",
-    repoLabel: "saleor/storefront",
+    repoLabel: "ysharkran/Saleor-Storefront",
     description:
       "Composable commerce storefront with catalog discovery, cart, checkout, and channel-aware purchase flows that feel like a serious ecommerce frontend product.",
     image: withBasePath("/projects/saleor-storefront.png"),
@@ -126,7 +126,7 @@ const upstreamProjects = {
   },
   mercurStorefront: {
     title: "Mercur Storefront",
-    repoLabel: "mercurjs/b2c-marketplace-storefront",
+    repoLabel: "ysharkran/Mercur-Storefront",
     description:
       "Multi-vendor marketplace storefront with strong shopping UX, seller-friendly structure, and a clear fit for resale or recommerce-style product experiences.",
     image: withBasePath("/projects/mercur-storefront.png"),
@@ -134,7 +134,7 @@ const upstreamProjects = {
   },
   rotki: {
     title: "rotki",
-    repoLabel: "rotki/rotki",
+    repoLabel: "ysharkran/rotki",
     description:
       "Privacy-first DeFi and crypto portfolio product with PnL tracking, accounting, onchain visibility, and the kind of domain-heavy data surfaces fintech teams actually ship.",
     image: withBasePath("/projects/rotki.png"),
@@ -142,7 +142,7 @@ const upstreamProjects = {
   },
   openImis: {
     title: "openIMIS",
-    repoLabel: "openimis/openimis-fe_js",
+    repoLabel: "ysharkran/openIMIS",
     description:
       "Health insurance operations product covering beneficiaries, contributions, providers, claims review, and payouts in a workflow-heavy application surface.",
     image: withBasePath("/projects/openimis-health-insurance.jpeg"),
@@ -150,9 +150,7 @@ const upstreamProjects = {
   },
   autorizz: {
     title: "Autorizz",
-    repoLabel: "Defcon27/Autorizz",
-    repoUrl:
-      "https://github.com/Defcon27/Autorizz-Car-Dealership-System-using-NodeJS-Express-MongoDB",
+    repoLabel: "ysharkran/Autorizz",
     description:
       "Automotive retail and dealership management app with vehicle inventory, booking flows, customer records, and admin-side operations for real car sales teams.",
     image: withBasePath("/projects/autorizz.png"),
