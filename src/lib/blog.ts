@@ -1,4 +1,5 @@
 import createSlug from "./createSlug";
+import { withBasePath } from "./withBasePath";
 
 export type BlogPost = {
   title: string;
@@ -71,7 +72,8 @@ function parsePost(filePath: string, raw: string): BlogPost {
     description: data.description,
     pubDate: new Date(String(data.pubDate)),
     updatedDate: typeof data.updatedDate === "string" ? data.updatedDate : undefined,
-    heroImage: typeof data.heroImage === "string" ? data.heroImage : undefined,
+    heroImage:
+      typeof data.heroImage === "string" ? withBasePath(data.heroImage) : undefined,
     badge: typeof data.badge === "string" ? data.badge : undefined,
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     slug: createSlug(data.title, staticSlug),

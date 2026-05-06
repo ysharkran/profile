@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { profile } from "../data/portfolio";
+import { withBasePath } from "../lib/withBasePath";
 import { SmartLink } from "./SmartLink";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -53,7 +54,7 @@ export function Sidebar({ open, onClose, activeItemId }: SidebarProps) {
               <SmartLink to="/" className="flex justify-center" onClick={onClose}>
                 <div className="avatar block transition ease-in-out hover:scale-[102%]">
                   <div className="h-[5rem] w-[5rem] overflow-hidden rounded-full border border-base-300/70">
-                    <img className="h-full w-full object-cover" src="/profile-photo.jpg" alt="Yaroslav Shapran profile avatar" />
+                    <img className="h-full w-full object-cover" src={withBasePath("/profile-photo.jpg")} alt="Yaroslav Shapran profile avatar" />
                   </div>
                 </div>
               </SmartLink>
