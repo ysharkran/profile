@@ -1,6 +1,7 @@
 import { AppShell } from "../components/AppShell";
 import { ArticlePreviewCard } from "../components/ArticlePreviewCard";
 import { ProjectShowcaseCard } from "../components/ProjectShowcaseCard";
+import { SmartLink } from "../components/SmartLink";
 import { blogPosts } from "../lib/blog";
 import { featuredProjects, focusAreas, heroStats, profile } from "../data/portfolio";
 
@@ -31,9 +32,9 @@ export function HomePage() {
               <a className="btn btn-primary border-0 px-6" href={`mailto:${profile.email}`}>
                 Start a conversation
               </a>
-              <a href="/projects" className="btn btn-outline px-6">
+              <SmartLink to="/projects" className="btn btn-outline px-6">
                 See selected work
-              </a>
+              </SmartLink>
               <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="btn btn-ghost border border-base-300/80 px-6">
                 LinkedIn
               </a>
@@ -77,9 +78,9 @@ export function HomePage() {
                 your own portfolio direction.
               </p>
             </div>
-            <a href="/projects" className="btn btn-ghost border border-base-300/80 px-5">
+            <SmartLink to="/projects" className="btn btn-ghost border border-base-300/80 px-5">
               Open full portfolio
-            </a>
+            </SmartLink>
           </div>
         </div>
 
@@ -101,9 +102,9 @@ export function HomePage() {
                 and the system decisions that usually matter more than framework fashion.
               </p>
             </div>
-            <a href="/blog" className="btn btn-ghost border border-base-300/80 px-5">
+            <SmartLink to="/blog" className="btn btn-ghost border border-base-300/80 px-5">
               Browse all posts
-            </a>
+            </SmartLink>
           </div>
         </div>
 
